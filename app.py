@@ -36,13 +36,14 @@ def calculate_emissions(data):
     }
     
     emissions = {}
-    emissions['Household'] = sum(data[key] * factors.get(key, 0) for key in ['electricity', 'gas'] if key in data)
-    emissions['Transport'] = sum(data[key] * factors.get(key, 0) for key in ['fuel', 'flights'] if key in data)
+    emissions['Household'] = sum(data.get(key, 0) * factors.get(key, 0) for key in ['electricity', 'gas'])
+    emissions['Transport'] = sum(data.get(key, 0) * factors.get(key, 0) for key in ['fuel', 'flights'])
     
-    if 'vehicles' in data:
-        emissions['Transport'] += sum(vehicle['miles_driven'] * vehicle_factors.get(vehicle['vehicle_type'], 0) for vehicle in data['vehicles'])
+    vehicles = data.get('vehicles', [])
+    if isinstance(vehicles, list):
+        emissions['Transport'] += sum(vehicle['miles_driven'] * vehicle_factors.get(vehicle['vehicle_type'], 0) for vehicle in vehicles)
     
-    emissions['Secondary'] = sum(data[key] * factors.get(key, 0) for key in factors if key not in ['electricity', 'gas', 'fuel', 'flights'])
+    emissions['Secondary'] = sum(data.get(key, 0) * factors.get(key, 0) for key in factors if key not in ['electricity', 'gas', 'fuel', 'flights'])
     
     total_emissions = sum(emissions.values()) / 1000  # Convert kg to metric tons
     return emissions, total_emissions
