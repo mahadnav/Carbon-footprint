@@ -40,8 +40,10 @@ def calculate_emissions(data):
     emissions['Transport'] = sum(data.get(key, 0) * factors.get(key, 0) for key in ['fuel', 'flights'])
     
     vehicles = data.get('vehicles', [])
-    if isinstance(vehicles, list):
-        emissions['Transport'] += sum(vehicle['miles_driven'] * vehicle_factors.get(vehicle['vehicle_type'], 0) for vehicle in vehicles)
+    if not isinstance(vehicles, list):
+        vehicles = []
+    
+    emissions['Transport'] += sum(vehicle.get('miles_driven', 0) * vehicle_factors.get(vehicle.get('vehicle_type', ''), 0) for vehicle in vehicles)
     
     emissions['Secondary'] = sum(data.get(key, 0) * factors.get(key, 0) for key in factors if key not in ['electricity', 'gas', 'fuel', 'flights'])
     
