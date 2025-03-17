@@ -37,13 +37,9 @@ def calculate_emissions(data):
     
     emissions = {}
     emissions['Household'] = sum(data.get(key, 0) * factors.get(key, 0) for key in ['electricity', 'gas'])
-    emissions['Transport'] = sum(data.get(key, 0) * factors.get(key, 0) for key in ['fuel', 'flights'])
-    
-    vehicles = data.get('vehicles', [])
-    if not isinstance(vehicles, list):
-        vehicles = []
-    
-    emissions['Transport'] += sum(vehicle.get('miles_driven', 0) * vehicle_factors.get(vehicle.get('vehicle_type', ''), 0) for vehicle in vehicles)
+    emissions['Cars'] = sum(car['miles_driven'] * vehicle_factors['Car (Petrol)'] for car in data.get('cars', []))
+    emissions['Bikes/Rickshaw'] = sum(bike['miles_driven'] * vehicle_factors['Motorcycle'] for bike in data.get('bikes_rickshaw', []))
+    emissions['Bus'] = data.get('bus', 0) * vehicle_factors['Bus']
     
     emissions['Secondary'] = sum(data.get(key, 0) * factors.get(key, 0) for key in factors if key not in ['electricity', 'gas', 'fuel', 'flights'])
     
@@ -77,7 +73,7 @@ with tab2:
     for i in range(num_cars):
         st.subheader(f"Car {i+1}")
         miles_driven = st.number_input(f"Kilometers Driven Per Year (Car {i+1})", min_value=0, value=15000, key=f'car_miles_{i}')
-        user_data['cars'].append({'vehicle_type': 'Car (Petrol)', 'miles_driven': miles_driven})
+        user_data['cars'].append({'miles_driven': miles_driven})
     if st.button("Calculate Car Emissions"):
         st.write(f"Car Emissions: {calculate_emissions(user_data)[0]['Cars'] / 1000:.2f} metric tons CO₂")
 
@@ -89,7 +85,7 @@ with tab3:
     for i in range(num_bikes):
         st.subheader(f"Bike/Rickshaw {i+1}")
         miles_driven = st.number_input(f"Kilometers Driven Per Year (Bike/Rickshaw {i+1})", min_value=0, value=8000, key=f'bike_miles_{i}')
-        user_data['bikes_rickshaw'].append({'vehicle_type': 'Motorcycle', 'miles_driven': miles_driven})
+        user_data['bikes_rickshaw'].append({'miles_driven': miles_driven})
     if st.button("Calculate Bikes/Rickshaw Emissions"):
         st.write(f"Bikes/Rickshaw Emissions: {calculate_emissions(user_data)[0]['Bikes/Rickshaw'] / 1000:.2f} metric tons CO₂")
 
