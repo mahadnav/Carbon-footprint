@@ -98,7 +98,7 @@ with tab2:
     user_data['flights'] = st.number_input("Number of Domestic Flights Per Year", min_value=0, value=1)
     
     if st.button("Calculate Transport Emissions"):
-        transport_emissions = calculate_emissions(user_data)[0][1].value / 1000
+        transport_emissions = list(calculate_emissions(user_data)[0].values)[1] / 1000
         st.write(f"Transport Emissions: **{transport_emissions:.2f} metric tons CO₂**")
 
 # Secondary Tab
