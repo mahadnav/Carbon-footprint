@@ -123,7 +123,7 @@ with tab6:
         st.pyplot(fig)
         
         # Identify sector with highest emissions
-        st.write(f"🚨 The sector with the highest emissions is: **{max_category}**")
+        st.markdown(f"### 🚨 The sector with the highest emissions is: **{max_category}**")
 
         st.header("📊 Facts")
         st.markdown(
