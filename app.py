@@ -14,31 +14,32 @@ def calculate_emissions(data):
         'pharmaceuticals': 0.0012,
         'clothing': 0.0013,
         'paper_products': 0.0009,
-        'computers_it': 0.0018,
         'electronics': 0.0020,
-        'vehicles': 0.0025,
         'furniture': 0.0014,
         'hospitality': 0.0016,
         'telecom': 0.0008,
-        'finance': 0.0011,
         'insurance': 0.0007,
         'education': 0.0006,
         'recreation': 0.0012
     }
     
-    # Vehicle-specific emission factors (kg CO2 per km)
-    vehicle_factors = {
-        'Car': 0.35,
-        'Motorcycle': 0.12,
-        'Bus': 0.05,
-        'Rickshaw': 0.15
-    }
+    # Fuel-based emission factor (kg CO2 per liter)
+    fuel_emission_factor = 2.7  # kg CO2 per liter (Petrol)
     
     emissions = {}
     emissions['Household'] = sum(data.get(key, 0) * factors.get(key, 0) for key in ['electricity', 'gas'])
-    emissions['Cars'] = sum(car['miles_driven'] * vehicle_factors['Car'] for car in data.get('cars', []))
-    emissions['Bikes/Rickshaw'] = sum(bike['miles_driven'] * vehicle_factors['Motorcycle'] for bike in data.get('bikes_rickshaw', []))
-    emissions['Bus'] = data.get('bus', 0) * vehicle_factors['Bus']
+    
+    emissions['Cars'] = sum(
+        (car['miles_driven'] / car['fuel_efficiency']) * fuel_emission_factor
+        for car in data.get('cars', []) if car['fuel_efficiency'] > 0
+    )
+    
+    emissions['Bikes/Rickshaw'] = sum(
+        (bike['miles_driven'] / bike['fuel_efficiency']) * fuel_emission_factor
+        for bike in data.get('bikes_rickshaw', []) if bike['fuel_efficiency'] > 0
+    )
+    
+    emissions['Bus'] = data.get('bus', 0) * 0.05  # Emission factor for bus
     
     emissions['Secondary'] = sum(data.get(key, 0) * factors.get(key, 0) for key in factors if key not in ['electricity', 'gas', 'fuel', 'flights'])
     
@@ -97,7 +98,7 @@ with tab4:
 # Secondary Tab
 with tab5:
     st.header("🛍️ Secondary Emissions")
-    for category in ['food', 'pharmaceuticals', 'clothing', 'paper_products', 'computers_it', 'electronics', 'vehicles', 'furniture', 'hospitality', 'telecom', 'finance', 'insurance', 'education', 'recreation']:
+    for category in ['food', 'pharmaceuticals', 'clothing', 'paper_products', 'electronics', 'furniture', 'hospitality', 'telecom', 'insurance', 'education', 'recreation']:
         user_data[category] = st.number_input(f"Annual Spending on {category.replace('_', ' ').title()} (PKR)", min_value=0, value=300000)
     if st.button("Calculate Secondary Emissions"):
         st.write(f"Secondary Emissions: {calculate_emissions(user_data)[0]['Secondary'] / 1000:.2f} metric tons CO₂")
