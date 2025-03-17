@@ -85,13 +85,6 @@ with tab2:
     
     num_vehicles = st.number_input("Number of Vehicles", min_value=0, value=len(st.session_state['vehicles']), step=1)
 
-    # Adjust session state vehicle list based on user input
-    if len(st.session_state['vehicles']) < num_vehicles:
-        for _ in range(num_vehicles - len(st.session_state['vehicles'])):
-            st.session_state['vehicles'].append({'vehicle_type': 'Car (Petrol)', 'miles_driven': 15000})
-    elif len(st.session_state['vehicles']) > num_vehicles:
-        st.session_state['vehicles'] = st.session_state['vehicles'][:num_vehicles]
-
     for i in range(num_vehicles):
         st.subheader(f"Vehicle {i+1}")
         vehicle_type = st.selectbox(f"Select Vehicle Type {i+1}", 
@@ -99,15 +92,13 @@ with tab2:
                                     key=f'vehicle_type_{i}')
         miles_driven = st.number_input(f"Kilometers Driven Per Year (Vehicle {i+1})", 
                                        min_value=0, value=15000, key=f'miles_driven_{i}')
-        
-        st.session_state['vehicles'][i] = {'vehicle_type': vehicle_type, 'miles_driven': miles_driven}
     
     user_data['vehicles'] = st.session_state['vehicles']
     user_data['fuel'] = st.number_input("Fuel Consumption (liters per year)", min_value=0, value=800)
     user_data['flights'] = st.number_input("Number of Domestic Flights Per Year", min_value=0, value=1)
     
     if st.button("Calculate Transport Emissions"):
-        transport_emissions = calculate_emissions(user_data)[0]['Transport'] / 1000
+        transport_emissions = calculate_emissions(user_data)[0][1].value / 1000
         st.write(f"Transport Emissions: **{transport_emissions:.2f} metric tons CO₂**")
 
 # Secondary Tab
@@ -127,7 +118,7 @@ with tab3:
 with tab4:
     if st.button("Calculate My Carbon Footprint"):
         emissions, total_co2 = calculate_emissions(user_data)
-        st.success(f"🌱 Your estimated annual carbon footprint is **{total_co2:.2f} metric tons of CO₂**.")
+        st.success(f"🌱 Your estimated annual carbon footprint is **{total_co2:.1f} metric tons of CO₂**.")
         
         # Display category-wise emissions
         st.subheader("Category-wise Carbon Emissions (Metric Tons CO₂)")
