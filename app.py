@@ -30,12 +30,12 @@ def calculate_emissions(data):
     emissions['Household'] = sum(data.get(key, 0) * factors.get(key, 0) for key in ['electricity', 'gas'])
     
     emissions['Cars'] = sum(
-        (car['miles_driven'] / car['fuel_avg']) * fuel_emission_factor
+        (car['miles_driven'] / car['fuel_efficiency']) * fuel_emission_factor
         for car in data.get('cars', [])
     )
     
     emissions['Bikes/Rickshaw'] = sum(
-        (bike['miles_driven'] / bike['fuel_avg']) * fuel_emission_factor
+        (bike['miles_driven'] / bike['fuel_efficiency']) * fuel_emission_factor
         for bike in data.get('bikes_rickshaw', [])
     )
     
