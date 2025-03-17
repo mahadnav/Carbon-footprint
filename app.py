@@ -6,8 +6,8 @@ import matplotlib.pyplot as plt
 def calculate_emissions(data):
     # Emission factors tailored for Pakistan (kg CO2 per unit)
     factors = {
-        'electricity': 0.38,  # kg CO2 per kWh (Pakistan energy mix)
-        'gas': 2.0,  # kg CO2 per cubic meter (Natural Gas)
+        'electricity': 0.425,  # kg CO2 per kWh (Pakistan energy mix)
+        'gas': 2.2,  # kg CO2 per cubic meter (Natural Gas)
         'fuel': 2.7,  # kg CO2 per liter (Petrol/Diesel)
         'flights': 200,  # kg CO2 per flight (domestic estimate)
         'food': 0.0015,
@@ -110,3 +110,15 @@ with tab6:
     if st.button("Calculate My Carbon Footprint"):
         emissions, total_co2 = calculate_emissions(user_data)
         st.success(f"🌱 Your estimated annual carbon footprint is **{total_co2:.2f} metric tons of CO₂**.")
+
+        # Pie chart visualization
+        labels = emissions.keys()
+        sizes = emissions.values()
+        fig, ax = plt.subplots()
+        ax.pie(sizes, labels=labels, autopct='%1.1f%%', startangle=90)
+        ax.axis('equal')
+        st.pyplot(fig)
+        
+        # Identify sector with highest emissions
+        max_category = max(emissions, key=emissions.get)
+        st.write(f"🚨 The sector with the highest emissions is: **{max_category}**")
