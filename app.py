@@ -130,5 +130,5 @@ with tab6:
         "* The average footprint for people in Pakistan is 0.98 metric tons"
         "\n* The average for the European Union is about 6.8 metric tons"
         "\n* The average worldwide carbon footprint is about 4.79 metric tons"
-        "\n* To combat climate change, the average global carbon footprint must be reduced to 2.1 metric tons by 2050"
+        "\n* To avoid a 2℃ rise in global temperatures, the average global carbon footprint must be reduced to under 2 metric tons by 2050"
         )
