@@ -96,7 +96,7 @@ with tab4:
         st.write(emissions)
         
         # Plot the emissions
-        fig, ax = plt.subplots()
+        fig, ax = plt.subplots(figsize=(20, 6))
         ax.bar(emissions.keys(), [val / 1000 for val in emissions.values()], color=['blue', 'green', 'orange'])
         ax.set_ylabel("Metric Tons CO₂")
         ax.set_title("Carbon Emissions Breakdown")
