@@ -2,14 +2,18 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 
+# Initialize session state for vehicles
+if 'vehicles' not in st.session_state:
+    st.session_state['vehicles'] = []
+
 # Function to calculate emissions
 def calculate_emissions(data):
     # Emission factors tailored for Pakistan (kg CO2 per unit)
     factors = {
-        'electricity': 0.38,  # kg CO2 per kWh (Pakistan energy mix)
-        'gas': 2.0,  # kg CO2 per cubic meter (Natural Gas)
-        'fuel': 2.7,  # kg CO2 per liter (Petrol/Diesel)
-        'flights': 200,  # kg CO2 per flight (domestic estimate)
+        'electricity': 0.38,  
+        'gas': 2.0,  
+        'fuel': 2.7,  
+        'flights': 200,  
         'food': 0.0015,
         'pharmaceuticals': 0.0012,
         'clothing': 0.0013,
@@ -26,7 +30,7 @@ def calculate_emissions(data):
         'recreation': 0.0012
     }
     
-    # Vehicle-specific emission factors (kg CO2 per km)
+    # Vehicle emission factors (kg CO2 per km)
     vehicle_factors = {
         'Car (Petrol)': 0.35,
         'Car (Diesel)': 0.28,
@@ -35,16 +39,20 @@ def calculate_emissions(data):
         'Rickshaw': 0.15
     }
     
-    emissions = {}
+    emissions = {'Household': 0, 'Transport': 0, 'Secondary': 0}
+
+    # Household emissions
     emissions['Household'] = sum(data.get(key, 0) * factors.get(key, 0) for key in ['electricity', 'gas'])
-    emissions['Transport'] = sum(data.get(key, 0) * factors.get(key, 0) for key in ['fuel', 'flights'])
     
+    # Transport emissions
+    emissions['Transport'] += sum(data.get(key, 0) * factors.get(key, 0) for key in ['fuel', 'flights'])
+
+    # Check for vehicles
     vehicles = data.get('vehicles', [])
-    if not isinstance(vehicles, list):
-        vehicles = []
-    
-    emissions['Transport'] += sum(vehicle.get('miles_driven', 0) * vehicle_factors.get(vehicle.get('vehicle_type', ''), 0) for vehicle in vehicles)
-    
+    if isinstance(vehicles, list):
+        emissions['Transport'] += sum(vehicle.get('miles_driven', 0) * vehicle_factors.get(vehicle.get('vehicle_type', ''), 0) for vehicle in vehicles)
+
+    # Secondary emissions
     emissions['Secondary'] = sum(data.get(key, 0) * factors.get(key, 0) for key in factors if key not in ['electricity', 'gas', 'fuel', 'flights'])
     
     total_emissions = sum(emissions.values()) / 1000  # Convert kg to metric tons
@@ -66,8 +74,10 @@ with tab1:
     st.header("🏠 Household Emissions")
     user_data['electricity'] = st.number_input("Electricity Usage (kWh per year)", min_value=0, value=3500)
     user_data['gas'] = st.number_input("Natural Gas Usage (cubic meters per year)", min_value=0, value=1200)
+    
     if st.button("Calculate Household Emissions"):
-        st.write(f"Household Emissions: {calculate_emissions(user_data)[0]['Household'] / 1000:.2f} metric tons CO₂")
+        household_emissions = calculate_emissions(user_data)[0]['Household'] / 1000
+        st.write(f"Household Emissions: **{household_emissions:.2f} metric tons CO₂**")
 
 # Transport Tab
 with tab2:
@@ -99,13 +109,19 @@ with tab2:
     if st.button("Calculate Transport Emissions"):
         transport_emissions = calculate_emissions(user_data)[0]['Transport'] / 1000
         st.write(f"Transport Emissions: **{transport_emissions:.2f} metric tons CO₂**")
+
 # Secondary Tab
 with tab3:
     st.header("🛍️ Secondary Emissions")
-    for category in ['food', 'pharmaceuticals', 'clothing', 'paper_products', 'computers_it', 'electronics', 'vehicles', 'furniture', 'hospitality', 'telecom', 'finance', 'insurance', 'education', 'recreation']:
-        user_data[category] = st.number_input(f"Annual Spending on {category.replace('_', ' ').title()} (PKR)", min_value=0, value=300000)
+    
+    for category in ['food', 'pharmaceuticals', 'clothing', 'paper_products', 'computers_it', 'electronics', 
+                     'vehicles', 'furniture', 'hospitality', 'telecom', 'finance', 'insurance', 'education', 'recreation']:
+        user_data[category] = st.number_input(f"Annual Spending on {category.replace('_', ' ').title()} (PKR)", 
+                                              min_value=0, value=300000)
+
     if st.button("Calculate Secondary Emissions"):
-        st.write(f"Secondary Emissions: {calculate_emissions(user_data)[0]['Secondary'] / 1000:.2f} metric tons CO₂")
+        secondary_emissions = calculate_emissions(user_data)[0]['Secondary'] / 1000
+        st.write(f"Secondary Emissions: **{secondary_emissions:.2f} metric tons CO₂**")
 
 # Calculate and Display Results
 with tab4:
