@@ -2,10 +2,6 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 
-# Initialize session state for vehicles
-if 'vehicles' not in st.session_state:
-    st.session_state['vehicles'] = []
-
 # Function to calculate emissions
 def calculate_emissions(data):
     # Emission factors tailored for Pakistan (kg CO2 per unit)
@@ -98,7 +94,7 @@ with tab2:
     user_data['flights'] = st.number_input("Number of Domestic Flights Per Year", min_value=0, value=1)
     
     if st.button("Calculate Transport Emissions"):
-        transport_emissions = list(calculate_emissions(user_data)[0].values)[1] / 1000
+        transport_emissions = calculate_emissions(user_data)[0]['Transport'] / 1000
         st.write(f"Transport Emissions: **{transport_emissions:.2f} metric tons CO₂**")
 
 # Secondary Tab
