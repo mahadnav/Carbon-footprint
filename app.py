@@ -118,7 +118,7 @@ with tab6:
         explode = [0.1 if key == max_category else 0 for key in emissions]  # Explode highest-emission sector
         
         fig, ax = plt.subplots()
-        ax.pie(sizes, labels=labels, autopct='%1.1f%%', startangle=90, explode=explode, colors=plt.cm.Paired.colors)
+        ax.pie(sizes, labels=labels, autopct='%1.0f%%', startangle=90, explode=explode, colors=plt.cm.Paired.colors)
         ax.axis('equal')
         st.pyplot(fig)
         
