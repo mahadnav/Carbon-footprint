@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+import matplotlib.pyplot as plt
 
 # Function to calculate emissions
 def calculate_emissions(data):
@@ -9,20 +10,20 @@ def calculate_emissions(data):
         'gas': 2.0,  # kg CO2 per cubic meter (Natural Gas)
         'fuel': 2.7,  # kg CO2 per liter (Petrol/Diesel)
         'flights': 200,  # kg CO2 per flight (domestic estimate)
-        'food': 0.0015,  # kg CO2 per PKR spent on food and drink products
+        'food': 0.0015,
         'pharmaceuticals': 0.0012,
-        'clothing': 0.0013,  # kg CO2 per PKR spent on clothing, textiles, and shoes
-        'paper_products': 0.0009,  # kg CO2 per PKR spent on paper products
+        'clothing': 0.0013,
+        'paper_products': 0.0009,
         'computers_it': 0.0018,
-        'electronics': 0.0020,  # TV, radio, and phone equipment
-        'vehicles': 0.0025,  # Motor vehicles (not including fuel costs)
+        'electronics': 0.0020,
+        'vehicles': 0.0025,
         'furniture': 0.0014,
-        'hospitality': 0.0016,  # Hotels, restaurants, and pubs
-        'telecom': 0.0008,  # Telephone and mobile phone call costs
-        'finance': 0.0011,  # Banking and finance (mortgage, loan interest payments)
+        'hospitality': 0.0016,
+        'telecom': 0.0008,
+        'finance': 0.0011,
         'insurance': 0.0007,
         'education': 0.0006,
-        'recreation': 0.0012  # Recreational, cultural, and sporting activities
+        'recreation': 0.0012
     }
     
     # Vehicle-specific emission factors (kg CO2 per km)
@@ -34,13 +35,17 @@ def calculate_emissions(data):
         'Rickshaw': 0.15
     }
     
-    total_emissions = sum(data[key] * factors.get(key, 0) for key in data if key in factors)
+    emissions = {}
+    emissions['Household'] = sum(data[key] * factors.get(key, 0) for key in ['electricity', 'gas'] if key in data)
+    emissions['Transport'] = sum(data[key] * factors.get(key, 0) for key in ['fuel', 'flights'] if key in data)
     
     if 'vehicles' in data:
-        for vehicle in data['vehicles']:
-            total_emissions += vehicle['miles_driven'] * vehicle_factors.get(vehicle['vehicle_type'], 0)
+        emissions['Transport'] += sum(vehicle['miles_driven'] * vehicle_factors.get(vehicle['vehicle_type'], 0) for vehicle in data['vehicles'])
     
-    return total_emissions / 1000  # Convert kg to metric tons
+    emissions['Secondary'] = sum(data[key] * factors.get(key, 0) for key in factors if key not in ['electricity', 'gas', 'fuel', 'flights'])
+    
+    total_emissions = sum(emissions.values()) / 1000  # Convert kg to metric tons
+    return emissions, total_emissions
 
 # Streamlit UI
 st.set_page_config(page_title='Carbon Footprint Calculator - Pakistan', layout='wide')
@@ -48,8 +53,8 @@ st.title('🌍 Pakistan Carbon Footprint Calculator')
 st.sidebar.header("Navigation")
 
 # User inputs in different tabs
-categories = ["Household", "Transport", "Secondary"]
-tab1, tab2, tab3 = st.tabs(categories)
+categories = ["Household", "Transport", "Secondary", "Results"]
+tab1, tab2, tab3, tab4 = st.tabs(categories)
 
 user_data = {}
 
@@ -76,22 +81,22 @@ with tab2:
 # Secondary Tab
 with tab3:
     st.header("🛍️ Secondary Emissions")
-    user_data['food'] = st.number_input("Annual Spending on Food & Drink (PKR)", min_value=0, value=600000)
-    user_data['pharmaceuticals'] = st.number_input("Annual Spending on Pharmaceuticals (PKR)", min_value=0, value=200000)
-    user_data['clothing'] = st.number_input("Annual Spending on Clothes & Shoes (PKR)", min_value=0, value=300000)
-    user_data['paper_products'] = st.number_input("Annual Spending on Paper Products (PKR)", min_value=0, value=100000)
-    user_data['computers_it'] = st.number_input("Annual Spending on Computers & IT (PKR)", min_value=0, value=500000)
-    user_data['electronics'] = st.number_input("Annual Spending on TV, Radio, Phone Equipment (PKR)", min_value=0, value=400000)
-    user_data['vehicles'] = st.number_input("Annual Spending on Motor Vehicles (PKR)", min_value=0, value=800000)
-    user_data['furniture'] = st.number_input("Annual Spending on Furniture (PKR)", min_value=0, value=300000)
-    user_data['hospitality'] = st.number_input("Annual Spending on Hotels, Restaurants, Pubs (PKR)", min_value=0, value=500000)
-    user_data['telecom'] = st.number_input("Annual Spending on Telephone Calls (PKR)", min_value=0, value=150000)
-    user_data['finance'] = st.number_input("Annual Spending on Banking & Finance (PKR)", min_value=0, value=400000)
-    user_data['insurance'] = st.number_input("Annual Spending on Insurance (PKR)", min_value=0, value=200000)
-    user_data['education'] = st.number_input("Annual Spending on Education (PKR)", min_value=0, value=600000)
-    user_data['recreation'] = st.number_input("Annual Spending on Recreation & Sports (PKR)", min_value=0, value=350000)
+    for category in ['food', 'pharmaceuticals', 'clothing', 'paper_products', 'computers_it', 'electronics', 'vehicles', 'furniture', 'hospitality', 'telecom', 'finance', 'insurance', 'education', 'recreation']:
+        user_data[category] = st.number_input(f"Annual Spending on {category.replace('_', ' ').title()} (PKR)", min_value=0, value=300000)
 
-# Calculate Total Emissions
-if st.button("Calculate My Carbon Footprint"):
-    total_co2 = calculate_emissions(user_data)
-    st.success(f"🌱 Your estimated annual carbon footprint is **{total_co2:.2f} metric tons of CO₂**.")
+# Calculate and Display Results
+with tab4:
+    if st.button("Calculate My Carbon Footprint"):
+        emissions, total_co2 = calculate_emissions(user_data)
+        st.success(f"🌱 Your estimated annual carbon footprint is **{total_co2:.2f} metric tons of CO₂**.")
+        
+        # Display category-wise emissions
+        st.subheader("Category-wise Carbon Emissions (Metric Tons CO₂)")
+        st.write(emissions)
+        
+        # Plot the emissions
+        fig, ax = plt.subplots()
+        ax.bar(emissions.keys(), [val / 1000 for val in emissions.values()], color=['blue', 'green', 'orange'])
+        ax.set_ylabel("Metric Tons CO₂")
+        ax.set_title("Carbon Emissions Breakdown")
+        st.pyplot(fig)
