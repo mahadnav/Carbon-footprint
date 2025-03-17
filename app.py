@@ -28,8 +28,7 @@ def calculate_emissions(data):
     
     # Vehicle-specific emission factors (kg CO2 per km)
     vehicle_factors = {
-        'Car (Petrol)': 0.35,
-        'Car (Diesel)': 0.28,
+        'Car': 0.35,
         'Motorcycle': 0.12,
         'Bus': 0.05,
         'Rickshaw': 0.15
@@ -37,7 +36,7 @@ def calculate_emissions(data):
     
     emissions = {}
     emissions['Household'] = sum(data.get(key, 0) * factors.get(key, 0) for key in ['electricity', 'gas'])
-    emissions['Cars'] = sum(car['miles_driven'] * vehicle_factors['Car (Petrol)'] for car in data.get('cars', []))
+    emissions['Cars'] = sum(car['miles_driven'] * vehicle_factors['Car'] for car in data.get('cars', []))
     emissions['Bikes/Rickshaw'] = sum(bike['miles_driven'] * vehicle_factors['Motorcycle'] for bike in data.get('bikes_rickshaw', []))
     emissions['Bus'] = data.get('bus', 0) * vehicle_factors['Bus']
     
@@ -47,7 +46,7 @@ def calculate_emissions(data):
     return emissions, total_emissions
 
 # Streamlit UI
-st.set_page_config(page_title='Carbon Footprint Calculator - Pakistan')
+st.set_page_config(page_title='🌱 Carbon Footprint Calculator')
 st.title('🌍 Pakistan Carbon Footprint Calculator')
 
 # User inputs in different tabs
