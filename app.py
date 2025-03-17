@@ -124,3 +124,8 @@ with tab6:
         
         # Identify sector with highest emissions
         st.write(f"🚨 The sector with the highest emissions is: **{max_category}**")
+
+        st.markdown("### 📊 Facts\n"
+        "The average footprint for people in Pakistan is 0.98 metric tons\n"
+        "The average for the European Union is about 6.8 metric tons"
+        "The average worldwide carbon footprint is about 4.79 metric tons")
