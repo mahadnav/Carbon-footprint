@@ -51,7 +51,7 @@ def calculate_emissions(data):
     return emissions, total_emissions
 
 # Streamlit UI
-st.set_page_config(page_title='Carbon Footprint Calculator - Pakistan', layout='wide')
+st.set_page_config(page_title='Carbon Footprint Calculator - Pakistan')
 st.title('🌍 Pakistan Carbon Footprint Calculator')
 st.sidebar.header("Navigation")
 
@@ -72,19 +72,33 @@ with tab1:
 # Transport Tab
 with tab2:
     st.header("🚗 Transport Emissions")
-    user_data['vehicles'] = []
-    num_vehicles = st.number_input("Number of Vehicles", min_value=0, value=1, step=1)
+    
+    num_vehicles = st.number_input("Number of Vehicles", min_value=0, value=len(st.session_state['vehicles']), step=1)
+
+    # Adjust session state vehicle list based on user input
+    if len(st.session_state['vehicles']) < num_vehicles:
+        for _ in range(num_vehicles - len(st.session_state['vehicles'])):
+            st.session_state['vehicles'].append({'vehicle_type': 'Car (Petrol)', 'miles_driven': 15000})
+    elif len(st.session_state['vehicles']) > num_vehicles:
+        st.session_state['vehicles'] = st.session_state['vehicles'][:num_vehicles]
+
     for i in range(num_vehicles):
         st.subheader(f"Vehicle {i+1}")
-        vehicle_type = st.selectbox(f"Select Vehicle Type {i+1}", ["Car (Petrol)", "Car (Diesel)", "Motorcycle", "Bus", "Rickshaw"], key=f'vehicle_type_{i}')
-        miles_driven = st.number_input(f"Kilometers Driven Per Year (Vehicle {i+1})", min_value=0, value=15000, key=f'miles_driven_{i}')
-        user_data['vehicles'].append({'vehicle_type': vehicle_type, 'miles_driven': miles_driven})
+        vehicle_type = st.selectbox(f"Select Vehicle Type {i+1}", 
+                                    ["Car (Petrol)", "Car (Diesel)", "Motorcycle", "Bus", "Rickshaw"], 
+                                    key=f'vehicle_type_{i}')
+        miles_driven = st.number_input(f"Kilometers Driven Per Year (Vehicle {i+1})", 
+                                       min_value=0, value=15000, key=f'miles_driven_{i}')
+        
+        st.session_state['vehicles'][i] = {'vehicle_type': vehicle_type, 'miles_driven': miles_driven}
     
+    user_data['vehicles'] = st.session_state['vehicles']
     user_data['fuel'] = st.number_input("Fuel Consumption (liters per year)", min_value=0, value=800)
     user_data['flights'] = st.number_input("Number of Domestic Flights Per Year", min_value=0, value=1)
+    
     if st.button("Calculate Transport Emissions"):
-        st.write(f"Transport Emissions: {calculate_emissions(user_data)[0]['Transport'] / 1000:.2f} metric tons CO₂")
-
+        transport_emissions = calculate_emissions(user_data)[0]['Transport'] / 1000
+        st.write(f"Transport Emissions: **{transport_emissions:.2f} metric tons CO₂**")
 # Secondary Tab
 with tab3:
     st.header("🛍️ Secondary Emissions")
