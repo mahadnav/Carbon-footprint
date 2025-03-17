@@ -31,12 +31,12 @@ def calculate_emissions(data):
     
     emissions['Cars'] = sum(
         (car['miles_driven'] / car['fuel_avg']) * fuel_emission_factor
-        for car in data.get('cars', []) if car['fuel_avg'] > 0
+        for car in data.get('cars', [])
     )
     
     emissions['Bikes/Rickshaw'] = sum(
         (bike['miles_driven'] / bike['fuel_avg']) * fuel_emission_factor
-        for bike in data.get('bikes_rickshaw', []) if bike['fuel_avg'] > 0
+        for bike in data.get('bikes_rickshaw', [])
     )
     
     emissions['Bus'] = data.get('bus', 0) * 0.05  # Emission factor for bus
@@ -72,9 +72,8 @@ with tab2:
     for i in range(num_cars):
         st.subheader(f"Car {i+1}")
         miles_driven = st.number_input(f"Kilometers Driven Per Year (Car {i+1})", min_value=0, value=15000, key=f'car_miles_{i}')
-        user_data['cars'].append({'miles_driven': miles_driven})
-        fuel_avg = st.number_input(f"Fuel Average (Car {i+1})", min_value=1, value=10, key=f'car_avg_{i}')
-        user_data['cars'].append({'fuel_avg': fuel_avg})
+        fuel_efficiency = st.number_input(f"Fuel Efficiency (km per litre) (Car {i+1})", min_value=1.0, value=12.0, key=f'car_efficiency_{i}')
+        user_data['cars'].append({'miles_driven': miles_driven, 'fuel_efficiency': fuel_efficiency})
     if st.button("Calculate Car Emissions"):
         st.write(f"Car Emissions: {calculate_emissions(user_data)[0]['Cars'] / 1000:.2f} metric tons CO₂")
 
@@ -86,9 +85,8 @@ with tab3:
     for i in range(num_bikes):
         st.subheader(f"Bike/Rickshaw {i+1}")
         miles_driven = st.number_input(f"Kilometers Driven Per Year (Bike/Rickshaw {i+1})", min_value=0, value=8000, key=f'bike_miles_{i}')
-        user_data['bikes_rickshaw'].append({'miles_driven': miles_driven})
-        bike_fuel_avg = st.number_input(f"Fuel Average (Bike {i+1})", min_value=1, value=25, key=f'bike_avg_{i}')
-        user_data['bikes_rickshaw'].append({'bike_fuel_avg': bike_fuel_avg})
+        fuel_efficiency = st.number_input(f"Fuel Efficiency (km per litre) (Bike/Rickshaw {i+1})", min_value=1.0, value=30.0, key=f'bike_efficiency_{i}')
+        user_data['bikes_rickshaw'].append({'miles_driven': miles_driven, 'fuel_efficiency': fuel_efficiency})
     if st.button("Calculate Bikes/Rickshaw Emissions"):
         st.write(f"Bikes/Rickshaw Emissions: {calculate_emissions(user_data)[0]['Bikes/Rickshaw'] / 1000:.2f} metric tons CO₂")
 
