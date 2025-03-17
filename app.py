@@ -64,6 +64,8 @@ with tab1:
     st.header("🏠 Household Emissions")
     user_data['electricity'] = st.number_input("Electricity Usage (kWh per year)", min_value=0, value=3500)
     user_data['gas'] = st.number_input("Natural Gas Usage (cubic meters per year)", min_value=0, value=1200)
+    if st.button("Calculate Household Emissions"):
+        st.write(f"Household Emissions: {calculate_emissions(user_data)[0]['Household'] / 1000:.2f} metric tons CO₂")
 
 # Transport Tab
 with tab2:
@@ -78,12 +80,16 @@ with tab2:
     
     user_data['fuel'] = st.number_input("Fuel Consumption (liters per year)", min_value=0, value=800)
     user_data['flights'] = st.number_input("Number of Domestic Flights Per Year", min_value=0, value=1)
+    if st.button("Calculate Transport Emissions"):
+        st.write(f"Transport Emissions: {calculate_emissions(user_data)[0]['Transport'] / 1000:.2f} metric tons CO₂")
 
 # Secondary Tab
 with tab3:
     st.header("🛍️ Secondary Emissions")
     for category in ['food', 'pharmaceuticals', 'clothing', 'paper_products', 'computers_it', 'electronics', 'vehicles', 'furniture', 'hospitality', 'telecom', 'finance', 'insurance', 'education', 'recreation']:
         user_data[category] = st.number_input(f"Annual Spending on {category.replace('_', ' ').title()} (PKR)", min_value=0, value=300000)
+    if st.button("Calculate Secondary Emissions"):
+        st.write(f"Secondary Emissions: {calculate_emissions(user_data)[0]['Secondary'] / 1000:.2f} metric tons CO₂")
 
 # Calculate and Display Results
 with tab4:
@@ -96,7 +102,7 @@ with tab4:
         st.write(emissions)
         
         # Plot the emissions
-        fig, ax = plt.subplots(figsize=(20, 3))
+        fig, ax = plt.subplots()
         ax.bar(emissions.keys(), [val / 1000 for val in emissions.values()], color=['blue', 'green', 'orange'])
         ax.set_ylabel("Metric Tons CO₂")
         ax.set_title("Carbon Emissions Breakdown")
