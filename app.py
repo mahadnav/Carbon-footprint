@@ -79,7 +79,7 @@ with tab2:
         miles_driven = st.number_input(f"Kilometers Driven Per Year (Car {i+1})", min_value=0, value=15000, key=f'car_miles_{i}')
         user_data['cars'].append({'vehicle_type': 'Car (Petrol)', 'miles_driven': miles_driven})
     if st.button("Calculate Car Emissions"):
-        st.write(f"Car Emissions: {calculate_emissions(user_data)[0]['Transport'] / 1000:.2f} metric tons CO₂")
+        st.write(f"Car Emissions: {calculate_emissions(user_data)[0]['Cars'] / 1000:.2f} metric tons CO₂")
 
 # Bikes/Rickshaw Tab
 with tab3:
@@ -91,14 +91,14 @@ with tab3:
         miles_driven = st.number_input(f"Kilometers Driven Per Year (Bike/Rickshaw {i+1})", min_value=0, value=8000, key=f'bike_miles_{i}')
         user_data['bikes_rickshaw'].append({'vehicle_type': 'Motorcycle', 'miles_driven': miles_driven})
     if st.button("Calculate Bikes/Rickshaw Emissions"):
-        st.write(f"Bikes/Rickshaw Emissions: {calculate_emissions(user_data)[0]['Transport'] / 1000:.2f} metric tons CO₂")
+        st.write(f"Bikes/Rickshaw Emissions: {calculate_emissions(user_data)[0]['Bikes/Rickshaw'] / 1000:.2f} metric tons CO₂")
 
 # Bus Tab
 with tab4:
     st.header("🚌 Bus Emissions")
     user_data['bus'] = st.number_input("Kilometers Traveled by Bus Per Year", min_value=0, value=5000)
     if st.button("Calculate Bus Emissions"):
-        st.write(f"Bus Emissions: {calculate_emissions(user_data)[0]['Transport'] / 1000:.2f} metric tons CO₂")
+        st.write(f"Bus Emissions: {calculate_emissions(user_data)[0]['Bus'] / 1000:.2f} metric tons CO₂")
 
 # Secondary Tab
 with tab5:
