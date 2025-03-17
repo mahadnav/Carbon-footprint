@@ -111,14 +111,16 @@ with tab6:
         emissions, total_co2 = calculate_emissions(user_data)
         st.success(f"🌱 Your estimated annual carbon footprint is **{total_co2:.2f} metric tons of CO₂**.")
 
-        # Pie chart visualization
+        # Pie chart visualization with explosion of the highest-emission category
         labels = emissions.keys()
         sizes = emissions.values()
+        max_category = max(emissions, key=emissions.get)  # Find category with highest emissions
+        explode = [0.1 if key == max_category else 0 for key in emissions]  # Explode highest-emission sector
+        
         fig, ax = plt.subplots()
-        ax.pie(sizes, labels=labels, autopct='%1.1f%%', startangle=90)
+        ax.pie(sizes, labels=labels, autopct='%1.1f%%', startangle=90, explode=explode, colors=plt.cm.Paired.colors)
         ax.axis('equal')
         st.pyplot(fig)
         
         # Identify sector with highest emissions
-        max_category = max(emissions, key=emissions.get)
         st.write(f"🚨 The sector with the highest emissions is: **{max_category}**")
