@@ -83,7 +83,7 @@ with tab3:
     user_data['bikes_rickshaw'] = []
     num_bikes = st.number_input("Number of Motorcycles", min_value=0, value=1, step=1)
     for i in range(num_bikes):
-        st.subheader(f"Bike/Rickshaw {i+1}")
+        st.subheader(f"Motorcycle {i+1}")
         miles_driven = st.number_input(f"Kilometers Driven Per Year", min_value=0, value=8000, key=f'bike_miles_{i}')
         fuel_efficiency = st.number_input(f"Fuel Efficiency (km per litre)", min_value=1.0, value=30.0, key=f'bike_efficiency_{i}')
         user_data['bikes_rickshaw'].append({'miles_driven': miles_driven, 'fuel_efficiency': fuel_efficiency})
