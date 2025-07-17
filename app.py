@@ -52,7 +52,7 @@ st.title('🌍 Pakistan Carbon Footprint Calculator')
 
 # User inputs in different tabs
 categories = ["Household", "Cars", "Bikes/Rickshaw", "Bus", "Secondary", "Results"]
-tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(categories)
+tab1, tab2, tab3, tab4 = st.tabs(categories)
 
 user_data = {}
 
@@ -64,41 +64,42 @@ with tab1:
     if st.button("Calculate Household Emissions"):
         st.write(f"Household Emissions: {calculate_emissions(user_data)[0]['Household'] / 1000:.2f} metric tons CO₂")
 
-# Cars Tab
+# Vehicle Emissions Tab
 with tab2:
-    st.markdown("### 🚗 Car Emissions")
+    st.markdown("### 🚘 Vehicle Emissions")
     user_data['cars'] = []
-    num_cars = st.number_input("Number of Cars", min_value=0, value=1, step=1)
-    for i in range(num_cars):
-        st.subheader(f"Car {i+1}")
-        miles_driven = st.number_input(f"Kilometers Driven Per Year", min_value=0, value=15000, key=f'car_miles_{i}')
-        fuel_efficiency = st.number_input(f"Fuel Efficiency (km per litre)", min_value=1.0, value=12.0, key=f'car_efficiency_{i}')
-        user_data['cars'].append({'miles_driven': miles_driven, 'fuel_efficiency': fuel_efficiency})
-    if st.button("Calculate Car Emissions"):
-        st.write(f"Car Emissions: {calculate_emissions(user_data)[0]['Cars'] / 1000:.2f} metric tons CO₂")
-
-# Bikes/Rickshaw Tab
-with tab3:
-    st.markdown("### 🏍️ Motorcycles")
     user_data['bikes_rickshaw'] = []
-    num_bikes = st.number_input("Number of Motorcycles", min_value=0, value=1, step=1)
-    for i in range(num_bikes):
-        st.subheader(f"Motorcycle {i+1}")
-        miles_driven = st.number_input(f"Kilometers Driven Per Year", min_value=0, value=8000, key=f'bike_miles_{i}')
-        fuel_efficiency = st.number_input(f"Fuel Efficiency (km per litre)", min_value=1.0, value=30.0, key=f'bike_efficiency_{i}')
-        user_data['bikes_rickshaw'].append({'miles_driven': miles_driven, 'fuel_efficiency': fuel_efficiency})
-    if st.button("Calculate Motorcycle Emissions"):
-        st.write(f"Motorcyle Emissions: {calculate_emissions(user_data)[0]['Bikes/Rickshaw'] / 1000:.2f} metric tons CO₂")
 
-# Bus Tab
-with tab4:
-    st.markdown("### 🚌 Bus Emissions")
-    user_data['bus'] = st.number_input("Kilometers Traveled by Bus Per Year", min_value=0, value=5000)
-    if st.button("Calculate Bus Emissions"):
-        st.write(f"Bus Emissions: {calculate_emissions(user_data)[0]['Bus'] / 1000:.2f} metric tons CO₂")
+    # Cars Section
+    st.subheader("🚗 Cars")
+    num_cars = st.number_input("Number of Cars", min_value=0, value=1, step=1, key='num_cars')
+    for i in range(num_cars):
+        st.markdown(f"**Car {i+1}**")
+        miles_driven = st.number_input("Kilometers Driven Per Year (Car)", min_value=0, value=15000, key=f'car_miles_{i}')
+        fuel_efficiency = st.number_input("Fuel Efficiency (km per litre) (Car)", min_value=1.0, value=12.0, key=f'car_eff_{i}')
+        user_data['cars'].append({'miles_driven': miles_driven, 'fuel_efficiency': fuel_efficiency})
+
+    # Motorcycles/Rickshaw Section
+    st.subheader("🏍️ Motorcycles / Rickshaws")
+    num_bikes = st.number_input("Number of Motorcycles/Rickshaws", min_value=0, value=1, step=1, key='num_bikes')
+    for i in range(num_bikes):
+        st.markdown(f"**Motorcycle/Rickshaw {i+1}**")
+        miles_driven = st.number_input("Kilometers Driven Per Year (Bike/Rickshaw)", min_value=0, value=8000, key=f'bike_miles_{i}')
+        fuel_efficiency = st.number_input("Fuel Efficiency (km per litre) (Bike/Rickshaw)", min_value=1.0, value=30.0, key=f'bike_eff_{i}')
+        user_data['bikes_rickshaw'].append({'miles_driven': miles_driven, 'fuel_efficiency': fuel_efficiency})
+
+    # Bus Section
+    st.subheader("🚌 Bus Travel")
+    user_data['bus'] = st.number_input("Kilometers Traveled by Bus Per Year", min_value=0, value=5000, key='bus_km')
+
+    if st.button("Calculate Vehicle Emissions"):
+        emissions = calculate_emissions(user_data)[0]
+        st.write(f"**Car Emissions:** {emissions['Cars'] / 1000:.2f} metric tons CO₂")
+        st.write(f"**Motorcycle/Rickshaw Emissions:** {emissions['Bikes/Rickshaw'] / 1000:.2f} metric tons CO₂")
+        st.write(f"**Bus Emissions:** {emissions['Bus'] / 1000:.2f} metric tons CO₂")
 
 # Secondary Tab
-with tab5:
+with tab3:
     st.markdown("### 🛍️ Secondary Emissions")
     for category in ['food', 'pharmaceuticals', 'clothing', 'electronics', 'furniture', 'hospitality', 'education', 'recreation']:
         user_data[category] = st.number_input(f"Annual Spending on {category.replace('_', ' ').title()} (PKR)", min_value=0, value=300000)
@@ -106,7 +107,7 @@ with tab5:
         st.write(f"Secondary Emissions: {calculate_emissions(user_data)[0]['Secondary'] / 1000:.2f} metric tons CO₂")
 
 # Results Tab
-with tab6:
+with tab4:
     if st.button("Calculate My Carbon Footprint"):
         emissions, total_co2 = calculate_emissions(user_data)
         st.success(f"🌱 Your estimated annual carbon footprint is **{total_co2:.2f} metric tons of CO₂**.")
