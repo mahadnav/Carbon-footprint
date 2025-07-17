@@ -115,22 +115,22 @@ with tabs[1]:
 
     # BIKE SECTION
     with st.container():
-        st.markdown("### 🏍️ Motorcycles / Rickshaws")
+        st.markdown("### 🏍️ Motorcycles")
         with st.expander("➕ Add motorcycle details"):
             bike_cols = st.columns(3)
             with bike_cols[1]:
-                num_bikes = st.number_input("Number of Motorcycles/Rickshaws", min_value=0, value=1, step=1, key='num_bikes', format="%d")
+                num_bikes = st.number_input("Number of Motorcycles", min_value=0, value=1, step=1, key='num_bikes', format="%d")
             user_data['bikes_rickshaw'] = []
             for i in range(num_bikes):
-                st.markdown(f"**Motorcycle/Rickshaw {i+1}**", help="Enter annual distance and fuel efficiency")
+                st.markdown(f"**Motorcycle {i+1}**", help="Enter annual distance and fuel efficiency")
                 cols = st.columns(2)
                 with cols[0]:
                     miles = st.number_input("Kilometers Driven Per Year", min_value=0, value=8000, key=f'bike_miles_{i}', format="%d")
                 with cols[1]:
                     efficiency = st.number_input("Fuel Efficiency (km/l)", min_value=1.0, value=30.0, key=f'bike_eff_{i}')
                 user_data['bikes_rickshaw'].append({'miles_driven': miles, 'fuel_efficiency': efficiency})
-        bike_emissions = calculate_emissions(user_data)[0]['Bikes/Rickshaw'] / 1000
-        st.metric(label="Motorcycle/Rickshaw Emissions", value=f"{bike_emissions:,.2f} metric tons CO₂")
+        bike_emissions = calculate_emissions(user_data)[0]['Bikes'] / 1000
+        st.metric(label="Motorcycle Emissions", value=f"{bike_emissions:,.2f} metric tons CO₂")
 
     st.divider()
 
