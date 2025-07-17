@@ -273,13 +273,13 @@ with tabs[3]:
         st.markdown(f"""
             <div style='height: 17px;'></div>
             <div class='black-box'>
-                <div style='font-size: 16px;'>EU AVERAGE FOOTPRINT FOR 2025</div>
-                <div style='font-size: 36px;'>6.9 TONNES</div>
+                <div style='font-size: 16px;'>PAKISTAN AVERAGE FOOTPRINT FOR 2025</div>
+                <div style='font-size: 36px;'>2.1 TONNES</div>
             </div>
             <div style='height: 20px;'></div>
             <div class='black-box'>
                 <div style='font-size: 16px;'>YOUR FOOTPRINT IS</div>
-                <div style='font-size: 36px;'>{round(total_emissions/6.3 * 100)}%</div>
+                <div style='font-size: 36px;'>{round(total_emissions/6.7 * 100)}%</div>
                 <div style='font-size: 16px;'>OF THE WORLD AVERAGE FOR 2025</div>
             </div>
         """, unsafe_allow_html=True)
@@ -289,7 +289,7 @@ with tabs[3]:
             <div style='height: 17px;'></div>
             <div class='black-box'>
                 <div style='font-size: 16px;'>WORLD AVERAGE</div>
-                <div style='font-size: 36px;'>6.3 TONNES</div>
+                <div style='font-size: 36px;'>6.7 TONNES</div>
             </div>
             <div style='height: 20px;'></div>
             <!--
