@@ -319,7 +319,7 @@ with tabs[3]:
         st.markdown(f"""
             <div style='height: 17px;'></div>
             <div class='category-box' style='background-color: #4CAF50;'>
-                <div style='font-size: 24px;'>🚗 Transport</div>
+                <div style='font-size: 24px;'><b>🚗 Transport</b></div>
                 <div>Your consumption is equal to <b>{vehicle_emissions:.2f} TONNES</b></div>
             </div>
         """, unsafe_allow_html=True)
