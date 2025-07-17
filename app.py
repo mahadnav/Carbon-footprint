@@ -38,7 +38,7 @@ st.set_page_config(page_title="🌱 Carbon Footprint Calculator")
 st.title("🌍 Pakistan Carbon Footprint Calculator")
 
 st.markdown("""
-Welcome to your personal carbon footprint dashboard. Fill in details across the tabs to get an accurate, real-time estimate of your annual CO₂ emissions.
+Welcome to your personal carbon footprint dashboard. Fill in details across the tabs to get an estimate of your annual CO₂ emissions.
 """)
 
 tabs = st.tabs(["Household", "Vehicles", "Secondary", "Total"])
@@ -55,7 +55,7 @@ with tabs[0]:
             user_data['gas'] = st.number_input("Natural Gas (m³/year)", min_value=0, value=None, placeholder='e.g. 5,000', format="%d")
 
     if user_data['electricity'] is None or user_data['gas'] is None:
-        st.text("Please enter both electricity and gas usage to calculate household emissions.")
+        st.markdown("#### Please enter both electricity and gas usage to calculate household emissions.")
     else:
         household_emissions = calculate_emissions(user_data)[0]['Household'] / 1000
         st.metric(label="Household Emissions", value=f"{household_emissions:,.2f} metric tons CO₂")
