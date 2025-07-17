@@ -170,15 +170,29 @@ with tabs[3]:
 
     st.metric(label="🌱 Total Annual Carbon Footprint", value=f"{total:,.2f} metric tons CO₂", delta=f"{total - 0.98:+.2f} vs PK Avg")
 
-    # Pie Chart
-    max_category = max(emissions, key=emissions.get)
-    explode = [0.1 if k == max_category else 0 for k in emissions]
-    fig, ax = plt.subplots()
-    ax.pie(emissions.values(), labels=emissions.keys(), explode=explode, autopct='%1.0f%%', startangle=90, colors=plt.cm.Set3.colors)
-    ax.axis("equal")
+    # Sort categories for consistent layout
+    sorted_emissions = dict(sorted(emissions.items(), key=lambda x: x[1], reverse=True))
+
+    # Create horizontal bar plot
+    fig, ax = plt.subplots(figsize=(6, 2.5))  # Small footprint
+    bars = ax.barh(list(sorted_emissions.keys()), list(sorted_emissions.values()), color=['#4F8EF7', '#F75C03'])
+
+    # Add value labels
+    for bar in bars:
+        width = bar.get_width()
+        ax.text(width + 0.1, bar.get_y() + bar.get_height() / 2,
+                f"{width:.1f} t CO₂", va='center', fontsize=9)
+
+    # Style tweaks
+    ax.set_xlim(0, max(sorted_emissions.values()) * 1.2)
+    ax.set_xlabel("Emissions (metric tons CO₂)", fontsize=9)
+    ax.set_title("Household Emission Sources", fontsize=11, weight='bold')
+    ax.spines[['top', 'right']].set_visible(False)
+    ax.tick_params(left=False, bottom=False)
+    ax.grid(axis='x', linestyle='--', alpha=0.3)
+
     st.pyplot(fig)
 
-    st.markdown(f"### 🔍 Highest Source of Emissions: **{max_category}**")
 
     st.markdown("### 📚 Comparison Benchmarks")
     col1, col2, col3 = st.columns(3)
