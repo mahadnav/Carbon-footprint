@@ -75,8 +75,8 @@ with tab2:
     num_cars = st.number_input("Number of Cars", min_value=0, value=1, step=1, key='num_cars')
     for i in range(num_cars):
         st.markdown(f"**Car {i+1}**")
-        miles_driven = st.number_input("Kilometers Driven Per Year (Car)", min_value=0, value=15000, key=f'car_miles_{i}')
-        fuel_efficiency = st.number_input("Fuel Efficiency (km per litre) (Car)", min_value=1.0, value=12.0, key=f'car_eff_{i}')
+        miles_driven = st.number_input("Kilometers Driven Per Year", min_value=0, value=15000, key=f'car_miles_{i}')
+        fuel_efficiency = st.number_input("Fuel Efficiency (km per litre)", min_value=1.0, value=12.0, key=f'car_eff_{i}')
         user_data['cars'].append({'miles_driven': miles_driven, 'fuel_efficiency': fuel_efficiency})
 
     # Motorcycles/Rickshaw Section
@@ -84,8 +84,8 @@ with tab2:
     num_bikes = st.number_input("Number of Motorcycles", min_value=0, value=1, step=1, key='num_bikes')
     for i in range(num_bikes):
         st.markdown(f"**Motorcycle {i+1}**")
-        miles_driven = st.number_input("Kilometers Driven Per Year (Bike)", min_value=0, value=8000, key=f'bike_miles_{i}')
-        fuel_efficiency = st.number_input("Fuel Efficiency (km per litre) (Bike)", min_value=1.0, value=30.0, key=f'bike_eff_{i}')
+        miles_driven = st.number_input("Kilometers Driven Per Year", min_value=0, value=8000, key=f'bike_miles_{i}')
+        fuel_efficiency = st.number_input("Fuel Efficiency (km per litre)", min_value=1.0, value=30.0, key=f'bike_eff_{i}')
         user_data['bikes_rickshaw'].append({'miles_driven': miles_driven, 'fuel_efficiency': fuel_efficiency})
 
     # Bus Section
