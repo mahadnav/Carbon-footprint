@@ -76,8 +76,8 @@ with tab2:
         miles_driven = st.number_input("Kilometers Driven Per Year", min_value=0, value=15000, key=f'car_miles_{i}', format="%d")
         fuel_efficiency = st.number_input("Fuel Efficiency (km per litre)", min_value=1.0, value=12.0, key=f'car_eff_{i}')
         user_data['cars'].append({'miles_driven': miles_driven, 'fuel_efficiency': fuel_efficiency})
-    vehicle_emissions = calculate_emissions(user_data)[0]
-    st.info("Car Emissions", value=f"{vehicle_emissions['Cars'] / 1000:,.2f} metric tons CO₂")
+    car_emissions = calculate_emissions(user_data)[0]['Cars'] / 1000
+    st.metric(label="Car Emissions", value=f"{car_emissions:,.2f} metric tons CO₂")
 
     # Motorcycles
     st.markdown("#### 🏍️ Motorcycles / Rickshaws")
