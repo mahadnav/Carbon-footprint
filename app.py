@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 def calculate_emissions(data):
     # Emission factors tailored for Pakistan (kg CO2 per unit)
     factors = {
-        'electricity': 0.425,  # kg CO2 per kWh (Pakistan energy mix)
+        'electricity': 0.5004,  # kg CO2 per kWh (Pakistan energy mix)
         'gas': 2.2,  # kg CO2 per cubic meter (Natural Gas)
         'fuel': 2.7,  # kg CO2 per liter (Petrol/Diesel)
         'flights': 200,  # kg CO2 per flight (domestic estimate)
@@ -100,7 +100,7 @@ with tab4:
 # Secondary Tab
 with tab5:
     st.header("🛍️ Secondary Emissions")
-    for category in ['food', 'pharmaceuticals', 'clothing', 'paper_products', 'electronics', 'furniture', 'hospitality', 'telecom', 'insurance', 'education', 'recreation']:
+    for category in ['food', 'pharmaceuticals', 'clothing', 'electronics', 'furniture', 'hospitality', 'education', 'recreation']:
         user_data[category] = st.number_input(f"Annual Spending on {category.replace('_', ' ').title()} (PKR)", min_value=0, value=300000)
     if st.button("Calculate Secondary Emissions"):
         st.write(f"Secondary Emissions: {calculate_emissions(user_data)[0]['Secondary'] / 1000:.2f} metric tons CO₂")
