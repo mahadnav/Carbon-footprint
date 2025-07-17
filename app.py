@@ -91,8 +91,10 @@ with tabs[1]:
     # BIKE SECTION
     with st.container():
         st.markdown("### 🏍️ Motorcycles / Rickshaws")
-        with st.expander("➕ Add motorcycle or rickshaw details"):
-            num_bikes = st.number_input("Number of Motorcycles/Rickshaws", min_value=0, value=1, step=1, key='num_bikes', format="%d")
+        with st.expander("➕ Add motorcycle details"):
+            bike_cols = st.columns(3)
+            with bike_cols[1]:
+                num_bikes = st.number_input("Number of Motorcycles/Rickshaws", min_value=0, value=1, step=1, key='num_bikes', format="%d")
             user_data['bikes_rickshaw'] = []
             for i in range(num_bikes):
                 st.markdown(f"**Motorcycle/Rickshaw {i+1}**", help="Enter annual distance and fuel efficiency")
