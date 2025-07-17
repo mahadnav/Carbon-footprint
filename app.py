@@ -45,7 +45,7 @@ def calculate_emissions(data):
     return emissions, total
 
 # --- Page Setup ---
-st.set_page_config(page_title="🌱 Carbon Footprint Calculator")
+st.set_page_config(page_title="🌱 Carbon Footprint Calculator", layout="wide")
 st.title("🌍 Pakistan Carbon Footprint Calculator")
 
 st.markdown("""
