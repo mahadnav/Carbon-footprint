@@ -59,8 +59,8 @@ user_data = {}
 # Household Tab
 with tab1:
     st.header("🏠 Household Emissions")
-    user_data['electricity'] = st.number_input("Electricity Usage (kWh per year)", min_value=0, value=3500)
-    user_data['gas'] = st.number_input("Natural Gas Usage (cubic meters per year)", min_value=0, value=1200)
+    user_data['electricity'] = st.number_input("Electricity Usage (kWh per year)", min_value=0, value=10000)
+    user_data['gas'] = st.number_input("Natural Gas Usage (cubic meters per year)", min_value=0, value=5000)
     if st.button("Calculate Household Emissions"):
         st.write(f"Household Emissions: {calculate_emissions(user_data)[0]['Household'] / 1000:.2f} metric tons CO₂")
 
