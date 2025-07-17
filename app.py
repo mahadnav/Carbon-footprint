@@ -80,12 +80,12 @@ with tab2:
         user_data['cars'].append({'miles_driven': miles_driven, 'fuel_efficiency': fuel_efficiency})
 
     # Motorcycles/Rickshaw Section
-    st.subheader("🏍️ Motorcycles / Rickshaws")
-    num_bikes = st.number_input("Number of Motorcycles/Rickshaws", min_value=0, value=1, step=1, key='num_bikes')
+    st.subheader("🏍️ Motorcycles")
+    num_bikes = st.number_input("Number of Motorcycles", min_value=0, value=1, step=1, key='num_bikes')
     for i in range(num_bikes):
-        st.markdown(f"**Motorcycle/Rickshaw {i+1}**")
-        miles_driven = st.number_input("Kilometers Driven Per Year (Bike/Rickshaw)", min_value=0, value=8000, key=f'bike_miles_{i}')
-        fuel_efficiency = st.number_input("Fuel Efficiency (km per litre) (Bike/Rickshaw)", min_value=1.0, value=30.0, key=f'bike_eff_{i}')
+        st.markdown(f"**Motorcycle {i+1}**")
+        miles_driven = st.number_input("Kilometers Driven Per Year (Bike)", min_value=0, value=8000, key=f'bike_miles_{i}')
+        fuel_efficiency = st.number_input("Fuel Efficiency (km per litre) (Bike)", min_value=1.0, value=30.0, key=f'bike_eff_{i}')
         user_data['bikes_rickshaw'].append({'miles_driven': miles_driven, 'fuel_efficiency': fuel_efficiency})
 
     # Bus Section
