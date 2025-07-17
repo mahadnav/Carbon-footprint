@@ -327,7 +327,7 @@ with tabs[3]:
     with colC:
         st.markdown(f"""
             <div style='height: 17px;'></div>
-            <div class='category-box' style='background-color: #F4A9FF;'>
+            <div class='category-box' style='background-color: #F1A9FF;'>
                 <div style='font-size: 24px;'><b>🛒 Secondary</b></div>
                 <div>Your consumption is equal to <b>{sec_emissions:.2f} TONNES</b></div>
             </div>
