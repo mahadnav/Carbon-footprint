@@ -9,12 +9,9 @@ def calculate_emissions(data):
         'fuel': 2.7,
         'flights': 200,
         'food': 0.0015,
-        'pharmaceuticals': 0.0012,
         'clothing': 0.0013,
         'electronics': 0.0020,
         'furniture': 0.0014,
-        'hospitality': 0.0016,
-        'education': 0.0006,
         'recreation': 0.0012
     }
 
@@ -155,7 +152,7 @@ with tabs[1]:
 # --- Secondary Emissions Tab ---
 with tabs[2]:
     st.markdown("## 🛍️ Secondary Consumption")
-    categories = ['food', 'pharmaceuticals', 'clothing', 'electronics', 'furniture', 'hospitality', 'education', 'recreation']
+    categories = ['food', 'clothing', 'electronics', 'furniture', 'recreation']
 
     spending_ranges = {
         "0 - 5,000 PKR": 2500,
