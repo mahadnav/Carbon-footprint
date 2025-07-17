@@ -284,7 +284,7 @@ with tabs[3]:
     with colA:
         st.markdown(f"""
             <div class='category-box' style='background-color: #03A9F4;'>
-                <div style='font-size: 24px;'>🏠 HOME</div>
+                <div style='font-size: 24px; font-color: white'>🏠 </b>HOME<b></div>
                 <div>Your consumption is equal to <b>{household_emissions:.2f} TONNES</b></div>
             </div>
         """, unsafe_allow_html=True)
