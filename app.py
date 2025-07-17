@@ -108,7 +108,6 @@ with tabs[1]:
         car_emissions = calculate_emissions(user_data)[0]['Cars'] / 1000
         st.metric(label="Car Emissions", value=f"{car_emissions:,.2f} metric tons CO₂")
 
-    st.divider()
 
     # BIKE SECTION
     with st.container():
@@ -129,7 +128,6 @@ with tabs[1]:
         bike_emissions = calculate_emissions(user_data)[0]['Motorcycle'] / 1000
         st.metric(label="Motorcycle Emissions", value=f"{bike_emissions:,.2f} metric tons CO₂")
 
-    st.divider()
 
     # BUS SECTION
     with st.container():
@@ -143,7 +141,6 @@ with tabs[1]:
         bus_emissions = calculate_emissions(user_data)[0]['Bus'] / 1000
         st.metric(label="Bus Emissions", value=f"{bus_emissions:,.2f} metric tons CO₂")
 
-    st.divider()
 
     # TOTAL EMISSIONS (Optional Apple-style summary)
     total = car_emissions + bike_emissions + bus_emissions
