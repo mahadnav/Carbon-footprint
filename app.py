@@ -75,7 +75,14 @@ with tabs[0]:
         st.markdown(""" ⚠️ Please enter both electricity and gas usage to calculate household emissions.""")
     elif isinstance(user_data['electricity'], (int, float)) and isinstance(user_data['gas'], (int, float)):
         household_emissions = calculate_emissions(user_data)[0]['Household'] / 1000
-        st.metric(label="🏠 Household Emissions", value=f"{household_emissions:,.2f} metric tons CO₂")
+        st.markdown("""
+                    <div style="padding: 1.5rem; border-radius: 16px; background: #f5f7fa;
+                                text-align: center; font-size: 24px; color: #333;
+                                box-shadow: 0 4px 8px rgba(0,0,0,0.05); margin-top: 1.5rem;">
+                        🏠 <strong>Total Household Emissions</strong><br>
+                        <span style="font-size: 2.2rem; color: #FF4B4B;">{:.2f} metric tons CO₂</span>
+                    </div>
+                """.format(household_emissions), unsafe_allow_html=True)
 
 # --- 🚗 Vehicles Tab ---
 with tabs[1]:
