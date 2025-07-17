@@ -280,7 +280,7 @@ with tabs[3]:
     st.markdown("<div class='main-title'>LET'S BREAK IT DOWN</div>", unsafe_allow_html=True)
     st.markdown(f"<div class='subtitle'>Your footprint is equal to <b>{total_emissions}T</b></div>", unsafe_allow_html=True)
 
-    colA, colB, colC = st.columns()
+    colA, colB, colC = st.columns(3)
     with colA:
         st.markdown(f"""
             <div class='category-box' style='background-color: #03A9F4;'>
