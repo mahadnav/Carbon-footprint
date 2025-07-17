@@ -132,11 +132,12 @@ with tabs[1]:
     # BUS SECTION
     with st.container():
         st.markdown("### 🚌 Public Bus Travel")
-        cols = st.columns(2)
-        with cols[0]:
-            user_data['bus'] = st.number_input("Kilometers Traveled by Bus Per Year", min_value=0, value=5000, key='bus_km', format="%d")
-        with cols[1]:
-            st.markdown("")
+        with st.expander("➕ Add bus travel details"):
+            cols = st.columns(2)
+            with cols[0]:
+                user_data['bus'] = st.number_input("Kilometers Traveled by Bus Per Year", min_value=0, value=5000, key='bus_km', format="%d")
+            with cols[1]:
+                st.markdown("")
 
         bus_emissions = calculate_emissions(user_data)[0]['Bus']
         st.metric(label="Bus Emissions", value=f"{bus_emissions:,.2f} metric tons CO₂")
