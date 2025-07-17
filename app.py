@@ -287,7 +287,6 @@ with tabs[3]:
             <div class='black-box'>
                 <div style='font-size: 16px;'>GO WILD - WWF'S CLUB FOR KIDS</div>
                 <div style='margin-top: 10px;'>Fun facts, puzzles, crafts & more</div>
-                <div><button class='reduce-button'>CHECK IT OUT</button></div>
             </div>
         """, unsafe_allow_html=True)
 
