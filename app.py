@@ -309,7 +309,7 @@ with tabs[3]:
     with colA:
         st.markdown(f"""
             <div style='height: 17px;'></div>
-            <div class='category-box' style='background-color: #AAA9FF;'>
+            <div class='category-box' style='background-color: #A3A9FF;'>
                 <div style='font-size: 24px; font-color: white'><b>⚡ Household Energy</b></div>
                 <div>Your consumption is equal to <b>{household_emissions:.2f} TONNES</b></div>
             </div>
