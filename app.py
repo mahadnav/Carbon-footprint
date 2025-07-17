@@ -185,7 +185,7 @@ with tabs[2]:
         unsafe_allow_html=True
     )
 
-total_emissions = calculate_emissions(user_data)[1]
+total_emissions = round(calculate_emissions(user_data)[1], 2)
 
 # --- Results Tab ---
 with tabs[3]:
@@ -242,7 +242,7 @@ with tabs[3]:
         st.markdown(f"""
             <div class='result-box'>
                 <div style='font-size: 20px;'>YOUR FOOTPRINT IS EQUAL TO</div>
-                <div style='font-size: 50px; font-weight: bold;'>{household_emissions}</div>
+                <div style='font-size: 50px; font-weight: bold;'>{total_emissions}</div>
                 <div style='font-size: 20px;'>TONNES*</div>
             </div>
         """, unsafe_allow_html=True)
@@ -251,12 +251,12 @@ with tabs[3]:
         st.markdown(f"""
             <div class='black-box'>
                 <div style='font-size: 16px;'>EU AVERAGE FOOTPRINT FOR 2025</div>
-                <div style='font-size: 36px;'>{vehicle_emissions} TONNES</div>
+                <div style='font-size: 36px;'>6.9 TONNES</div>
             </div>
             <div style='height: 20px;'></div>
             <div class='black-box'>
                 <div style='font-size: 16px;'>YOUR FOOTPRINT IS</div>
-                <div style='font-size: 36px;'>{total_emissions/6.9 * 100}%</div>
+                <div style='font-size: 36px;'>{total_emissions/6.3 * 100}%</div>
                 <div style='font-size: 16px;'>OF THE WORLD AVERAGE FOR 2025</div>
             </div>
         """, unsafe_allow_html=True)
