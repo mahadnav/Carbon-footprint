@@ -298,6 +298,7 @@ with tabs[3]:
     colA, colB, colC = st.columns(3)
     with colA:
         st.markdown(f"""
+            <div style='height: 17px;'></div>
             <div class='category-box' style='background-color: #03A9F4;'>
                 <div style='font-size: 24px; font-color: white'>🏠 </b>HOME<b></div>
                 <div>Your consumption is equal to <b>{household_emissions:.2f} TONNES</b></div>
@@ -306,6 +307,7 @@ with tabs[3]:
 
     with colB:
         st.markdown(f"""
+            <div style='height: 17px;'></div>
             <div class='category-box' style='background-color: #4CAF50;'>
                 <div style='font-size: 24px;'>🚗 TRANSPORT</div>
                 <div>Your consumption is equal to <b>{vehicle_emissions:.2f} TONNES</b></div>
@@ -314,6 +316,7 @@ with tabs[3]:
 
     with colC:
         st.markdown(f"""
+            <div style='height: 17px;'></div>
             <div class='category-box' style='background-color: #E91E63;'>
                 <div style='font-size: 24px;'>🛒 STUFF</div>
                 <div>Your consumption is equal to <b>{sec_emissions:.2f} TONNES</b></div>
