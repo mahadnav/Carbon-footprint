@@ -145,10 +145,10 @@ with tabs[1]:
 
 
     # TOTAL EMISSIONS (Optional Apple-style summary)
-    total = car_emissions + bike_emissions + bus_emissions
+    vehicle_emissions = car_emissions + bike_emissions + bus_emissions
     st.markdown(
         f"<h4 style='color: #444; text-align: center; margin-top: 2rem;'>"
-        f"🚗 Your Transportation Carbon FOotprint: <span style='color:#d43f3a'>{total:.2f}</span> metric tons CO₂</h4>",
+        f"🚗 Your Transportation Carbon FOotprint: <span style='color:#d43f3a'>{vehicle_emissions:.2f}</span> metric tons CO₂</h4>",
         unsafe_allow_html=True
     )
 
@@ -184,6 +184,8 @@ with tabs[2]:
         f"🚗 Your Secondary Carbon Footprint: <span style='color:#d43f3a'>{sec_emissions:,.2f}</span> metric tons CO₂</h4>",
         unsafe_allow_html=True
     )
+
+total_emissions = calculate_emissions(user_data)[1]
 
 # --- Results Tab ---
 with tabs[3]:
@@ -237,31 +239,30 @@ with tabs[3]:
 
     col1, col2, col3 = st.columns([2, 1.5, 1.5])
     with col1:
-        st.markdown("""
+        st.markdown(f"""
             <div class='result-box'>
                 <div style='font-size: 20px;'>YOUR FOOTPRINT IS EQUAL TO</div>
-                <div style='font-size: 50px; font-weight: bold;'>8.9</div>
+                <div style='font-size: 50px; font-weight: bold;'>{household_emissions}</div>
                 <div style='font-size: 20px;'>TONNES*</div>
-                <div><button class='reduce-button'>SHARE SCORE</button></div>
             </div>
         """, unsafe_allow_html=True)
 
     with col2:
-        st.markdown("""
+        st.markdown(f"""
             <div class='black-box'>
-                <div style='font-size: 16px;'>UK AVERAGE FOOTPRINT FOR 2025</div>
-                <div style='font-size: 36px;'>8.4 TONNES</div>
+                <div style='font-size: 16px;'>EU AVERAGE FOOTPRINT FOR 2025</div>
+                <div style='font-size: 36px;'>{vehicle_emissions} TONNES</div>
             </div>
             <div style='height: 20px;'></div>
             <div class='black-box'>
                 <div style='font-size: 16px;'>YOUR FOOTPRINT IS</div>
-                <div style='font-size: 36px;'>106%</div>
-                <div style='font-size: 16px;'>OF THE UK AVERAGE FOR 2025</div>
+                <div style='font-size: 36px;'>{total_emissions/6.9 * 100}%</div>
+                <div style='font-size: 16px;'>OF THE WORLD AVERAGE FOR 2025</div>
             </div>
         """, unsafe_allow_html=True)
 
     with col3:
-        st.markdown("""
+        st.markdown(f"""
             <div class='black-box'>
                 <div style='font-size: 16px;'>WORLD AVERAGE</div>
                 <div style='font-size: 36px;'>6.3 TONNES</div>
@@ -285,8 +286,6 @@ with tabs[3]:
             <div class='category-box' style='background-color: #03A9F4;'>
                 <div style='font-size: 24px;'>🏠 HOME</div>
                 <div>Your consumption is equal to <b>2 TONNES</b></div>
-                <div>This is roughly the same weight as 2 Polar Bears</div>
-                <div><a class='reduce-button'>REDUCE THIS SCORE</a></div>
             </div>
         """, unsafe_allow_html=True)
 
@@ -294,8 +293,6 @@ with tabs[3]:
             <div class='category-box' style='background-color: #FF9800;'>
                 <div style='font-size: 24px;'>🚗 TRAVEL</div>
                 <div>Your consumption is equal to <b>2 TONNES</b></div>
-                <div>This is roughly the same weight as 13 Giant Pandas</div>
-                <div><a class='reduce-button'>REDUCE THIS SCORE</a></div>
             </div>
         """, unsafe_allow_html=True)
 
@@ -304,8 +301,6 @@ with tabs[3]:
             <div class='category-box' style='background-color: #00BCD4;'>
                 <div style='font-size: 24px;'>🍽 FOOD</div>
                 <div>Your consumption is equal to <b>2 TONNES</b></div>
-                <div>This is roughly the same weight as 6 Amur Tigers</div>
-                <div><a class='reduce-button'>REDUCE THIS SCORE</a></div>
             </div>
         """, unsafe_allow_html=True)
 
@@ -313,8 +308,6 @@ with tabs[3]:
             <div class='category-box' style='background-color: #E91E63;'>
                 <div style='font-size: 24px;'>🛒 STUFF</div>
                 <div>Your consumption is equal to <b>1 TONNES</b></div>
-                <div>This is roughly the same weight as 6 Mountain Gorillas</div>
-                <div><a class='reduce-button'>REDUCE THIS SCORE</a></div>
             </div>
         """, unsafe_allow_html=True)
 
