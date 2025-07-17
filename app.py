@@ -161,7 +161,7 @@ with tabs[1]:
 with tabs[2]:
     st.markdown(
         "<h2 style='font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem;'>🛍️ Secondary Emissions</h2>"
-        "<h4 style='color: gray; font-size: 8px;'>Add your spending details to estimate yearly CO₂ emissions</h4>",
+        "<h4 style='color: gray; font-size: 12px;'>Add your spending details to estimate yearly CO₂ emissions</h4>",
         unsafe_allow_html=True
     )
     categories = ['food', 'clothing', 'electronics', 'furniture', 'recreation']
