@@ -127,8 +127,8 @@ with tab2:
     # TOTAL VEHICLE EMISSIONS (Optional Summary)
     total_vehicle_emissions = (car_emissions + bike_emissions + bus_emissions)
     st.subheader("🚦 Total Vehicle Emissions")
-    st.metric(label="Total from Cars, Bikes & Bus", value=f"{total_vehicle_emissions:,.2f} metric tons CO₂")
-    
+    st.metric(label=None, value=f"{total_vehicle_emissions:,.2f} metric tons CO₂")
+
 # --- Secondary Tab ---
 with tab3:
     st.markdown("### 🛍️ Secondary Emissions")
