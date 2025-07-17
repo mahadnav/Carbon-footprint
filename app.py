@@ -58,7 +58,7 @@ user_data = {}
 
 # Household Tab
 with tab1:
-    st.header("🏠 Household Emissions")
+    st.markdown("### 🏠 Household Emissions")
     user_data['electricity'] = st.number_input("Electricity Usage (kWh per year)", min_value=0, value=10000)
     user_data['gas'] = st.number_input("Natural Gas Usage (cubic meters per year)", min_value=0, value=5000)
     if st.button("Calculate Household Emissions"):
@@ -66,7 +66,7 @@ with tab1:
 
 # Cars Tab
 with tab2:
-    st.header("🚗 Car Emissions")
+    st.markdown("### 🚗 Car Emissions")
     user_data['cars'] = []
     num_cars = st.number_input("Number of Cars", min_value=0, value=1, step=1)
     for i in range(num_cars):
@@ -79,7 +79,7 @@ with tab2:
 
 # Bikes/Rickshaw Tab
 with tab3:
-    st.header("🏍️ Motorcycles")
+    st.markdown("### 🏍️ Motorcycles")
     user_data['bikes_rickshaw'] = []
     num_bikes = st.number_input("Number of Motorcycles", min_value=0, value=1, step=1)
     for i in range(num_bikes):
@@ -92,7 +92,7 @@ with tab3:
 
 # Bus Tab
 with tab4:
-    st.header("🚌 Bus Emissions")
+    st.markdown("### 🚌 Bus Emissions")
     user_data['bus'] = st.number_input("Kilometers Traveled by Bus Per Year", min_value=0, value=5000)
     if st.button("Calculate Bus Emissions"):
         st.write(f"Bus Emissions: {calculate_emissions(user_data)[0]['Bus'] / 1000:.2f} metric tons CO₂")
