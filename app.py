@@ -280,38 +280,28 @@ with tabs[3]:
     st.markdown("<div class='main-title'>LET'S BREAK IT DOWN</div>", unsafe_allow_html=True)
     st.markdown(f"<div class='subtitle'>Your footprint is equal to <b>{total_emissions}T</b></div>", unsafe_allow_html=True)
 
-    colA, colB = st.columns(2)
+    colA, colB, colC = st.columns()
     with colA:
-        st.markdown("""
+        st.markdown(f"""
             <div class='category-box' style='background-color: #03A9F4;'>
                 <div style='font-size: 24px;'>🏠 HOME</div>
-                <div>Your consumption is equal to <b>2 TONNES</b></div>
-            </div>
-        """, unsafe_allow_html=True)
-
-        st.markdown("")
-
-        st.markdown("""
-            <div class='category-box' style='background-color: #FF9800;'>
-                <div style='font-size: 24px;'>🚗 TRAVEL</div>
-                <div>Your consumption is equal to <b>2 TONNES</b></div>
+                <div>Your consumption is equal to <b>{household_emissions:.2f} TONNES</b></div>
             </div>
         """, unsafe_allow_html=True)
 
     with colB:
-        st.markdown("""
-            <div class='category-box' style='background-color: #00BCD4;'>
-                <div style='font-size: 24px;'>🍽 FOOD</div>
-                <div>Your consumption is equal to <b>2 TONNES</b></div>
+        st.markdown(f"""
+            <div class='category-box' style='background-color: #4CAF50;'>
+                <div style='font-size: 24px;'>🚗 TRANSPORT</div>
+                <div>Your consumption is equal to <b>{vehicle_emissions:.2f} TONNES</b></div>
             </div>
         """, unsafe_allow_html=True)
 
-        st.markdown("")
-
-        st.markdown("""
+    with colC:
+        st.markdown(f"""
             <div class='category-box' style='background-color: #E91E63;'>
                 <div style='font-size: 24px;'>🛒 STUFF</div>
-                <div>Your consumption is equal to <b>1 TONNES</b></div>
+                <div>Your consumption is equal to <b>{sec_emissions:.2f} TONNES</b></div>
             </div>
         """, unsafe_allow_html=True)
 
