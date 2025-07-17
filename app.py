@@ -120,7 +120,7 @@ with tabs[1]:
             bike_cols = st.columns(3)
             with bike_cols[1]:
                 num_bikes = st.number_input("Number of Motorcycles", min_value=0, value=1, step=1, key='num_bikes', format="%d")
-            user_data['bikes_rickshaw'] = []
+            user_data['motorcycle'] = []
             for i in range(num_bikes):
                 st.markdown(f"**Motorcycle {i+1}**", help="Enter annual distance and fuel efficiency")
                 cols = st.columns(2)
