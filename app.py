@@ -56,7 +56,7 @@ with tabs[0]:
 
     if user_data['electricity'] is None or user_data['gas'] is None:
         st.markdown(""" Please enter both electricity and gas usage to calculate household emissions.""")
-    else:
+    elif user_data['electricity'] and user_data['gas']:
         household_emissions = calculate_emissions(user_data)[0]['Household'] / 1000
         st.metric(label="Household Emissions", value=f"{household_emissions:,.2f} metric tons CO₂")
 
