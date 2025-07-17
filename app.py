@@ -265,7 +265,7 @@ with tabs[3]:
             <div class='result-box'>
                 <div style='font-size: 20px;'>YOUR FOOTPRINT IS EQUAL TO</div>
                 <div style='font-size: 50px; font-weight: bold;'>{total_emissions}</div>
-                <div style='font-size: 20px;'>TONNES*</div>
+                <div style='font-size: 20px;'>TONNES</div>
             </div>
         """, unsafe_allow_html=True)
 
