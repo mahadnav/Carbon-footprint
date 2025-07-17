@@ -246,7 +246,7 @@ with tabs[3]:
         st.markdown("<div class='main-title'>🎉 Congratulations!</div>", unsafe_allow_html=True)
         st.markdown("<div class='subtitle'>Your annual footprint is less that the national average!</div>", unsafe_allow_html=True)
     else:
-        st.markdown("<div class='main-title'>❗ Oops!</div>", unsafe_allow_html=True)
+        st.markdown("<div class='main-title'>🚨 Oops!</div>", unsafe_allow_html=True)
         st.markdown("<div class='subtitle'>Your annual footprint is above the national average. Let's work on reducing it!</div>", unsafe_allow_html=True)
     
     col1, col2, col3 = st.columns([2, 1.5, 1.5])
