@@ -68,10 +68,10 @@ with tabs[0]:
     if user_data['electricity'] is None or user_data['gas'] is None:
         st.markdown(""" ⚠️ Please enter both electricity and gas usage to calculate household emissions.""")
     elif isinstance(user_data['electricity'], (int, float)) and isinstance(user_data['gas'], (int, float)):
-        household_emissions = calculate_emissions(user_data)[0]['Household']
+        household_emissions = calculate_emissions(user_data)[0]['Household']/people_count
         st.markdown(
         f"<h4 style='color: #444; text-align: center; margin-top: 2rem;'>"
-        f"⚡ Your Energy Carbon Footprint: <span style='color:#d43f3a'>{household_emissions/people_count:.2f}</span> metric tons CO₂</h4>",
+        f"⚡ Your Energy Carbon Footprint: <span style='color:#d43f3a'>{household_emissions:.2f}</span> metric tons CO₂</h4>",
         unsafe_allow_html=True
     )
 
