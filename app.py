@@ -55,10 +55,10 @@ with tabs[0]:
             user_data['gas'] = st.number_input("Natural Gas (m³/year)", min_value=0, value=None, placeholder='e.g. 5,000', format="%d")
 
     if user_data['electricity'] is None or user_data['gas'] is None:
-        st.markdown(""" Please enter both electricity and gas usage to calculate household emissions.""")
-    elif user_data['electricity'] and user_data['gas']:
+        st.markdown(""" ⚠️ Please enter both electricity and gas usage to calculate household emissions.""")
+    elif isinstance(user_data['electricity'], (int, float)) and isinstance(user_data['gas'], (int, float)):
         household_emissions = calculate_emissions(user_data)[0]['Household'] / 1000
-        st.metric(label="Household Emissions", value=f"{household_emissions:,.2f} metric tons CO₂")
+        st.metric(label="🏠 Household Emissions", value=f"{household_emissions:,.2f} metric tons CO₂")
 
 # --- 🚗 Vehicles Tab ---
 with tabs[1]:
