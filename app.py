@@ -71,7 +71,7 @@ with tab2:
     user_data['bikes_rickshaw'] = []
 
     # Cars Section
-    st.markdown("##### 🚗 Cars")
+    st.markdown("#### 🚗 Cars")
     num_cars = st.number_input("Number of Cars", min_value=0, value=1, step=1, key='num_cars')
     for i in range(num_cars):
         st.markdown(f"**Car {i+1}**")
@@ -80,7 +80,7 @@ with tab2:
         user_data['cars'].append({'miles_driven': miles_driven, 'fuel_efficiency': fuel_efficiency})
 
     # Motorcycles/Rickshaw Section
-    st.markdown("##### 🏍️ Motorcycles")
+    st.markdown("#### 🏍️ Motorcycles")
     num_bikes = st.number_input("Number of Motorcycles", min_value=0, value=1, step=1, key='num_bikes')
     for i in range(num_bikes):
         st.markdown(f"**Motorcycle {i+1}**")
@@ -89,7 +89,7 @@ with tab2:
         user_data['bikes_rickshaw'].append({'miles_driven': miles_driven, 'fuel_efficiency': fuel_efficiency})
 
     # Bus Section
-    st.markdown("##### 🚌 Bus Travel")
+    st.markdown("#### 🚌 Bus Travel")
     user_data['bus'] = st.number_input("Kilometers Traveled by Bus Per Year", min_value=0, value=5000, key='bus_km')
 
     if st.button("Calculate Vehicle Emissions"):
