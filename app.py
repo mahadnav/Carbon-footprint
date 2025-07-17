@@ -41,8 +41,52 @@ def calculate_emissions(data):
         'Secondary': sum(data.get(k, 0) * factors[k] for k in factors if k not in ['electricity', 'gas', 'fuel', 'flights']) / 1000
     }
 
-    total = sum(emissions.values())  # to metric tons
+    total = sum(emissions.values())
     return emissions, total
+
+def convert_gas_pkr_to_m3(pkr_paid, rate_per_mmbtu):
+    # Step 1: Calculate MMBtu used
+    mmbtu_used = pkr_paid / rate_per_mmbtu
+
+    # Step 2: Convert MMBtu to m³ using 1 MMBtu ≈ 28.2637 m³
+    m3_used = mmbtu_used * 28.2637
+
+    return m3_used
+
+def get_gas_usage():
+    gas_unit = st.radio("Gas Input Type", ["PKR", "m³"], key="gas_unit_type")
+
+    if gas_unit == "PKR":
+        pkr_paid = st.number_input("Enter total PKR paid for gas", min_value=0.0, key="gas_pkr")
+        rate_per_mmbtu = st.number_input("Enter gas rate (PKR per MMBtu)", min_value=1.0, value=300.0, key="gas_rate")
+
+        if pkr_paid and rate_per_mmbtu:
+            gas_m3 = convert_gas_pkr_to_m3(pkr_paid, rate_per_mmbtu)
+            st.markdown(f"💡 Estimated Gas Used: **{gas_m3:.2f} m³**")
+            return gas_m3
+        else:
+            return None
+    else:
+        return st.number_input("Enter gas usage (m³)", min_value=0.0, key="gas_m3")
+
+def convert_electricity_pkr_to_kwh(pkr_paid, rate_per_kwh):
+    return pkr_paid / rate_per_kwh
+
+def get_electricity_usage():
+    elec_unit = st.radio("Electricity Input Type", ["PKR", "kWh"], key="elec_unit_type")
+
+    if elec_unit == "PKR":
+        pkr_paid = st.number_input("Enter total PKR paid for electricity", min_value=0.0, key="elec_pkr")
+        rate_per_kwh = st.number_input("Enter electricity rate (PKR per kWh)", min_value=1.0, value=30.0, key="elec_rate")
+
+        if pkr_paid and rate_per_kwh:
+            elec_kwh = convert_electricity_pkr_to_kwh(pkr_paid, rate_per_kwh)
+            st.markdown(f"💡 Estimated Electricity Used: **{elec_kwh:.2f} kWh**")
+            return elec_kwh
+        else:
+            return None
+    else:
+        return st.number_input("Enter electricity usage (kWh)", min_value=0.0, key="elec_kwh")
 
 # --- Page Setup ---
 st.set_page_config(page_title="🌱 Carbon Footprint Calculator", layout="wide")
@@ -58,22 +102,33 @@ user_data = {}
 # --- Household Tab ---
 with tabs[0]:
     st.markdown("## 🏠 Household Emissions")
-    with st.expander("➕ Enter your household energy usage"):
-        col1, col2 = st.columns(2)
-        with col1:
-            user_data['electricity'] = st.number_input("Electricity (kWh/year)", min_value=0, value=None, placeholder="e.g. 10,000", format="%d")
-        with col2:
-            user_data['gas'] = st.number_input("Natural Gas (m³/year)", min_value=0, value=None, placeholder='e.g. 5,000', format="%d")
 
-    if user_data['electricity'] is None or user_data['gas'] is None:
-        st.markdown(""" ⚠️ Please enter both electricity and gas usage to calculate household emissions.""")
-    elif isinstance(user_data['electricity'], (int, float)) and isinstance(user_data['gas'], (int, float)):
-        household_emissions = calculate_emissions(user_data)[0]['Household']
-        st.markdown(
-        f"<h4 style='color: #444; text-align: center; margin-top: 2rem;'>"
-        f"🧮 Total Household Emissions: <span style='color:#d43f3a'>{household_emissions:.2f}</span> metric tons CO₂</h4>",
-        unsafe_allow_html=True
-    )
+    with st.form("household_form"):
+        electricity_used = get_electricity_usage()
+        gas_used = get_gas_usage()
+        submitted = st.form_submit_button("Calculate Household Emissions")
+
+        if submitted:
+            if electricity_used is not None and gas_used is not None:
+                household_emissions = calculate_emissions(user_data)[0]['Household']
+                st.write(household_emissions)
+                
+    # with st.expander("➕ Enter your household energy usage"):
+    #     col1, col2 = st.columns(2)
+    #     with col1:
+    #         user_data['electricity'] = st.number_input("Electricity (kWh/year)", min_value=0, value=None, placeholder="e.g. 10,000", format="%d")
+    #     with col2:
+    #         user_data['gas'] = st.number_input("Natural Gas (m³/year)", min_value=0, value=None, placeholder='e.g. 5,000', format="%d")
+
+    # if user_data['electricity'] is None or user_data['gas'] is None:
+    #     st.markdown(""" ⚠️ Please enter both electricity and gas usage to calculate household emissions.""")
+    # elif isinstance(user_data['electricity'], (int, float)) and isinstance(user_data['gas'], (int, float)):
+    #     household_emissions = calculate_emissions(user_data)[0]['Household']
+    #     st.markdown(
+    #     f"<h4 style='color: #444; text-align: center; margin-top: 2rem;'>"
+    #     f"🧮 Total Household Emissions: <span style='color:#d43f3a'>{household_emissions:.2f}</span> metric tons CO₂</h4>",
+    #     unsafe_allow_html=True
+    # )
 
 # --- Vehicles Tab ---
 with tabs[1]:
