@@ -289,7 +289,7 @@ with tabs[3]:
             </div>
         """, unsafe_allow_html=True)
 
-        st.divider()
+        st.markdown("")
 
         st.markdown("""
             <div class='category-box' style='background-color: #FF9800;'>
@@ -306,10 +306,8 @@ with tabs[3]:
             </div>
         """, unsafe_allow_html=True)
 
+        st.markdown("")
 
-        st.divider()
-
-        
         st.markdown("""
             <div class='category-box' style='background-color: #E91E63;'>
                 <div style='font-size: 24px;'>🛒 STUFF</div>
