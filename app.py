@@ -155,10 +155,26 @@ with tabs[1]:
 with tabs[2]:
     st.markdown("## 🛍️ Secondary Consumption")
     categories = ['food', 'pharmaceuticals', 'clothing', 'electronics', 'furniture', 'hospitality', 'education', 'recreation']
-    with st.expander("Enter your yearly spending in PKR"):
+
+    spending_ranges = {
+        "0 - 5,000 PKR": 2500,
+        "5,000 - 10,000 PKR": 7500,
+        "10,000 - 20,000 PKR": 15000,
+        "20,000 - 50,000 PKR": 35000,
+        "50,000 - 100,000 PKR": 75000,
+        "100,000+ PKR": 125000
+    }
+
+    with st.expander("🛒 Select your approximate yearly spending per category"):
         for cat in categories:
             label = cat.replace('_', ' ').title()
-            user_data[cat] = st.number_input(f"{label}", min_value=0, value=300000, step=5000, format="%d")
+            choice = st.selectbox(
+                f"{label} Spending",
+                options=list(spending_ranges.keys()),
+                index=2,  # default to mid-range
+                key=f"{cat}_range"
+            )
+            user_data[cat] = spending_ranges[choice]
 
     sec_emissions = calculate_emissions(user_data)[0]['Secondary']
     st.metric("Secondary Emissions", f"{sec_emissions:,.2f} metric tons CO₂")
