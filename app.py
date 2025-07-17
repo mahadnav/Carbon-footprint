@@ -58,6 +58,7 @@ user_data = {}
 # --- Household Tab ---
 with tabs[0]:
     st.markdown("## 🏠 Household Emissions")
+    people_count = st.number_input("How many people live in your household?", min_value=1, value=1, step=1, key='people_count')
     with st.expander("➕ Enter your household energy usage"):
         col1, col2 = st.columns(2)
         with col1:
@@ -71,7 +72,7 @@ with tabs[0]:
         household_emissions = calculate_emissions(user_data)[0]['Household']
         st.markdown(
         f"<h4 style='color: #444; text-align: center; margin-top: 2rem;'>"
-        f"🧮 Total Household Emissions: <span style='color:#d43f3a'>{household_emissions:.2f}</span> metric tons CO₂</h4>",
+        f"🧮 Total Household Emissions: <span style='color:#d43f3a'>{household_emissions/people_count:.2f}</span> metric tons CO₂</h4>",
         unsafe_allow_html=True
     )
 
