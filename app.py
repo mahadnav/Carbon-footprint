@@ -47,7 +47,7 @@ def calculate_emissions(data):
     return emissions, total_emissions
 
 # Streamlit UI
-st.set_page_config(page_title='🌱 Carbon Footprint Calculator', mode=)
+st.set_page_config(page_title='🌱 Carbon Footprint Calculator')
 st.title('🌍 Pakistan Carbon Footprint Calculator')
 
 # User inputs in different tabs
