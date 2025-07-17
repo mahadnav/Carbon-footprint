@@ -263,7 +263,7 @@ with tabs[3]:
 
     with col2:
         st.markdown(f"""
-            <div style='height: 10px;'></div>
+            <div style='height: 15px;'></div>
             <div class='black-box'>
                 <div style='font-size: 16px;'>EU AVERAGE FOOTPRINT FOR 2025</div>
                 <div style='font-size: 36px;'>6.9 TONNES</div>
