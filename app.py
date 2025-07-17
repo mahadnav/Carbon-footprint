@@ -57,7 +57,11 @@ user_data = {}
 
 # --- Energy Tab ---
 with tabs[0]:
-    st.markdown("## ⚡ Energy Emissions")
+    st.markdown(
+        "<h2 style='font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem;'>⚡ Energy Emissions</h2>"
+        "<p style='color: gray; font-size: 1rem;'>Add your household energy use details to estimate yearly CO₂ emissions.</p>",
+        unsafe_allow_html=True
+    )
     _, col2, _ = st.columns(3)
     with col2:
         people_count = st.number_input("How many people live in your household?", min_value=1, value=1, step=1, key='people_count')
@@ -144,7 +148,7 @@ with tabs[1]:
             st.metric(label="Bus Emissions", value=f"{bus_emissions:,.2f} metric tons CO₂")
 
 
-    # TOTAL EMISSIONS (Optional Apple-style summary)
+    # TOTAL EMISSIONS
     vehicle_emissions = car_emissions + bike_emissions + bus_emissions
     st.markdown(
         f"<h4 style='color: #444; text-align: center; margin-top: 2rem;'>"
@@ -155,7 +159,7 @@ with tabs[1]:
 
 # --- Secondary Emissions Tab ---
 with tabs[2]:
-    st.markdown("## 🛍️ Secondary Consumption")
+    st.markdown("## 🛍️ Secondary Emissions")
     categories = ['food', 'clothing', 'electronics', 'furniture', 'recreation']
 
     spending_ranges = {
