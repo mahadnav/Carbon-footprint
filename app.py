@@ -31,7 +31,7 @@ def calculate_emissions(data):
 
     # Household emissions per capita
     total_household_emissions = electricity * factors['electricity'] + gas * factors['gas']
-    household_emissions = total_household_emissions / people / 1000
+    household_emissions = total_household_emissions / people
 
     emissions = {
         'Household': household_emissions / 1000,
