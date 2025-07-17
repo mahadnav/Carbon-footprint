@@ -139,8 +139,8 @@ with tabs[1]:
             with cols[1]:
                 st.markdown("")
 
-        bus_emissions = calculate_emissions(user_data)[0]['Bus']
-        st.metric(label="Bus Emissions", value=f"{bus_emissions:,.2f} metric tons CO₂")
+            bus_emissions = calculate_emissions(user_data)[0]['Bus']
+            st.metric(label="Bus Emissions", value=f"{bus_emissions:,.2f} metric tons CO₂")
 
 
     # TOTAL EMISSIONS (Optional Apple-style summary)
