@@ -49,12 +49,12 @@ st.markdown("""
 Welcome to your personal carbon footprint dashboard. Fill in details across the tabs to get an estimate of your annual CO₂ emissions.
 """)
 
-tabs = st.tabs(["Household", "Vehicles", "Secondary", "Total"])
+tabs = st.tabs(["Household", "Transport", "Secondary", "Total"])
 user_data = {}
 
 # --- Household Tab ---
 with tabs[0]:
-    st.markdown("## 🏠 Household Emissions")
+    st.markdown("## ⚡ Energy Emissions")
     _, col2, _ = st.columns(3)
     with col2:
         people_count = st.number_input("How many people live in your household?", min_value=1, value=1, step=1, key='people_count')
@@ -71,7 +71,7 @@ with tabs[0]:
         household_emissions = calculate_emissions(user_data)[0]['Household']
         st.markdown(
         f"<h4 style='color: #444; text-align: center; margin-top: 2rem;'>"
-        f"🧮 Total Household Emissions: <span style='color:#d43f3a'>{household_emissions/people_count:.2f}</span> metric tons CO₂</h4>",
+        f"⚡ Your Energy Carbon Footprint: <span style='color:#d43f3a'>{household_emissions/people_count:.2f}</span> metric tons CO₂</h4>",
         unsafe_allow_html=True
     )
 
@@ -132,7 +132,7 @@ with tabs[1]:
         with st.expander("➕ Add bus travel details"):
             cols = st.columns(2)
             with cols[0]:
-                user_data['bus'] = st.number_input("Kilometers Traveled by Bus Per Year", min_value=0, value=5000, key='bus_km', format="%d")
+                user_data['bus'] = st.number_input("Kilometers Traveled by Bus Per Year", min_value=0, value=0, key='bus_km', format="%d")
             with cols[1]:
                 st.markdown("")
 
@@ -144,7 +144,7 @@ with tabs[1]:
     total = car_emissions + bike_emissions + bus_emissions
     st.markdown(
         f"<h4 style='color: #444; text-align: center; margin-top: 2rem;'>"
-        f"🧮 Total Vehicle Emissions: <span style='color:#d43f3a'>{total:.2f}</span> metric tons CO₂</h4>",
+        f"🚗 Your Transportation Carbon FOotprint: <span style='color:#d43f3a'>{total:.2f}</span> metric tons CO₂</h4>",
         unsafe_allow_html=True
     )
 
