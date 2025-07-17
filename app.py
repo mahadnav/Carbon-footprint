@@ -310,7 +310,7 @@ with tabs[3]:
         st.markdown(f"""
             <div style='height: 17px;'></div>
             <div class='category-box' style='background-color: #03A9F4;'>
-                <div style='font-size: 24px; font-color: white'>🏠 HOME</div>
+                <div style='font-size: 24px; font-color: white'>⚡ Household Energy</div>
                 <div>Your consumption is equal to <b>{household_emissions:.2f} TONNES</b></div>
             </div>
         """, unsafe_allow_html=True)
@@ -319,7 +319,7 @@ with tabs[3]:
         st.markdown(f"""
             <div style='height: 17px;'></div>
             <div class='category-box' style='background-color: #4CAF50;'>
-                <div style='font-size: 24px;'>🚗 TRANSPORT</div>
+                <div style='font-size: 24px;'>🚗 Transport</div>
                 <div>Your consumption is equal to <b>{vehicle_emissions:.2f} TONNES</b></div>
             </div>
         """, unsafe_allow_html=True)
@@ -328,7 +328,7 @@ with tabs[3]:
         st.markdown(f"""
             <div style='height: 17px;'></div>
             <div class='category-box' style='background-color: #E91E63;'>
-                <div style='font-size: 24px;'>🛒 STUFF</div>
+                <div style='font-size: 24px;'>🛒 Secondary</div>
                 <div>Your consumption is equal to <b>{sec_emissions:.2f} TONNES</b></div>
             </div>
         """, unsafe_allow_html=True)
