@@ -42,7 +42,7 @@ def calculate_emissions(data):
     emissions = {
         'Household': household_emissions,
         'Cars': sum((c['miles_driven'] / c['fuel_efficiency']) * factors['fuel'] for c in data.get('cars', [])),
-        'Bikes/Rickshaw': sum((b['miles_driven'] / b['fuel_efficiency']) * factors['fuel'] for b in data.get('bikes_rickshaw', [])),
+        'Motorcycle': sum((b['miles_driven'] / b['fuel_efficiency']) * factors['fuel'] for b in data.get('motorcycle', [])),
         'Bus': data.get('bus', 0) * 0.05,
         'Secondary': sum(data.get(k, 0) * factors[k] for k in factors if k not in ['electricity', 'gas', 'fuel', 'flights'])
     }
@@ -128,8 +128,8 @@ with tabs[1]:
                     miles = st.number_input("Kilometers Driven Per Year", min_value=0, value=8000, key=f'bike_miles_{i}', format="%d")
                 with cols[1]:
                     efficiency = st.number_input("Fuel Efficiency (km/l)", min_value=1.0, value=30.0, key=f'bike_eff_{i}')
-                user_data['bikes_rickshaw'].append({'miles_driven': miles, 'fuel_efficiency': efficiency})
-        bike_emissions = calculate_emissions(user_data)[0]['Bikes'] / 1000
+                user_data['motorcycle'].append({'miles_driven': miles, 'fuel_efficiency': efficiency})
+        bike_emissions = calculate_emissions(user_data)[0]['motorcycle'] / 1000
         st.metric(label="Motorcycle Emissions", value=f"{bike_emissions:,.2f} metric tons CO₂")
 
     st.divider()
