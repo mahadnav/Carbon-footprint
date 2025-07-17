@@ -34,17 +34,17 @@ def calculate_emissions(data):
     except (ValueError, TypeError):
         gas = 0
 
-    household_emissions = electricity * factors.get('electricity', 0) + gas * factors.get('gas', 0)
+    household_emissions = electricity * factors.get('electricity', 0) + gas * factors.get('gas', 0) 
 
     emissions = {
-        'Household': household_emissions,
-        'Cars': sum((c['miles_driven'] / c['fuel_efficiency']) * factors['fuel'] for c in data.get('cars', [])),
-        'Motorcycle': sum((b['miles_driven'] / b['fuel_efficiency']) * factors['fuel'] for b in data.get('motorcycle', [])),
-        'Bus': data.get('bus', 0) * 0.05,
-        'Secondary': sum(data.get(k, 0) * factors[k] for k in factors if k not in ['electricity', 'gas', 'fuel', 'flights'])
+        'Household': household_emissions / 1000,
+        'Cars': sum((c['miles_driven'] / c['fuel_efficiency']) * factors['fuel'] for c in data.get('cars', [])) / 1000,
+        'Motorcycle': sum((b['miles_driven'] / b['fuel_efficiency']) * factors['fuel'] for b in data.get('motorcycle', [])) / 1000,
+        'Bus': data.get('bus', 0) * 0.05 / 1000,
+        'Secondary': sum(data.get(k, 0) * factors[k] for k in factors if k not in ['electricity', 'gas', 'fuel', 'flights']) / 1000
     }
 
-    total = sum(emissions.values()) / 1000  # to metric tons
+    total = sum(emissions.values())  # to metric tons
     return emissions, total
 
 # --- Page Setup ---
@@ -71,7 +71,7 @@ with tabs[0]:
     if user_data['electricity'] is None or user_data['gas'] is None:
         st.markdown(""" ⚠️ Please enter both electricity and gas usage to calculate household emissions.""")
     elif isinstance(user_data['electricity'], (int, float)) and isinstance(user_data['gas'], (int, float)):
-        household_emissions = calculate_emissions(user_data)[0]['Household'] / 1000
+        household_emissions = calculate_emissions(user_data)[0]['Household']
         st.markdown(
         f"<h4 style='color: #444; text-align: center; margin-top: 2rem;'>"
         f"🧮 Total Household Emissions: <span style='color:#d43f3a'>{household_emissions:.2f}</span> metric tons CO₂</h4>",
@@ -105,7 +105,7 @@ with tabs[1]:
                 with cols[1]:
                     efficiency = st.number_input("Fuel Efficiency (km/l)", min_value=1.0, value=12.0, key=f'car_eff_{i}')
                 user_data['cars'].append({'miles_driven': miles, 'fuel_efficiency': efficiency})
-        car_emissions = calculate_emissions(user_data)[0]['Cars'] / 1000
+        car_emissions = calculate_emissions(user_data)[0]['Cars']
         st.metric(label="Car Emissions", value=f"{car_emissions:,.2f} metric tons CO₂")
 
 
@@ -125,7 +125,7 @@ with tabs[1]:
                 with cols[1]:
                     efficiency = st.number_input("Fuel Efficiency (km/l)", min_value=1.0, value=30.0, key=f'bike_eff_{i}')
                 user_data['motorcycle'].append({'miles_driven': miles, 'fuel_efficiency': efficiency})
-        bike_emissions = calculate_emissions(user_data)[0]['Motorcycle'] / 1000
+        bike_emissions = calculate_emissions(user_data)[0]['Motorcycle']
         st.metric(label="Motorcycle Emissions", value=f"{bike_emissions:,.2f} metric tons CO₂")
 
 
@@ -138,7 +138,7 @@ with tabs[1]:
         with cols[1]:
             st.markdown("")
 
-        bus_emissions = calculate_emissions(user_data)[0]['Bus'] / 1000
+        bus_emissions = calculate_emissions(user_data)[0]['Bus']
         st.metric(label="Bus Emissions", value=f"{bus_emissions:,.2f} metric tons CO₂")
 
 
@@ -160,7 +160,7 @@ with tabs[2]:
             label = cat.replace('_', ' ').title()
             user_data[cat] = st.number_input(f"{label}", min_value=0, value=300000, step=5000, format="%d")
 
-    sec_emissions = calculate_emissions(user_data)[0]['Secondary'] / 1000
+    sec_emissions = calculate_emissions(user_data)[0]['Secondary']
     st.metric("Secondary Emissions", f"{sec_emissions:,.2f} metric tons CO₂")
 
 # --- 📊 Results Tab ---
