@@ -239,6 +239,21 @@ with tabs[3]:
 
     col1, col2, col3 = st.columns([2, 1.5, 1.5])
     with col1:
+        st.markdown("""
+                    <style>
+                        .result-box {
+                            background-color: #FFD43B;
+                            border-radius: 10px;
+                            padding: 40px;
+                            text-align: center;
+                            min-height: 200px;
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: center;
+                        }
+                    </style>
+                """, unsafe_allow_html=True)
+
         st.markdown(f"""
             <div class='result-box'>
                 <div style='font-size: 20px;'>YOUR FOOTPRINT IS EQUAL TO</div>
