@@ -60,7 +60,6 @@ with tabs[0]:
     st.markdown("## 🏠 Household Emissions")
     _, col2, _ = st.columns(3)
     with col2:
-        st.image("https://cdn-icons-png.flaticon.com/512/2917/2917880.png", width=100, use_column_width=True)
         people_count = st.number_input("How many people live in your household?", min_value=1, value=1, step=1, key='people_count')
     with st.expander("➕ Enter your household energy usage"):
         col1, col2 = st.columns(2)
