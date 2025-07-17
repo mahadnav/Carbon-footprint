@@ -148,7 +148,7 @@ with tabs[1]:
     vehicle_emissions = car_emissions + bike_emissions + bus_emissions
     st.markdown(
         f"<h4 style='color: #444; text-align: center; margin-top: 2rem;'>"
-        f"🚗 Your Transportation Carbon FOotprint: <span style='color:#d43f3a'>{vehicle_emissions:.2f}</span> metric tons CO₂</h4>",
+        f"🚗 Your Transportation Carbon Footprint: <span style='color:#d43f3a'>{vehicle_emissions:.2f}</span> metric tons CO₂</h4>",
         unsafe_allow_html=True
     )
 
@@ -302,7 +302,7 @@ with tabs[3]:
         st.markdown(f"""
             <div style='height: 17px;'></div>
             <div class='category-box' style='background-color: #03A9F4;'>
-                <div style='font-size: 24px; font-color: white'>🏠 </b>HOME<b></div>
+                <div style='font-size: 24px; font-color: white'>🏠 HOME</div>
                 <div>Your consumption is equal to <b>{household_emissions:.2f} TONNES</b></div>
             </div>
         """, unsafe_allow_html=True)
