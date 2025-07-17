@@ -179,7 +179,7 @@ with tabs[3]:
 
     # Add value labels
     for bar in bars:
-        width = bar.get_width()
+        width = bar.get_width()/1000
         ax.text(width + 0.1, bar.get_y() + bar.get_height() / 2,
                 f"{width:.1f} t CO₂", va='center', fontsize=9)
 
