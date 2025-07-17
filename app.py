@@ -132,12 +132,3 @@ with tab6:
         "\n* The average worldwide carbon footprint is about 4.79 metric tons"
         "\n* To avoid a 2℃ rise in global temperatures, the average global carbon footprint must be reduced to under 2 metric tons by 2050"
         )
-
-hide_streamlit_style = """
-<style>
-#MainMenu {visibility: hidden;}
-footer {visibility: hidden;}
-.css-1dp5vir {display: none;} /* for some versions */
-</style>
-"""
-st.markdown(hide_streamlit_style, unsafe_allow_html=True)
