@@ -50,9 +50,9 @@ with tabs[0]:
     with st.expander("Enter your household energy usage"):
         col1, col2 = st.columns(2)
         with col1:
-            user_data['electricity'] = st.number_input("Electricity (kWh/year)", min_value=0, value=float)
+            user_data['electricity'] = st.number_input("Electricity (kWh/year)", min_value=0, value=None)
         with col2:
-            user_data['gas'] = st.number_input("Natural Gas (m³/year)", min_value=0, value=float, format="%0.0f")
+            user_data['gas'] = st.number_input("Natural Gas (m³/year)", min_value=0, value=None, format="%0.0f")
 
     household_emissions = calculate_emissions(user_data)[0]['Household'] / 1000
     st.metric(label="Household Emissions", value=f"{household_emissions:,.2f} metric tons CO₂")
