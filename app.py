@@ -59,7 +59,7 @@ user_data = {}
 with tabs[0]:
     st.markdown(
         "<h2 style='font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem;'>⚡ Energy Emissions</h2>"
-        "<p style='color: gray; font-size: 1rem;'>Add your household energy use details to estimate yearly CO₂ emissions.</p>",
+        "<h4 style='color: gray; font-size: 1.25rem;'>Add your household energy use details to estimate yearly CO₂ emissions.</h4>",
         unsafe_allow_html=True
     )
     _, col2, _ = st.columns(3)
