@@ -175,7 +175,11 @@ with tabs[2]:
             user_data[cat] = spending_ranges[choice]
 
     sec_emissions = calculate_emissions(user_data)[0]['Secondary']
-    st.metric("Secondary Emissions", f"{sec_emissions:,.2f} metric tons CO₂")
+    st.markdown(
+        f"<h4 style='color: #444; text-align: center; margin-top: 2rem;'>"
+        f"🚗 Your Secondary Carbon Footprint: <span style='color:#d43f3a'>{sec_emissions:,.2f}</span> metric tons CO₂</h4>",
+        unsafe_allow_html=True
+    )
 
 # --- Results Tab ---
 with tabs[3]:
