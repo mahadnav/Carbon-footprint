@@ -91,7 +91,7 @@ with tabs[1]:
     )
 
     user_data['cars'] = []
-    user_data['bikes_rickshaw'] = []
+    user_data['motorcycle'] = []
 
     with st.container():
         st.markdown("### 🚗 Cars")
