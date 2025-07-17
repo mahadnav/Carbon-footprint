@@ -246,7 +246,7 @@ with tabs[3]:
                             border-radius: 10px;
                             padding: 10;
                             text-align: center;
-                            min-height: 250px;
+                            min-height: 275px;
                             display: flex;
                             flex-direction: column;
                             justify-content: center;
