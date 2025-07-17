@@ -12,12 +12,9 @@ def calculate_emissions(data):
         'food': 0.0015,
         'pharmaceuticals': 0.0012,
         'clothing': 0.0013,
-        'paper_products': 0.0009,
         'electronics': 0.0020,
         'furniture': 0.0014,
         'hospitality': 0.0016,
-        'telecom': 0.0008,
-        'insurance': 0.0007,
         'education': 0.0006,
         'recreation': 0.0012
     }
@@ -129,7 +126,7 @@ with tabs[1]:
                 with cols[1]:
                     efficiency = st.number_input("Fuel Efficiency (km/l)", min_value=1.0, value=30.0, key=f'bike_eff_{i}')
                 user_data['motorcycle'].append({'miles_driven': miles, 'fuel_efficiency': efficiency})
-        bike_emissions = calculate_emissions(user_data)[0]['motorcycle'] / 1000
+        bike_emissions = calculate_emissions(user_data)[0]['Motorcycle'] / 1000
         st.metric(label="Motorcycle Emissions", value=f"{bike_emissions:,.2f} metric tons CO₂")
 
     st.divider()
