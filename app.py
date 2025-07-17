@@ -57,7 +57,7 @@ with tabs[0]:
     household_emissions = calculate_emissions(user_data)[0]['Household'] / 1000
     st.metric(label="Household Emissions", value=f"{household_emissions:,.2f} metric tons CO₂")
 
-with tab2:
+with tabs[1]:
     # Page Title
     st.markdown(
         "<h2 style='font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem;'>🚘 Vehicle Emissions</h2>"
