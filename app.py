@@ -71,8 +71,8 @@ with tabs[1]:
     with st.container():
         st.markdown("### 🚗 Cars")
         with st.expander("➕ Add your car details"):
-            car_tabs = st.tabs(3)
-            with car_tabs[1]:
+            car_cols = st.columns(3)
+            with car_cols[1]:
                 num_cars = st.number_input("Number of Cars", min_value=0, value=1, step=1, key='num_cars', format="%d")
             user_data['cars'] = []
             for i in range(num_cars):
@@ -88,7 +88,7 @@ with tabs[1]:
 
     st.divider()
 
-    # BIKE/RICKSHAW SECTION
+    # BIKE SECTION
     with st.container():
         st.markdown("### 🏍️ Motorcycles / Rickshaws")
         with st.expander("➕ Add motorcycle or rickshaw details"):
