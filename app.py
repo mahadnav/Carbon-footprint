@@ -244,9 +244,9 @@ with tabs[3]:
                         .result-box {
                             background-color: #FFD43B;
                             border-radius: 10px;
-                            padding: 40px;
+                            padding: 20;
                             text-align: center;
-                            min-height: 200px;
+                            min-height: 300px;
                             display: flex;
                             flex-direction: column;
                             justify-content: center;
