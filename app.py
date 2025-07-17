@@ -60,7 +60,7 @@ with tab1:
     user_data['gas'] = st.number_input("Natural Gas Usage (cubic meters per year)", min_value=0, value=5000, format="%d")
 
     household_emissions = calculate_emissions(user_data)[0]['Household'] / 1000
-    st.info(f"Household Emissions: **{household_emissions:,.2f}** metric tons CO₂")
+    st.metric(f"Household Emissions: **{household_emissions:,.2f}** metric tons CO₂")
 
 # --- Vehicle Emissions Tab ---
 with tab2:
