@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 
-# Function to calculate emissions
+# --- Emission Calculation Function ---
 def calculate_emissions(data):
     factors = {
         'electricity': 0.5004,
@@ -21,145 +21,116 @@ def calculate_emissions(data):
         'education': 0.0006,
         'recreation': 0.0012
     }
-    fuel_emission_factor = 2.7
 
-    emissions = {}
-    emissions['Household'] = sum(data.get(key, 0) * factors.get(key, 0) for key in ['electricity', 'gas'])
+    emissions = {
+        'Household': sum(data.get(k, 0) * factors.get(k, 0) for k in ['electricity', 'gas']),
+        'Cars': sum((c['miles_driven'] / c['fuel_efficiency']) * factors['fuel'] for c in data.get('cars', [])),
+        'Bikes/Rickshaw': sum((b['miles_driven'] / b['fuel_efficiency']) * factors['fuel'] for b in data.get('bikes_rickshaw', [])),
+        'Bus': data.get('bus', 0) * 0.05,
+        'Secondary': sum(data.get(k, 0) * factors[k] for k in factors if k not in ['electricity', 'gas', 'fuel', 'flights'])
+    }
 
-    emissions['Cars'] = sum(
-        (car['miles_driven'] / car['fuel_efficiency']) * fuel_emission_factor
-        for car in data.get('cars', [])
-    )
+    total = sum(emissions.values()) / 1000  # to metric tons
+    return emissions, total
 
-    emissions['Bikes/Rickshaw'] = sum(
-        (bike['miles_driven'] / bike['fuel_efficiency']) * fuel_emission_factor
-        for bike in data.get('bikes_rickshaw', [])
-    )
+# --- Page Setup ---
+st.set_page_config(page_title="🌱 Carbon Footprint Calculator", layout="wide")
+st.title("🌍 Pakistan Carbon Footprint Calculator")
 
-    emissions['Bus'] = data.get('bus', 0) * 0.05
+st.markdown("""
+Welcome to your personal carbon footprint dashboard. Fill in details across the tabs to get an accurate, real-time estimate of your annual CO₂ emissions.
+""")
 
-    emissions['Secondary'] = sum(data.get(key, 0) * factors.get(key, 0)
-                                 for key in factors if key not in ['electricity', 'gas', 'fuel', 'flights'])
-
-    total_emissions = sum(emissions.values()) / 1000  # kg to metric tons
-    return emissions, total_emissions
-
-# Streamlit UI
-st.set_page_config(page_title='🌱 Carbon Footprint Calculator')
-st.title('🌍 Pakistan Carbon Footprint Calculator')
-
-categories = ["Household", "Vehicles", "Secondary", "Results"]
-tab1, tab2, tab3, tab4 = st.tabs(categories)
-
+tabs = st.tabs(["🏠 Household", "🚘 Vehicles", "🛍️ Secondary", "📊 Results"])
 user_data = {}
 
-# --- Household Tab ---
-with tab1:
-    st.markdown("### 🏠 Household Emissions")
-    user_data['electricity'] = st.number_input("Electricity Usage (kWh per year)", min_value=0, value=10000, format="%d")
-    user_data['gas'] = st.number_input("Natural Gas Usage (cubic meters per year)", min_value=0, value=5000, format="%d")
+# --- 🏠 Household Tab ---
+with tabs[0]:
+    st.markdown("## 🏠 Household Emissions")
+    with st.expander("Enter your household energy usage"):
+        col1, col2 = st.columns(2)
+        with col1:
+            user_data['electricity'] = st.number_input("Electricity (kWh/year)", min_value=0, value=10000, format="%d")
+        with col2:
+            user_data['gas'] = st.number_input("Natural Gas (m³/year)", min_value=0, value=5000, format="%d")
 
     household_emissions = calculate_emissions(user_data)[0]['Household'] / 1000
-    st.metric("Household Emissions", value=f"{household_emissions:,.2f} metric tons CO₂")
+    st.metric(label="Household Emissions", value=f"{household_emissions:,.2f} metric tons CO₂")
 
-# --- Vehicle Emissions Tab ---
-with tab2:
+# --- 🚘 Vehicles Tab ---
+with tabs[1]:
     st.markdown("## 🚘 Vehicle Emissions")
-    st.markdown(
-        """
-        Efficiently track your emissions from all personal vehicles below. 
-        Metrics update instantly as you enter your data.
-        """
-    )
+    user_data['cars'], user_data['bikes_rickshaw'] = [], []
 
-    # CAR SECTION
-    with st.container():
-        st.markdown("### 🚗 Cars")
-        with st.expander("➕ Add your car details"):
-            num_cars = st.number_input("Number of Cars", min_value=0, value=1, step=1, key='num_cars', format="%d")
-            user_data['cars'] = []
-            for i in range(num_cars):
-                st.markdown(f"**Car {i+1}**", help="Enter annual distance and average efficiency")
-                cols = st.columns(2)
-                with cols[0]:
-                    miles = st.number_input("Kilometers Driven Per Year", min_value=0, value=15000, key=f'car_miles_{i}', format="%d")
-                with cols[1]:
-                    efficiency = st.number_input("Fuel Efficiency (km/l)", min_value=1.0, value=12.0, key=f'car_eff_{i}')
-                user_data['cars'].append({'miles_driven': miles, 'fuel_efficiency': efficiency})
-        car_emissions = calculate_emissions(user_data)[0]['Cars'] / 1000
-        st.metric(label="Car Emissions", value=f"{car_emissions:,.2f} metric tons CO₂")
+    with st.expander("🚗 Car Usage"):
+        num_cars = st.number_input("Number of Cars", 0, 5, 1, key='num_cars')
+        for i in range(num_cars):
+            st.markdown(f"**Car {i+1}**")
+            col1, col2 = st.columns(2)
+            with col1:
+                km = st.number_input("Kilometers Driven Per Year", 0, 100_000, 15000, key=f'car_km_{i}')
+            with col2:
+                fe = st.number_input("Fuel Efficiency (km/l)", 1.0, 100.0, 12.0, key=f'car_fe_{i}')
+            user_data['cars'].append({'miles_driven': km, 'fuel_efficiency': fe})
+        st.metric("Car Emissions", f"{calculate_emissions(user_data)[0]['Cars'] / 1000:,.2f} metric tons CO₂")
 
-    st.divider()
+    with st.expander("🏍️ Motorcycle / Rickshaw Usage"):
+        num_bikes = st.number_input("Number of Motorcycles/Rickshaws", 0, 5, 1, key='num_bikes')
+        for i in range(num_bikes):
+            st.markdown(f"**Motorcycle/Rickshaw {i+1}**")
+            col1, col2 = st.columns(2)
+            with col1:
+                km = st.number_input("Kilometers Driven Per Year", 0, 100_000, 8000, key=f'bike_km_{i}')
+            with col2:
+                fe = st.number_input("Fuel Efficiency (km/l)", 1.0, 100.0, 30.0, key=f'bike_fe_{i}')
+            user_data['bikes_rickshaw'].append({'miles_driven': km, 'fuel_efficiency': fe})
+        st.metric("Motorcycle/Rickshaw Emissions", f"{calculate_emissions(user_data)[0]['Bikes/Rickshaw'] / 1000:,.2f} metric tons CO₂")
 
-    # BIKE/RICKSHAW SECTION
-    with st.container():
-        st.markdown("### 🏍️ Motorcycles / Rickshaws")
-        with st.expander("➕ Add motorcycle or rickshaw details"):
-            num_bikes = st.number_input("Number of Motorcycles/Rickshaws", min_value=0, value=1, step=1, key='num_bikes', format="%d")
-            user_data['bikes_rickshaw'] = []
-            for i in range(num_bikes):
-                st.markdown(f"**Motorcycle/Rickshaw {i+1}**", help="Enter annual distance and fuel efficiency")
-                cols = st.columns(2)
-                with cols[0]:
-                    miles = st.number_input("Kilometers Driven Per Year", min_value=0, value=8000, key=f'bike_miles_{i}', format="%d")
-                with cols[1]:
-                    efficiency = st.number_input("Fuel Efficiency (km/l)", min_value=1.0, value=30.0, key=f'bike_eff_{i}')
-                user_data['bikes_rickshaw'].append({'miles_driven': miles, 'fuel_efficiency': efficiency})
-        bike_emissions = calculate_emissions(user_data)[0]['Bikes/Rickshaw'] / 1000
-        st.metric(label="Motorcycle/Rickshaw Emissions", value=f"{bike_emissions:,.2f} metric tons CO₂")
+    with st.expander("🚌 Bus Travel"):
+        user_data['bus'] = st.number_input("Bus Kilometers Per Year", 0, 100_000, 5000, key='bus_km')
+        st.metric("Bus Emissions", f"{calculate_emissions(user_data)[0]['Bus'] / 1000:,.2f} metric tons CO₂")
 
-    st.divider()
+    total_vehicle_emissions = (
+        calculate_emissions(user_data)[0]['Cars'] +
+        calculate_emissions(user_data)[0]['Bikes/Rickshaw'] +
+        calculate_emissions(user_data)[0]['Bus']
+    ) / 1000
+    st.metric("Total Vehicle Emissions", f"{total_vehicle_emissions:,.2f} metric tons CO₂")
 
-    # BUS SECTION
-    with st.container():
-        st.markdown("### 🚌 Public Bus Travel")
-        cols = st.columns(2)
-        with cols[0]:
-            user_data['bus'] = st.number_input("Kilometers Traveled by Bus Per Year", min_value=0, value=5000, key='bus_km', format="%d")
-        with cols[1]:
-            st.markdown("")
+# --- 🛍️ Secondary Emissions Tab ---
+with tabs[2]:
+    st.markdown("## 🛍️ Secondary Consumption")
+    categories = ['food', 'pharmaceuticals', 'clothing', 'electronics', 'furniture', 'hospitality', 'education', 'recreation']
+    with st.expander("Enter your yearly spending in PKR"):
+        for cat in categories:
+            label = cat.replace('_', ' ').title()
+            user_data[cat] = st.number_input(f"{label}", min_value=0, value=300000, step=5000, format="%d")
 
-        bus_emissions = calculate_emissions(user_data)[0]['Bus'] / 1000
-        st.metric(label="Bus Emissions", value=f"{bus_emissions:,.2f} metric tons CO₂")
+    sec_emissions = calculate_emissions(user_data)[0]['Secondary'] / 1000
+    st.metric("Secondary Emissions", f"{sec_emissions:,.2f} metric tons CO₂")
 
-    st.divider()
+# --- 📊 Results Tab ---
+with tabs[3]:
+    st.markdown("## 📊 Results Overview")
+    emissions, total = calculate_emissions(user_data)
 
-    # TOTAL VEHICLE EMISSIONS (Optional Summary)
-    total_vehicle_emissions = (car_emissions + bike_emissions + bus_emissions)
-    st.subheader("🚦 Total Vehicle Emissions")
-    st.metric("", value=f"{total_vehicle_emissions:,.2f} metric tons CO₂")
+    st.metric(label="🌱 Total Annual Carbon Footprint", value=f"{total:,.2f} metric tons CO₂", delta=f"{total - 0.98:+.2f} vs PK Avg")
 
-# --- Secondary Tab ---
-with tab3:
-    st.markdown("### 🛍️ Secondary Emissions")
-    for category in ['food', 'pharmaceuticals', 'clothing', 'electronics', 'furniture', 'hospitality', 'education', 'recreation']:
-        user_data[category] = st.number_input(f"Annual Spending on {category.replace('_', ' ').title()} (PKR)", min_value=0, value=300000, format="%d")
-
-    secondary_emissions = calculate_emissions(user_data)[0]['Secondary'] / 1000
-    st.info(f"Secondary Emissions: **{secondary_emissions:,.2f}** metric tons CO₂")
-
-# --- Results Tab ---
-with tab4:
-    emissions, total_co2 = calculate_emissions(user_data)
-    st.success(f"🌱 Your estimated annual carbon footprint is **{total_co2:,.2f} metric tons of CO₂**.")
-
-    # Pie chart
-    labels = emissions.keys()
-    sizes = emissions.values()
+    # Pie Chart
     max_category = max(emissions, key=emissions.get)
-    explode = [0.1 if key == max_category else 0 for key in emissions]
-
+    explode = [0.1 if k == max_category else 0 for k in emissions]
     fig, ax = plt.subplots()
-    ax.pie(sizes, labels=labels, autopct='%1.0f%%', startangle=90, explode=explode, colors=plt.cm.Paired.colors)
-    ax.axis('equal')
+    ax.pie(emissions.values(), labels=emissions.keys(), explode=explode, autopct='%1.0f%%', startangle=90, colors=plt.cm.Set3.colors)
+    ax.axis("equal")
     st.pyplot(fig)
 
-    st.markdown(f"#### 🚨 The sector with the highest emissions is: **{max_category}**")
+    st.markdown(f"### 🔍 Highest Source of Emissions: **{max_category}**")
 
-    st.header("📊 Facts")
-    st.markdown(
-        "* The average footprint for people in Pakistan is **0.98** metric tons\n"
-        "* The average for the European Union is about **6.8** metric tons\n"
-        "* The global average is about **4.79** metric tons\n"
-        "* To avoid a 2℃ rise in global temperatures, the average must fall below **2** metric tons by **2050**"
-    )
+    st.markdown("### 📚 Comparison Benchmarks")
+    col1, col2, col3 = st.columns(3)
+    col1.metric("🇵🇰 Pakistan Average", "0.98 tCO₂")
+    col2.metric("🇪🇺 EU Average", "6.80 tCO₂")
+    col3.metric("🌍 Global Average", "4.79 tCO₂")
+
+    st.markdown("> To stay below 2°C global warming, the footprint per person must fall below **2 tCO₂/year by 2050**.")
+
