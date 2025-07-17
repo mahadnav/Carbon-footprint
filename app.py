@@ -51,7 +51,7 @@ st.set_page_config(page_title='🌱 Carbon Footprint Calculator')
 st.title('🌍 Pakistan Carbon Footprint Calculator')
 
 # User inputs in different tabs
-categories = ["Household", "Cars", "Bikes/Rickshaw", "Bus", "Secondary", "Results"]
+categories = ["Household", "Vehicles", "Secondary", "Results"]
 tab1, tab2, tab3, tab4 = st.tabs(categories)
 
 user_data = {}
