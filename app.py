@@ -278,7 +278,7 @@ with tabs[3]:
     st.markdown("<hr style='margin: 30px 0;'>", unsafe_allow_html=True)
 
     st.markdown("<div class='main-title'>LET'S BREAK IT DOWN</div>", unsafe_allow_html=True)
-    st.markdown("<div class='subtitle'>Your footprint is equal to <b>8.9T</b></div>", unsafe_allow_html=True)
+    st.markdown(f"<div class='subtitle'>Your footprint is equal to <b>{total_emissions}T</b></div>", unsafe_allow_html=True)
 
     colA, colB = st.columns(2)
     with colA:
