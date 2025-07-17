@@ -99,7 +99,7 @@ with tab4:
 
 # Secondary Tab
 with tab5:
-    st.header("🛍️ Secondary Emissions")
+    st.header("### 🛍️ Secondary Emissions")
     for category in ['food', 'pharmaceuticals', 'clothing', 'electronics', 'furniture', 'hospitality', 'education', 'recreation']:
         user_data[category] = st.number_input(f"Annual Spending on {category.replace('_', ' ').title()} (PKR)", min_value=0, value=300000)
     if st.button("Calculate Secondary Emissions"):
