@@ -57,45 +57,63 @@ with tabs[0]:
     household_emissions = calculate_emissions(user_data)[0]['Household'] / 1000
     st.metric(label="Household Emissions", value=f"{household_emissions:,.2f} metric tons CO₂")
 
-# --- 🚘 Vehicles Tab ---
-with tabs[1]:
-    st.markdown("## 🚘 Vehicle Emissions")
-    user_data['cars'], user_data['bikes_rickshaw'] = [], []
+with tab2:
+    # Page Title
+    st.markdown(
+        "<h2 style='font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem;'>🚘 Vehicle Emissions</h2>"
+        "<p style='color: gray; font-size: 1rem;'>Add your vehicle details to estimate yearly CO₂ emissions.</p>",
+        unsafe_allow_html=True
+    )
 
-    with st.expander("🚗 Car Usage"):
-        num_cars = st.number_input("Number of Cars", 0, 5, 1, key='num_cars')
-        for i in range(num_cars):
-            st.markdown(f"**Car {i+1}**")
-            col1, col2 = st.columns(2)
-            with col1:
-                km = st.number_input("Kilometers Driven Per Year", 0, 100_000, 15000, key=f'car_km_{i}')
-            with col2:
-                fe = st.number_input("Fuel Efficiency (km/l)", 1.0, 100.0, 12.0, key=f'car_fe_{i}')
-            user_data['cars'].append({'miles_driven': km, 'fuel_efficiency': fe})
-        st.metric("Car Emissions", f"{calculate_emissions(user_data)[0]['Cars'] / 1000:,.2f} metric tons CO₂")
+    user_data['cars'] = []
+    user_data['bikes_rickshaw'] = []
 
-    with st.expander("🏍️ Motorcycle / Rickshaw Usage"):
-        num_bikes = st.number_input("Number of Motorcycles/Rickshaws", 0, 5, 1, key='num_bikes')
-        for i in range(num_bikes):
-            st.markdown(f"**Motorcycle/Rickshaw {i+1}**")
-            col1, col2 = st.columns(2)
-            with col1:
-                km = st.number_input("Kilometers Driven Per Year", 0, 100_000, 8000, key=f'bike_km_{i}')
-            with col2:
-                fe = st.number_input("Fuel Efficiency (km/l)", 1.0, 100.0, 30.0, key=f'bike_fe_{i}')
-            user_data['bikes_rickshaw'].append({'miles_driven': km, 'fuel_efficiency': fe})
-        st.metric("Motorcycle/Rickshaw Emissions", f"{calculate_emissions(user_data)[0]['Bikes/Rickshaw'] / 1000:,.2f} metric tons CO₂")
+    # CARS SECTION
+    st.markdown("<h4 style='margin-top: 2rem;'>🚗 Cars</h4>", unsafe_allow_html=True)
+    num_cars = st.number_input("Number of Cars", min_value=0, value=1, step=1, key='num_cars', format="%d")
+    for i in range(num_cars):
+        st.markdown(f"<h6 style='margin-top:1rem;'>Car {i+1}</h6>", unsafe_allow_html=True)
+        col1, col2 = st.columns(2)
+        with col1:
+            miles = st.number_input("Kilometers/Year", min_value=0, value=15000, key=f'car_miles_{i}', format="%d")
+        with col2:
+            eff = st.number_input("Fuel Efficiency (km/l)", min_value=1.0, value=12.0, key=f'car_eff_{i}')
+        user_data['cars'].append({'miles_driven': miles, 'fuel_efficiency': eff})
 
-    with st.expander("🚌 Bus Travel"):
-        user_data['bus'] = st.number_input("Bus Kilometers Per Year", 0, 100_000, 5000, key='bus_km')
-        st.metric("Bus Emissions", f"{calculate_emissions(user_data)[0]['Bus'] / 1000:,.2f} metric tons CO₂")
+    car_emissions = calculate_emissions(user_data)[0]['Cars'] / 1000
+    st.metric(label="Car Emissions", value=f"{car_emissions:,.2f} metric tons CO₂")
 
-    total_vehicle_emissions = (
-        calculate_emissions(user_data)[0]['Cars'] +
-        calculate_emissions(user_data)[0]['Bikes/Rickshaw'] +
-        calculate_emissions(user_data)[0]['Bus']
-    ) / 1000
-    st.metric("Total Vehicle Emissions", f"{total_vehicle_emissions:,.2f} metric tons CO₂")
+    # MOTORCYCLES SECTION
+    st.markdown("<h4 style='margin-top: 2.5rem;'>🏍️ Motorcycles / Rickshaws</h4>", unsafe_allow_html=True)
+    num_bikes = st.number_input("Number of Motorcycles/Rickshaws", min_value=0, value=1, step=1, key='num_bikes', format="%d")
+    for i in range(num_bikes):
+        st.markdown(f"<h6 style='margin-top:1rem;'>Motorcycle/Rickshaw {i+1}</h6>", unsafe_allow_html=True)
+        col1, col2 = st.columns(2)
+        with col1:
+            miles = st.number_input("Kilometers/Year", min_value=0, value=8000, key=f'bike_miles_{i}', format="%d")
+        with col2:
+            eff = st.number_input("Fuel Efficiency (km/l)", min_value=1.0, value=30.0, key=f'bike_eff_{i}')
+        user_data['bikes_rickshaw'].append({'miles_driven': miles, 'fuel_efficiency': eff})
+
+    bike_emissions = calculate_emissions(user_data)[0]['Bikes/Rickshaw'] / 1000
+    st.metric(label="Motorcycle/Rickshaw Emissions", value=f"{bike_emissions:,.2f} metric tons CO₂")
+
+    # BUS SECTION
+    st.markdown("<h4 style='margin-top: 2.5rem;'>🚌 Bus Travel</h4>", unsafe_allow_html=True)
+    user_data['bus'] = st.number_input("Kilometers by Bus per Year", min_value=0, value=5000, key='bus_km', format="%d")
+
+    bus_emissions = calculate_emissions(user_data)[0]['Bus'] / 1000
+    st.metric(label="Bus Emissions", value=f"{bus_emissions:,.2f} metric tons CO₂")
+
+    # TOTAL EMISSIONS (Optional Apple-style summary)
+    total = car_emissions + bike_emissions + bus_emissions
+    st.markdown("<hr>", unsafe_allow_html=True)
+    st.markdown(
+        f"<h4 style='color: #444; text-align: center; margin-top: 2rem;'>"
+        f"🧮 Total Vehicle Emissions: <span style='color:#d43f3a'>{total:.2f}</span> metric tons CO₂</h4>",
+        unsafe_allow_html=True
+    )
+
 
 # --- 🛍️ Secondary Emissions Tab ---
 with tabs[2]:
