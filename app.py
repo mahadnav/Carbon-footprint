@@ -105,8 +105,8 @@ with tabs[1]:
                 with cols[1]:
                     efficiency = st.number_input("Fuel Efficiency (km/l)", min_value=1.0, value=12.0, key=f'car_eff_{i}')
                 user_data['cars'].append({'miles_driven': miles, 'fuel_efficiency': efficiency})
-        car_emissions = calculate_emissions(user_data)[0]['Cars']
-        st.metric(label="Car Emissions", value=f"{car_emissions:,.2f} metric tons CO₂")
+            car_emissions = calculate_emissions(user_data)[0]['Cars']
+            st.metric(label="Car Emissions", value=f"{car_emissions:,.2f} metric tons CO₂")
 
 
     # BIKE SECTION
@@ -125,8 +125,8 @@ with tabs[1]:
                 with cols[1]:
                     efficiency = st.number_input("Fuel Efficiency (km/l)", min_value=1.0, value=30.0, key=f'bike_eff_{i}')
                 user_data['motorcycle'].append({'miles_driven': miles, 'fuel_efficiency': efficiency})
-        bike_emissions = calculate_emissions(user_data)[0]['Motorcycle']
-        st.metric(label="Motorcycle Emissions", value=f"{bike_emissions:,.2f} metric tons CO₂")
+            bike_emissions = calculate_emissions(user_data)[0]['Motorcycle']
+            st.metric(label="Motorcycle Emissions", value=f"{bike_emissions:,.2f} metric tons CO₂")
 
 
     # BUS SECTION
