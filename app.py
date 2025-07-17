@@ -175,7 +175,7 @@ with tabs[3]:
 
     # Create horizontal bar plot
     fig, ax = plt.subplots(figsize=(6, 2.5))  # Small footprint
-    bars = ax.barh(list(sorted_emissions.keys()), list(sorted_emissions.values()), color=['#4F8EF7', '#F75C03'])
+    bars = ax.barh(list(sorted_emissions.keys()), list(sorted_emissions.values()/1000), color=['#4F8EF7', '#F75C03'])
 
     # Add value labels
     for bar in bars:
