@@ -88,7 +88,7 @@ with tabs[1]:
     # Page Title
     st.markdown(
         "<h2 style='font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem;'>🚘 Vehicle Emissions</h2>"
-        "<p style='color: gray; font-size: 1rem;'>Add your vehicle details to estimate yearly CO₂ emissions.</p>",
+        "<h4 style='color: gray; font-size: 1.25rem;'>Add your vehicle details to estimate yearly CO₂ emissions.</h4>",
         unsafe_allow_html=True
     )
 
