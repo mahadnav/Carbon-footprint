@@ -22,8 +22,25 @@ def calculate_emissions(data):
         'recreation': 0.0012
     }
 
+    # Safely get electricity and gas, default to 0 if missing or invalid
+    electricity = data.get('electricity', 0)
+    gas = data.get('gas', 0)
+
+    # Convert to float safely
+    try:
+        electricity = float(electricity)
+    except (ValueError, TypeError):
+        electricity = 0
+
+    try:
+        gas = float(gas)
+    except (ValueError, TypeError):
+        gas = 0
+
+    household_emissions = electricity * factors.get('electricity', 0) + gas * factors.get('gas', 0)
+
     emissions = {
-        'Household': sum(data.get(k, 0) * factors.get(k, 0) for k in ['electricity', 'gas']),
+        'Household': household_emissions,
         'Cars': sum((c['miles_driven'] / c['fuel_efficiency']) * factors['fuel'] for c in data.get('cars', [])),
         'Bikes/Rickshaw': sum((b['miles_driven'] / b['fuel_efficiency']) * factors['fuel'] for b in data.get('bikes_rickshaw', [])),
         'Bus': data.get('bus', 0) * 0.05,
