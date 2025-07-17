@@ -181,7 +181,7 @@ with tabs[3]:
     for bar in bars:
         width = bar.get_width()
         ax.text(width + 0.1, bar.get_y() + bar.get_height() / 2,
-                f"{width:.1f} t CO₂", va='center', fontsize=9)
+                f"{width:.1f} tCO₂", va='center', fontsize=9)
 
     # Style tweaks
     ax.set_xlim(0, max(sorted_emissions.values()) * 1.2)
