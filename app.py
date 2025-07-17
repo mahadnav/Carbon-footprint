@@ -256,7 +256,7 @@ with tabs[3]:
             <div style='height: 20px;'></div>
             <div class='black-box'>
                 <div style='font-size: 16px;'>YOUR FOOTPRINT IS</div>
-                <div style='font-size: 36px;'>{total_emissions/6.3 * 100}%</div>
+                <div style='font-size: 36px;'>{round(total_emissions/6.3 * 100)}%</div>
                 <div style='font-size: 16px;'>OF THE WORLD AVERAGE FOR 2025</div>
             </div>
         """, unsafe_allow_html=True)
