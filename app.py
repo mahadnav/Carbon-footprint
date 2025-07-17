@@ -17,6 +17,7 @@ def calculate_emissions(data):
 
     electricity = data.get('electricity', 0)
     gas = data.get('gas', 0)
+    people = max(data.get('people_count', 1), 1)  # Avoid division by 0
 
     try:
         electricity = float(electricity)
@@ -28,7 +29,9 @@ def calculate_emissions(data):
     except (ValueError, TypeError):
         gas = 0
 
-    household_emissions = electricity * factors.get('electricity', 0) + gas * factors.get('gas', 0) 
+    # Household emissions per capita
+    total_household_emissions = electricity * factors['electricity'] + gas * factors['gas']
+    household_emissions = total_household_emissions / people / 1000
 
     emissions = {
         'Household': household_emissions / 1000,
@@ -58,6 +61,7 @@ with tabs[0]:
     _, col2, _ = st.columns(3)
     with col2:
         people_count = st.number_input("How many people live in your household?", min_value=1, value=1, step=1, key='people_count')
+        user_data['people_count'] = people_count
     with st.expander("➕ Enter your household energy usage"):
         col1, col2 = st.columns(2)
         with col1:
