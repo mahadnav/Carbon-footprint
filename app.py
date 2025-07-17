@@ -174,8 +174,8 @@ with tabs[3]:
     sorted_emissions = dict(sorted(emissions.items(), key=lambda x: x[1], reverse=True))
 
     # Create horizontal bar plot
-    fig, ax = plt.subplots(figsize=(6, 2.5))  # Small footprint
-    bars = ax.barh(list(sorted_emissions.keys()), list(sorted_emissions.values()/1000), color=['#4F8EF7', '#F75C03'])
+    fig, ax = plt.subplots(figsize=(3, 2.5))  # Small footprint
+    bars = ax.barh(list(sorted_emissions.keys()), list(sorted_emissions.values()), color=['#4F8EF7', '#F75C03'])
 
     # Add value labels
     for bar in bars:
