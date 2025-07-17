@@ -284,10 +284,10 @@ with tabs[3]:
                 <div style='font-size: 36px;'>6.3 TONNES</div>
             </div>
             <div style='height: 20px;'></div>
-            <div class='black-box'>
-                <div style='font-size: 16px;'>GO WILD - WWF'S CLUB FOR KIDS</div>
-                <div style='margin-top: 10px;'>Fun facts, puzzles, crafts & more</div>
-            </div>
+            # <div class='black-box'>
+            #     <div style='font-size: 16px;'>GO WILD - WWF'S CLUB FOR KIDS</div>
+            #     <div style='margin-top: 10px;'>Fun facts, puzzles, crafts & more</div>
+            # </div>
         """, unsafe_allow_html=True)
 
     st.markdown("<hr style='margin: 30px 0;'>", unsafe_allow_html=True)
