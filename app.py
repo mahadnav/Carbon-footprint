@@ -278,6 +278,7 @@ with tabs[3]:
 
     with col3:
         st.markdown(f"""
+            <div style='height: 17px;'></div>
             <div class='black-box'>
                 <div style='font-size: 16px;'>WORLD AVERAGE</div>
                 <div style='font-size: 36px;'>6.3 TONNES</div>
