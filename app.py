@@ -50,7 +50,7 @@ with tabs[0]:
     with st.expander("Enter your household energy usage"):
         col1, col2 = st.columns(2)
         with col1:
-            user_data['electricity'] = st.number_input("Electricity (kWh/year)", min_value=0, value=float, format="%d")
+            user_data['electricity'] = st.number_input("Electricity (kWh/year)", min_value=0, value=float)
         with col2:
             user_data['gas'] = st.number_input("Natural Gas (m³/year)", min_value=0, value=float, format="%0.0f")
 
