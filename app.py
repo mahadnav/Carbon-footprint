@@ -187,40 +187,134 @@ with tabs[2]:
 
 # --- Results Tab ---
 with tabs[3]:
-    st.markdown("## 📊 Results Overview")
-    emissions, total = calculate_emissions(user_data)
+    st.markdown("""
+        <style>
+            .main-title {
+                font-size: 36px;
+                color: black;
+                font-weight: bold;
+            }
+            .subtitle {
+                font-size: 18px;
+                color: #555;
+            }
+            .result-box {
+                background-color: #FDD835;
+                padding: 20px;
+                text-align: center;
+                border-radius: 10px;
+                height: 100%;
+            }
+            .black-box {
+                background-color: #212121;
+                color: white;
+                padding: 20px;
+                border-radius: 10px;
+                height: 100%;
+            }
+            .category-box {
+                background-color: #f5f5f5;
+                padding: 20px;
+                border-radius: 10px;
+                height: 100%;
+                text-align: center;
+            }
+            .reduce-button {
+                margin-top: 10px;
+                display: inline-block;
+                padding: 8px 16px;
+                background-color: black;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 14px;
+            }
+        </style>
+    """, unsafe_allow_html=True)
 
-    st.metric(label="🌱 Total Annual Carbon Footprint", value=f"{total:,.2f} metric tons CO₂", delta=f"{total - 0.98:+.2f} vs PK Avg")
+    st.markdown("<div class='main-title'>🎉 Congratulations!</div>", unsafe_allow_html=True)
+    st.markdown("<div class='subtitle'>Your annual footprint is close to the national average, but there's still room to improve!</div>", unsafe_allow_html=True)
 
-    # Sort categories for consistent layout
-    sorted_emissions = dict(sorted(emissions.items(), key=lambda x: x[1], reverse=True))
+    col1, col2, col3 = st.columns([2, 1.5, 1.5])
+    with col1:
+        st.markdown("""
+            <div class='result-box'>
+                <div style='font-size: 20px;'>YOUR FOOTPRINT IS EQUAL TO</div>
+                <div style='font-size: 50px; font-weight: bold;'>8.9</div>
+                <div style='font-size: 20px;'>TONNES*</div>
+                <div><button class='reduce-button'>SHARE SCORE</button></div>
+            </div>
+        """, unsafe_allow_html=True)
 
-    # Create horizontal bar plot
-    fig, ax = plt.subplots(figsize=(12, 2.5))  # Small footprint
-    bars = ax.barh(list(sorted_emissions.keys()), list(sorted_emissions.values()), color='#d43f3a', edgecolor=None, height=0.5)
+    with col2:
+        st.markdown("""
+            <div class='black-box'>
+                <div style='font-size: 16px;'>UK AVERAGE FOOTPRINT FOR 2025</div>
+                <div style='font-size: 36px;'>8.4 TONNES</div>
+            </div>
+            <div style='height: 20px;'></div>
+            <div class='black-box'>
+                <div style='font-size: 16px;'>YOUR FOOTPRINT IS</div>
+                <div style='font-size: 36px;'>106%</div>
+                <div style='font-size: 16px;'>OF THE UK AVERAGE FOR 2025</div>
+            </div>
+        """, unsafe_allow_html=True)
 
-    # Add value labels
-    for bar in bars:
-        width = bar.get_width()
-        ax.text(width + 0.1, bar.get_y() + bar.get_height() / 2,
-                f"{width:.1f} tCO₂", va='center', fontsize=9)
+    with col3:
+        st.markdown("""
+            <div class='black-box'>
+                <div style='font-size: 16px;'>WORLD AVERAGE</div>
+                <div style='font-size: 36px;'>6.3 TONNES</div>
+            </div>
+            <div style='height: 20px;'></div>
+            <div class='black-box'>
+                <div style='font-size: 16px;'>GO WILD - WWF'S CLUB FOR KIDS</div>
+                <div style='margin-top: 10px;'>Fun facts, puzzles, crafts & more</div>
+                <div><button class='reduce-button'>CHECK IT OUT</button></div>
+            </div>
+        """, unsafe_allow_html=True)
 
-    # Style tweaks
-    ax.set_xlim(0, max(sorted_emissions.values()) * 1.2)
-    ax.set_xlabel("Emissions (metric tons CO₂)", fontsize=9)
-    ax.set_title("Household Emission Sources", fontsize=11, weight='bold')
-    ax.spines[['top', 'right']].set_visible(False)
-    ax.tick_params(left=False, bottom=False)
-    ax.grid(axis='x', linestyle='--', alpha=0.3)
+    st.markdown("<hr style='margin: 30px 0;'>", unsafe_allow_html=True)
 
-    st.pyplot(fig)
+    st.markdown("<div class='main-title'>LET'S BREAK IT DOWN</div>", unsafe_allow_html=True)
+    st.markdown("<div class='subtitle'>Your footprint is equal to <b>8.9T</b></div>", unsafe_allow_html=True)
 
+    colA, colB = st.columns(2)
+    with colA:
+        st.markdown("""
+            <div class='category-box' style='background-color: #03A9F4;'>
+                <div style='font-size: 24px;'>🏠 HOME</div>
+                <div>Your consumption is equal to <b>2 TONNES</b></div>
+                <div>This is roughly the same weight as 2 Polar Bears</div>
+                <div><a class='reduce-button'>REDUCE THIS SCORE</a></div>
+            </div>
+        """, unsafe_allow_html=True)
 
-    st.markdown("### 📚 Comparison Benchmarks")
-    col1, col2, col3 = st.columns(3)
-    col1.metric("🇵🇰 Pakistan Average", "0.98 tCO₂")
-    col2.metric("🇪🇺 EU Average", "6.80 tCO₂")
-    col3.metric("🌍 Global Average", "4.79 tCO₂")
+        st.markdown("""
+            <div class='category-box' style='background-color: #FF9800;'>
+                <div style='font-size: 24px;'>🚗 TRAVEL</div>
+                <div>Your consumption is equal to <b>2 TONNES</b></div>
+                <div>This is roughly the same weight as 13 Giant Pandas</div>
+                <div><a class='reduce-button'>REDUCE THIS SCORE</a></div>
+            </div>
+        """, unsafe_allow_html=True)
 
-    st.markdown("> To stay below 2°C global warming, the footprint per person must fall below **2 tCO₂/year by 2050**.")
+    with colB:
+        st.markdown("""
+            <div class='category-box' style='background-color: #00BCD4;'>
+                <div style='font-size: 24px;'>🍽 FOOD</div>
+                <div>Your consumption is equal to <b>2 TONNES</b></div>
+                <div>This is roughly the same weight as 6 Amur Tigers</div>
+                <div><a class='reduce-button'>REDUCE THIS SCORE</a></div>
+            </div>
+        """, unsafe_allow_html=True)
+
+        st.markdown("""
+            <div class='category-box' style='background-color: #E91E63;'>
+                <div style='font-size: 24px;'>🛒 STUFF</div>
+                <div>Your consumption is equal to <b>1 TONNES</b></div>
+                <div>This is roughly the same weight as 6 Mountain Gorillas</div>
+                <div><a class='reduce-button'>REDUCE THIS SCORE</a></div>
+            </div>
+        """, unsafe_allow_html=True)
 
