@@ -144,7 +144,6 @@ with tabs[1]:
 
     # TOTAL EMISSIONS (Optional Apple-style summary)
     total = car_emissions + bike_emissions + bus_emissions
-    st.markdown("<hr>", unsafe_allow_html=True)
     st.markdown(
         f"<h4 style='color: #444; text-align: center; margin-top: 2rem;'>"
         f"🧮 Total Vehicle Emissions: <span style='color:#d43f3a'>{total:.2f}</span> metric tons CO₂</h4>",
