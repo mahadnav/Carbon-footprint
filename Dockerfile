@@ -1,25 +1,18 @@
-# Use official Python slim image
 FROM python:3.11-slim
 
-# Set working directory
+# Set workdir
 WORKDIR /app
 
-# Install system dependencies
-RUN apt-get update && apt-get install -y \
-    build-essential \
-    && rm -rf /var/lib/apt/lists/*
-
-# Copy all files to the container
+# Copy everything
 COPY . .
 
 # Install Python dependencies
-RUN pip install --upgrade pip
-RUN pip install -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
-# Set Streamlit to run on Heroku-assigned port
-ENV PORT 8501
+# Heroku assigns a dynamic port via $PORT
+ENV PORT=8501
 
-# Expose port
+# Expose it
 EXPOSE 8501
 
 # Run Streamlit app
