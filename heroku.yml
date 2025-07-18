@@ -1,14 +1,6 @@
-# heroku.yml
-# This file tells Heroku how to build and run your application.
-setup:
-  config:
-    
 build:
   docker:
     web: Dockerfile
-
-release:
-
 run:
   web:
     command:
