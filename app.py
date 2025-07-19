@@ -8,11 +8,11 @@ def calculate_emissions(data):
         'gas': 2.2,
         'fuel': 2.7,
         'flights': 200,
-        'food': 0.0015,
-        'clothing': 0.0013,
-        'electronics': 0.0020,
+        'food': 0.0016,
+        'clothing': 0.007,
+        'electronics': 0.0017,
         'furniture': 0.0014,
-        'recreation': 0.0012
+        'recreation': 0.0009
     }
 
     electricity = data.get('electricity', 0)
@@ -157,15 +157,25 @@ with tabs[1]:
     )
 
 
-# --- Secondary Emissions Tab ---
 with tabs[2]:
     st.markdown(
         "<h2 style='font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem;'>🛍️ Secondary Emissions</h2>"
-        "<h4 style='color: gray; font-size: 1.25rem;'>Add your spending details to estimate yearly CO₂ emissions</h4>",
+        "<h4 style='color: gray; font-size: 1.25rem;'>Estimate your yearly CO₂ emissions from lifestyle choices</h4>",
         unsafe_allow_html=True
     )
-    categories = ['food', 'clothing', 'electronics', 'furniture', 'recreation']
 
+    # --- EPA Emission Factors ---
+    diet_emission_factors = {
+        "Meat-heavy": 3.3,
+        "Average (mixed)": 2.5,
+        "Vegetarian": 1.7,
+        "Vegan": 1.5
+    }
+
+    device_emission_factor = 0.35  # per device in metric tons CO₂e
+    emission_per_pkr = 0.00089     # kg CO₂e per PKR spent (based on EPA 0.25 kg/USD)
+
+    # --- Spending Ranges ---
     spending_ranges = {
         "0 - 5,000 PKR": 2500,
         "5,000 - 10,000 PKR": 7500,
@@ -175,21 +185,43 @@ with tabs[2]:
         "100,000+ PKR": 125000
     }
 
-    with st.expander("🛒 Select your approximate yearly spending per category"):
-        for cat in categories:
-            label = cat.replace('_', ' ').title()
-            choice = st.selectbox(
-                f"{label} Spending",
-                options=list(spending_ranges.keys()),
-                index=2,  # default to mid-range
-                key=f"{cat}_range"
-            )
-            user_data[cat] = spending_ranges[choice]
+    user_data = {}
 
+    # --- Food/Diet ---
+    with st.expander("🍽️ What kind of diet do you follow?"):
+        diet = st.radio(
+            "Choose your typical diet:",
+            options=list(diet_emission_factors.keys()),
+            index=1,
+            key="diet_type"
+        )
+        user_data['food'] = diet_emission_factors[diet] * 1000  # convert to kg
+
+    # --- Electronics ---
+    with st.expander("📱 How many new electronic devices did you purchase this year?"):
+        devices = st.slider("Number of new devices (phones, laptops, etc.):", 0, 10, 2, key="device_count")
+        user_data['electronics'] = devices * device_emission_factor * 1000  # convert to kg
+
+    # --- Clothing ---
+    with st.expander("👕 Clothing Spending"):
+        choice = st.selectbox("Select your yearly spending on clothing:", list(spending_ranges.keys()), index=2, key="clothing_range")
+        user_data['clothing'] = spending_ranges[choice] * emission_per_pkr
+
+    # --- Furniture ---
+    with st.expander("🪑 Furniture Spending"):
+        choice = st.selectbox("Select your yearly spending on furniture:", list(spending_ranges.keys()), index=2, key="furniture_range")
+        user_data['furniture'] = spending_ranges[choice] * emission_per_pkr
+
+    # --- Recreation ---
+    with st.expander("🎮 Recreation Spending"):
+        choice = st.selectbox("Select your yearly spending on recreation (travel, entertainment):", list(spending_ranges.keys()), index=2, key="recreation_range")
+        user_data['recreation'] = spending_ranges[choice] * emission_per_pkr
+
+    # --- Result ---
     sec_emissions = calculate_emissions(user_data)[0]['Secondary']
     st.markdown(
         f"<h4 style='color: #444; text-align: center; margin-top: 2rem;'>"
-        f"🚗 Your Secondary Carbon Footprint: <span style='color:#d43f3a'>{sec_emissions:,.2f}</span> metric tons CO₂</h4>",
+        f"🌍 Your Secondary Carbon Footprint: <span style='color:#d43f3a'>{sec_emissions / 1000:.2f}</span> metric tons CO₂e</h4>",
         unsafe_allow_html=True
     )
 
