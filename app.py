@@ -187,13 +187,21 @@ with tabs[2]:
 
     # --- Food/Diet ---
     with st.expander("🍽️ What kind of diet do you follow?"):
-        diet = st.radio(
-            "Choose your typical diet:",
-            options=list(diet_emission_factors.keys()),
-            index=1,
-            key="diet_type"
-        )
-        user_data['food'] = diet_emission_factors[diet] * 1000  # convert to kg
+        diet_options = list(diet_emission_factors.keys())
+
+        if 'diet_type' not in st.session_state:
+            st.session_state['diet_type'] = diet_options[1]  # default to "Average (mixed)"
+
+        diet_cols = st.columns(len(diet_options))
+        for i, option in enumerate(diet_options):
+            style = "border: 2px solid #4CAF50; background-color: #E8F5E9;" if st.session_state['diet_type'] == option else "border: 1px solid lightgray; background-color: white;"
+            with diet_cols[i]:
+                if st.button(f"{option}", key=f"diet_btn_{i}"):
+                    st.session_state['diet_type'] = option
+                st.markdown(f"<div style='{style} border-radius: 6px; padding: 10px; text-align: center; font-weight: bold;'>{option}</div>", unsafe_allow_html=True)
+
+        # Store selection in user_data
+        user_data['food'] = diet_emission_factors[st.session_state['diet_type']] * 1000  # convert to kg
 
     # --- Electronics ---
     with st.expander("📱 How many new electronic devices did you purchase this year?"):
