@@ -338,9 +338,9 @@ with tabs[3]:
 
         st.markdown(f"""
             <div class='result-box'>
-                <div style='font-size: 20px;'>YOUR FOOTPRINT IS EQUAL TO</div>
+                <div style='font-size: 20px;'>Your Carbon Footprint is</div>
                 <div style='font-size: 50px; font-weight: bold;'>{total_emissions}</div>
-                <div style='font-size: 20px;'>TONNES</div>
+                <div style='font-size: 20px;'>tonnes CO₂</div>
             </div>
         """, unsafe_allow_html=True)
 
@@ -348,14 +348,14 @@ with tabs[3]:
         st.markdown(f"""
             <div style='height: 17px;'></div>
             <div class='black-box'>
-                <div style='font-size: 16px;'>PAKISTAN AVERAGE FOOTPRINT FOR 2025</div>
-                <div style='font-size: 36px;'>2.1 TONNES</div>
+                <div style='font-size: 16px;'>National Average Carbon Footprint</div>
+                <div style='font-size: 36px;'>2.1 tonnes CO₂</div>
             </div>
             <div style='height: 20px;'></div>
             <div class='black-box'>
                 <div style='font-size: 16px;'>YOUR FOOTPRINT IS</div>
                 <div style='font-size: 36px;'>{round(total_emissions/6.7 * 100)}%</div>
-                <div style='font-size: 16px;'>OF THE WORLD AVERAGE FOR 2025</div>
+                <div style='font-size: 16px;'>of the Global Average for 2025</div>
             </div>
         """, unsafe_allow_html=True)
 
@@ -364,7 +364,7 @@ with tabs[3]:
             <div style='height: 17px;'></div>
             <div class='black-box'>
                 <div style='font-size: 16px;'>WORLD AVERAGE</div>
-                <div style='font-size: 36px;'>6.7 TONNES</div>
+                <div style='font-size: 36px;'>6.7 tonnes CO₂</div>
             </div>
             <div style='height: 20px;'></div>
             <!--
@@ -377,7 +377,7 @@ with tabs[3]:
 
     st.markdown("<hr style='margin: 30px 0;'>", unsafe_allow_html=True)
 
-    st.markdown("<div class='main-title'>LET'S BREAK IT DOWN</div>", unsafe_allow_html=True)
+    st.markdown("<div class='main-title'>Let's break it down...</div>", unsafe_allow_html=True)
     st.markdown(f"<div class='subtitle'>Your footprint is equal to <b>{total_emissions}T</b></div>", unsafe_allow_html=True)
 
     colA, colB, colC = st.columns(3)
@@ -386,7 +386,7 @@ with tabs[3]:
             <div style='height: 17px;'></div>
             <div class='category-box' style='background-color: #3FA9D5;'>
                 <div style='font-size: 24px; font-color: white'><b>⚡ Household Energy</b></div>
-                <div>Your consumption is equal to <b>{household_emissions:.2f} TONNES</b></div>
+                <div>Your consumption is equal to <b>{household_emissions:.2f} tonnes CO₂</b></div>
             </div>
         """, unsafe_allow_html=True)
 
@@ -395,7 +395,7 @@ with tabs[3]:
             <div style='height: 17px;'></div>
             <div class='category-box' style='background-color: #4CAF50;'>
                 <div style='font-size: 24px;'><b>🚗 Transport</b></div>
-                <div>Your consumption is equal to <b>{vehicle_emissions:.2f} TONNES</b></div>
+                <div>Your consumption is equal to <b>{vehicle_emissions:.2f} tonnes CO₂</b></div>
             </div>
         """, unsafe_allow_html=True)
 
@@ -404,7 +404,7 @@ with tabs[3]:
             <div style='height: 17px;'></div>
             <div class='category-box' style='background-color: #F1A9FF;'>
                 <div style='font-size: 24px;'><b>🛒 Secondary</b></div>
-                <div>Your consumption is equal to <b>{sec_emissions:.2f} TONNES</b></div>
+                <div>Your consumption is equal to <b>{sec_emissions:.2f} tonnes CO₂</b></div>
             </div>
         """, unsafe_allow_html=True)
 
