@@ -2,25 +2,29 @@ import streamlit as st
 from streamlit_extras.stylable_container import stylable_container
 import pandas as pd
 
-def styled_expander(label, key):
-    with stylable_container(
-        key=f"expander_wrapper_{key}",
-        css_styles="""
-            div.st-expander {
-                margin-bottom: 0px;
-            }
-            summary {
-                font-weight: bold;
-                color: #333;
-                transition: color 0.2s ease;
-            }
-            summary:hover {
-                color: #2E8B57;
-                cursor: pointer;
-            }
-        """,
-    ):
-        return st.expander(label)
+def expander_style():
+        return st.markdown("""
+        <style>
+        details summary {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #333;
+            transition: color 0.2s ease;
+        }
+
+        details:hover summary {
+            color: #2E8B57 !important; /* Hover color */
+            cursor: pointer;
+        }
+
+        details {
+            margin-bottom: 16px;
+            border-radius: 6px;
+            border: 1px solid #eee;
+            padding: 5px;
+        }
+        </style>
+        """, unsafe_allow_html=True)
 
 def calculate_emissions(data):
     factors = {
@@ -206,31 +210,7 @@ with tabs[2]:
     }
 
     # --- Food/Diet ---
-    st.markdown("""
-        <style>
-        /* Make expander title bold and apply hover color */
-        details summary {
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: #333;
-            transition: color 0.2s ease;
-        }
-
-        details:hover summary {
-            color: #2E8B57 !important; /* Hover color */
-            cursor: pointer;
-        }
-
-        /* Add consistent spacing between expanders */
-        details {
-            margin-bottom: 16px;
-            border-radius: 6px;
-            border: 1px solid #eee;
-            padding: 5px;
-        }
-        </style>
-    """, unsafe_allow_html=True)
-
+    expander_style()
     with st.expander("**🍽️ What kind of diet do you follow?**"):
         diet_options = list(diet_emission_factors.keys())
 
