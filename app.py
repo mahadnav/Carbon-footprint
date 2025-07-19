@@ -222,7 +222,7 @@ with tabs[2]:
 
         /* Add consistent spacing between expanders */
         details {
-            margin-bottom: 12px;
+            margin-bottom: 16px;
             border-radius: 6px;
             border: 1px solid #eee;
             padding: 5px;
@@ -230,7 +230,7 @@ with tabs[2]:
 
         /* Optional: improve spacing inside */
         details > div {
-            margin-top: 10px;
+            margin-top: 16px;
         }
         </style>
     """, unsafe_allow_html=True)
