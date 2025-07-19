@@ -213,7 +213,7 @@ with tabs[2]:
                             border: 1px solid {border_color};
                             border-radius: 6px;
                             margin-bottom: 16px;
-                            transition: all 0.2s ease;
+                            transition: all 0s ease;
                         }}
                         button:hover {{
                             background-color: #45a049 !important;
