@@ -230,7 +230,7 @@ with tabs[2]:
                         button:focus,
                         button:focus-visible {{
                             color: white !important;
-                            outline: #3e8e41 !important;
+                            border-color: #3e8e41 !important;
                             box-shadow: none !important;
                         }}
                     """,
