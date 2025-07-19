@@ -199,7 +199,7 @@ with tabs[2]:
         # Safe rerun outside UI scope
         if st.session_state["rerun_diet"]:
             st.session_state["rerun_diet"] = False
-            st.experimental_rerun()
+            st.rerun()
 
         cols = st.columns(len(diet_emission_factors))
 
@@ -239,7 +239,7 @@ with tabs[2]:
                     if st.button(diet, use_container_width=True):
                         st.session_state["diet_type"] = diet
                         st.session_state["rerun_diet"] = True
-                        
+
         # Store selection in user_data
         user_data['food'] = diet_emission_factors[st.session_state['diet_type']] * 1000  # convert to kg
 
