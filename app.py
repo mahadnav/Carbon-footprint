@@ -275,7 +275,13 @@ with tabs[2]:
                             outline: none !important;
                             box-shadow: none !important;
                         }}
-                    """
+                        [data-testid="stButton"] button:focus,
+                        [data-testid="stButton"] button:focus-visible {{
+                            color: white !important;
+                            border-color: #3e8e41 !important;
+                            box-shadow: none !important;
+                        }}
+                    """,
                 ):
                     if st.button(diet, use_container_width=True):
                         st.session_state["diet_type"] = diet
