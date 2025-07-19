@@ -187,7 +187,7 @@ with tabs[2]:
     }
 
     # --- Food/Diet ---
-    with st.expander("🍽️ What kind of diet do you follow?"):
+    with st.expander("**🍽️ What kind of diet do you follow?**"):
         diet_options = list(diet_emission_factors.keys())
 
         # Setup initial session state
