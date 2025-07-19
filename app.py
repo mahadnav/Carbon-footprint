@@ -38,7 +38,7 @@ def calculate_emissions(data):
         'Cars': sum((c['miles_driven'] / c['fuel_efficiency']) * factors['fuel'] for c in data.get('cars', [])) / 1000,
         'Motorcycle': sum((b['miles_driven'] / b['fuel_efficiency']) * factors['fuel'] for b in data.get('motorcycle', [])) / 1000,
         'Bus': data.get('bus', 0) * 0.05 / 1000,
-        'Secondary': sum(data.get(k, 0) * factors[k] for k in factors if k not in ['electricity', 'gas', 'fuel', 'flights']) / 1000
+        'Secondary': sum(data.get(k, 0) for k in ['food', 'clothing', 'electronics', 'furniture', 'recreation']) / 1000
     }
 
     total = sum(emissions.values())  # to metric tons
@@ -172,8 +172,8 @@ with tabs[2]:
         "Vegan": 1.5
     }
 
-    device_emission_factor = 0.35  # per device in metric tons CO₂e
-    emission_per_pkr = 0.00089     # kg CO₂e per PKR spent (based on EPA 0.25 kg/USD)
+    device_emission_factor = 0.35
+    emission_per_pkr = 0.00089
 
     # --- Spending Ranges ---
     spending_ranges = {
@@ -184,8 +184,6 @@ with tabs[2]:
         "50,000 - 100,000 PKR": 75000,
         "100,000+ PKR": 125000
     }
-
-    user_data = {}
 
     # --- Food/Diet ---
     with st.expander("🍽️ What kind of diet do you follow?"):
@@ -221,7 +219,7 @@ with tabs[2]:
     sec_emissions = calculate_emissions(user_data)[0]['Secondary']
     st.markdown(
         f"<h4 style='color: #444; text-align: center; margin-top: 2rem;'>"
-        f"🌍 Your Secondary Carbon Footprint: <span style='color:#d43f3a'>{sec_emissions / 1000:.2f}</span> metric tons CO₂e</h4>",
+        f"🛒 Your Secondary Carbon Footprint: <span style='color:#d43f3a'>{sec_emissions:.2f}</span> metric tons CO₂e</h4>",
         unsafe_allow_html=True
     )
 
