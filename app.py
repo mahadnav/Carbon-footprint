@@ -213,7 +213,7 @@ with tabs[2]:
                             border: 1px solid {border_color};
                             border-radius: 6px;
                             margin-bottom: 16px;
-                            transition: all 0s ease;
+                            transition: all 0.2s ease;
                         }}
                         button:hover {{
                             background-color: #45a049 !important;
@@ -221,15 +221,16 @@ with tabs[2]:
                             border-color: #45a049 !important;
                         }}
                         button:active {{
-                            background-color: #3e8e41 !important;
-                            color: white !important;
-                            border-color: #3e8e41 !important;
+                            background-color: #3e8e41;
+                            color: white;
+                            border-color: #3e8e41;
                             transform: scale(0.98);
                         }}
                     """,
                 ):
                     if st.button(diet, use_container_width=True, key=f"btn_{diet}"):
                         st.session_state["diet_type"] = diet
+                        st.experimental_rerun()
 
         # Store selection in user_data
         user_data['food'] = diet_emission_factors[st.session_state['diet_type']] * 1000  # convert to kg
