@@ -229,6 +229,7 @@ with tabs[2]:
                         }}
                         button:focus,
                         button:focus-visible {{
+                            color: white !important;
                             outline: none !important;
                             box-shadow: none !important;
                         }}
