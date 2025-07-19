@@ -193,7 +193,7 @@ with tabs[2]:
             st.session_state['diet_type'] = diet_options[1]
 
         diet_cols = st.columns(len(diet_options))
-        
+
         for i, option in enumerate(diet_options):
             selected = st.session_state["diet_type"] == option
             box_style = f"""
@@ -210,11 +210,11 @@ with tabs[2]:
                 </div>
             """
             
-            # Use a transparent button to capture the click
-            with cols[i]:
-                if st.button(" ", key=f"btn_{i}"):  # Invisible trigger
-                    st.session_state["diet_type"] = option
-                st.markdown(box_style, unsafe_allow_html=True)
+        # Use a transparent button to capture the click
+        with cols[i]:
+            if st.button(" ", key=f"btn_{i}"):  # Invisible trigger
+                st.session_state["diet_type"] = option
+            st.markdown(box_style, unsafe_allow_html=True)
 
         # Store selection in user_data
         user_data['food'] = diet_emission_factors[st.session_state['diet_type']] * 1000  # convert to kg
