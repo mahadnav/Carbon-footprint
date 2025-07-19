@@ -252,7 +252,7 @@ with tabs[2]:
                 with stylable_container(
                     f"button_style_{diet.replace(' ', '_')}",
                     css_styles=f"""
-                        button {{
+                        .custom-button-container button {{
                             background-color: {bg_color};
                             color: {text_color};
                             border: 1px solid {border_color};
@@ -260,28 +260,32 @@ with tabs[2]:
                             margin-bottom: 16px;
                             transition: all 0.2s ease;
                         }}
-                        button:hover {{
+                        .custom-button-container button:hover {{
                             background-color: #45a049 !important;
                             color: white !important;
                             border-color: #45a049 !important;
                         }}
-                        button:active {{
+                        .custom-button-container button:active {{
                             background-color: #3e8e41 !important;
                             color: white !important;
                             border-color: #3e8e41 !important;
                             transform: scale(0.98);
                         }}
-                        button:focus,
-                        button:focus-visible {{
+                        .custom-button-container button:focus,
+                        .custom-button-container button:focus-visible {{
                             color: white !important;
                             border-color: #3e8e41 !important;
                             box-shadow: none !important;
                         }}
                     """,
                 ):
+                    st.markdown("<div class='custom-button-container'>", unsafe_allow_html=True)
+
                     if st.button(diet, use_container_width=True):
                         st.session_state["diet_type"] = diet
                         st.rerun()
+
+                    st.markdown("</div>", unsafe_allow_html=True)
 
         # Store selection in user_data
         user_data['food'] = diet_emission_factors[st.session_state['diet_type']] * 1000  # convert to kg
