@@ -222,9 +222,9 @@ with tabs[2]:
                             border-color: #45a049 !important;
                         }}
                         button:active {{
-                            background-color: #3e8e41;
-                            color: white;
-                            border-color: #3e8e41;
+                            background-color: #3e8e41 !important;
+                            color: white !important;
+                            border-color: #3e8e41 !important;
                             transform: scale(0.98);
                         }}
                     """,
