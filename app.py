@@ -363,7 +363,7 @@ with tabs[3]:
         st.markdown(f"""
             <div style='height: 17px;'></div>
             <div class='black-box'>
-                <div style='font-size: 16px;'>WORLD AVERAGE</div>
+                <div style='font-size: 16px;'>Global Average</div>
                 <div style='font-size: 36px;'>6.7 tonnes CO₂</div>
             </div>
             <div style='height: 20px;'></div>
