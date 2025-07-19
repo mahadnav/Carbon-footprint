@@ -186,79 +186,92 @@ with tabs[2]:
         "100,000+ PKR": 125000
     }
 
-    # --- Food/Diet ---
-    with st.expander("**🍽️ What kind of diet do you follow?**"):
-        diet_options = list(diet_emission_factors.keys())
+    with stylable_container(
+        key="custom_expander_title",
+        css_styles="""
+            div.expander-title {
+                font-weight: bold;
+                color: #333;
+                transition: color 0.2s ease;
+            }
+            div.expander-title:hover {
+                color: #2c7be5;  /* Your hover color */
+            }
+        """,
+    ):
+        # --- Food/Diet ---
+        with st.expander("**🍽️ What kind of diet do you follow?**"):
+            diet_options = list(diet_emission_factors.keys())
 
-        # Setup initial session state
-        if "diet_type" not in st.session_state:
-            st.session_state["diet_type"] = "Average (mixed)"
+            # Setup initial session state
+            if "diet_type" not in st.session_state:
+                st.session_state["diet_type"] = "Average (mixed)"
 
-        cols = st.columns(len(diet_emission_factors))
+            cols = st.columns(len(diet_emission_factors))
 
-        for i, (diet, _) in enumerate(diet_emission_factors.items()):
-            is_selected = st.session_state["diet_type"] == diet
+            for i, (diet, _) in enumerate(diet_emission_factors.items()):
+                is_selected = st.session_state["diet_type"] == diet
 
-            # Apply a different color if selected
-            bg_color = "#4CAF50" if is_selected else "#f0f0f0"
-            text_color = "white" if is_selected else "black"
-            border_color = "#4CAF50" if is_selected else "#ccc"
+                # Apply a different color if selected
+                bg_color = "#4CAF50" if is_selected else "#f0f0f0"
+                text_color = "white" if is_selected else "black"
+                border_color = "#4CAF50" if is_selected else "#ccc"
 
-            with cols[i]:
-                with stylable_container(
-                    f"button_style_{diet.replace(' ', '_')}",
-                    css_styles=f"""
-                        button {{
-                            background-color: {bg_color};
-                            color: {text_color};
-                            border: 1px solid {border_color};
-                            border-radius: 6px;
-                            margin-bottom: 16px;
-                            transition: all 0.2s ease;
-                        }}
-                        button:hover {{
-                            background-color: #45a049 !important;
-                            color: white !important;
-                            border-color: #45a049 !important;
-                        }}
-                        button:active {{
-                            background-color: #3e8e41 !important;
-                            color: white !important;
-                            border-color: #3e8e41 !important;
-                            transform: scale(0.98);
-                        }}
-                        button:focus,
-                        button:focus-visible {{
-                            color: white !important;
-                            border-color: #3e8e41 !important;
-                            box-shadow: none !important;
-                        }}
-                    """,
-                ):
-                    if st.button(diet, use_container_width=True):
-                        st.session_state["diet_type"] = diet
-                        st.rerun()
+                with cols[i]:
+                    with stylable_container(
+                        f"button_style_{diet.replace(' ', '_')}",
+                        css_styles=f"""
+                            button {{
+                                background-color: {bg_color};
+                                color: {text_color};
+                                border: 1px solid {border_color};
+                                border-radius: 6px;
+                                margin-bottom: 16px;
+                                transition: all 0.2s ease;
+                            }}
+                            button:hover {{
+                                background-color: #45a049 !important;
+                                color: white !important;
+                                border-color: #45a049 !important;
+                            }}
+                            button:active {{
+                                background-color: #3e8e41 !important;
+                                color: white !important;
+                                border-color: #3e8e41 !important;
+                                transform: scale(0.98);
+                            }}
+                            button:focus,
+                            button:focus-visible {{
+                                color: white !important;
+                                border-color: #3e8e41 !important;
+                                box-shadow: none !important;
+                            }}
+                        """,
+                    ):
+                        if st.button(diet, use_container_width=True):
+                            st.session_state["diet_type"] = diet
+                            st.rerun()
 
         # Store selection in user_data
         user_data['food'] = diet_emission_factors[st.session_state['diet_type']] * 1000  # convert to kg
 
     # --- Electronics ---
-    with st.expander("📱 How many new electronic devices did you purchase this year?"):
+    with st.expander("**📱 How many new electronic devices did you purchase this year?**"):
         devices = st.slider("Number of new devices (phones, laptops, etc.):", 0, 10, 2, key="device_count")
         user_data['electronics'] = devices * device_emission_factor * 1000  # convert to kg
 
     # --- Clothing ---
-    with st.expander("👕 Clothing Spending"):
+    with st.expander("**👕 Clothing Spending**"):
         choice = st.selectbox("Select your yearly spending on clothing:", list(spending_ranges.keys()), index=2, key="clothing_range")
         user_data['clothing'] = spending_ranges[choice] * emission_per_pkr
 
     # --- Furniture ---
-    with st.expander("🪑 Furniture Spending"):
+    with st.expander("**🪑 Furniture Spending**"):
         choice = st.selectbox("Select your yearly spending on furniture:", list(spending_ranges.keys()), index=2, key="furniture_range")
         user_data['furniture'] = spending_ranges[choice] * emission_per_pkr
 
     # --- Recreation ---
-    with st.expander("🎮 Recreation Spending"):
+    with st.expander("**🎮 Recreation Spending**"):
         choice = st.selectbox("Select your yearly spending on recreation (travel, entertainment):", list(spending_ranges.keys()), index=2, key="recreation_range")
         user_data['recreation'] = spending_ranges[choice] * emission_per_pkr
 
