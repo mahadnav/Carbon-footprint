@@ -194,22 +194,15 @@ with tabs[2]:
 
         cols = st.columns(len(diet_options))
 
-        for i, (diet, _) in enumerate(diet_emission_factors.items()):
+        for i, diet in enumerate(diet_emission_factors.keys()):
             is_selected = st.session_state["diet_type"] == diet
-            button_style = f"""
-                <style>
-                div[data-testid="column"] button:nth-child(1) {{
-                    background-color: {'#4CAF50' if is_selected else '#FFFFFF'} !important;
-                    color: {'white' if is_selected else 'black'} !important;
-                    border: 2px solid {'#4CAF50' if is_selected else '#CCC'};
-                    font-weight: bold;
-                }}
-                </style>
-            """
+            button_color = "#4CAF50" if is_selected else "#f0f0f0"
+            text_color = "white" if is_selected else "black"
+
             with cols[i]:
-                if st.button(diet, key=f"diet_{i}"):
-                    st.session_state["diet_type"] = diet
-                st.markdown(button_style, unsafe_allow_html=True)
+                with st.container(border=True, style=f"background-color: {button_color}; color: {text_color}; text-align: center; padding: 0.75rem; border-radius: 0.5rem; cursor: pointer;"):
+                    if st.button(diet, key=f"btn_{diet}"):
+                        st.session_state["diet_type"] = diet
 
         # Store selection in user_data
         user_data['food'] = diet_emission_factors[st.session_state['diet_type']] * 1000  # convert to kg
