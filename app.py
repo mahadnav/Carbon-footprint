@@ -206,8 +206,36 @@ with tabs[2]:
     }
 
     # --- Food/Diet ---
-    with styled_expander("🍽️ What kind of diet do you follow?", "food"):
-    # with st.expander("**🍽️ What kind of diet do you follow?**"):
+    st.markdown("""
+        <style>
+        /* Make expander title bold and apply hover color */
+        details summary {
+            font-weight: bold;
+            color: #333;
+            transition: color 0.2s ease;
+        }
+
+        details:hover summary {
+            color: #2E8B57 !important; /* Hover color */
+            cursor: pointer;
+        }
+
+        /* Add consistent spacing between expanders */
+        details {
+            margin-bottom: 12px;
+            border-radius: 6px;
+            border: 1px solid #eee;
+            padding: 5px;
+        }
+
+        /* Optional: improve spacing inside */
+        details > div {
+            margin-top: 10px;
+        }
+        </style>
+    """, unsafe_allow_html=True)
+
+    with st.expander("**🍽️ What kind of diet do you follow?**"):
         diet_options = list(diet_emission_factors.keys())
 
         # Setup initial session state
