@@ -210,6 +210,7 @@ with tabs[2]:
         <style>
         /* Make expander title bold and apply hover color */
         details summary {
+            font-size: 1.2rem;
             font-weight: bold;
             color: #333;
             transition: color 0.2s ease;
@@ -226,11 +227,6 @@ with tabs[2]:
             border-radius: 6px;
             border: 1px solid #eee;
             padding: 5px;
-        }
-
-        /* Optional: improve spacing inside */
-        details > div {
-            margin-top: 16px;
         }
         </style>
     """, unsafe_allow_html=True)
