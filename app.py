@@ -7,7 +7,7 @@ def styled_expander(label, key):
         key=f"expander_wrapper_{key}",
         css_styles="""
             div.st-expander {
-                margin-bottom: 12px;
+                margin-bottom: 0px;
             }
             summary {
                 font-weight: bold;
