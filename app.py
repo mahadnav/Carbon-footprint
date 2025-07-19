@@ -128,7 +128,7 @@ with tabs[1]:
         with st.expander("➕ Add your car details"):
             car_cols = st.columns(3)
             with car_cols[1]:
-                num_cars = st.number_input("Number of Cars", min_value=0, value=1, step=1, key='num_cars', format="%d")
+                num_cars = st.number_input("Number of Cars", min_value=0, value=0, step=1, key='num_cars', format="%d")
             user_data['cars'] = []
             for i in range(num_cars):
                 st.markdown(f"**Car {i+1}**", help="Enter annual distance and average efficiency")
@@ -150,7 +150,7 @@ with tabs[1]:
         with st.expander("➕ Add motorcycle details"):
             bike_cols = st.columns(3)
             with bike_cols[1]:
-                num_bikes = st.number_input("Number of Motorcycles", min_value=0, value=1, step=1, key='num_bikes', format="%d")
+                num_bikes = st.number_input("Number of Motorcycles", min_value=0, value=0, step=1, key='num_bikes', format="%d")
             user_data['motorcycle'] = []
             for i in range(num_bikes):
                 st.markdown(f"**Motorcycle {i+1}**", help="Enter annual distance and fuel efficiency")
