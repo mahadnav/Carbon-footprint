@@ -212,6 +212,7 @@ with tabs[2]:
                             color: {text_color};
                             border: 1px solid {border_color};
                             border-radius: 6px;
+                            margin-bottom: 16px
                         }}
                         button:hover {{
                             opacity: 0.9;
