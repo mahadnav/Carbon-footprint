@@ -2,6 +2,25 @@ import streamlit as st
 from streamlit_extras.stylable_container import stylable_container
 import pandas as pd
 
+def styled_expander(label, key):
+    with stylable_container(
+        key=f"expander_wrapper_{key}",
+        css_styles="""
+            div.st-expander {
+                margin-bottom: 12px;
+            }
+            summary {
+                font-weight: bold;
+                color: #333;
+                transition: color 0.2s ease;
+            }
+            summary:hover {
+                color: #2E8B57;
+                cursor: pointer;
+            }
+        """,
+    ):
+        return st.expander(label)
 
 def calculate_emissions(data):
     factors = {
@@ -186,73 +205,59 @@ with tabs[2]:
         "100,000+ PKR": 125000
     }
 
-    with stylable_container(
-        key="custom_expander_title",
-        css_styles="""
-            summary {
-                font-weight: bold;
-                color: #333;
-                transition: color 0.2s ease;
-                list-style: none; /* removes default arrow style */
-            }
-            summary:hover {
-                color: green;
-                cursor: pointer;
-            }
-        """,
-    ):
-        # --- Food/Diet ---
-        with st.expander("**🍽️ What kind of diet do you follow?**"):
-            diet_options = list(diet_emission_factors.keys())
+    # --- Food/Diet ---
+    with styled_expander("🍽️ What kind of diet do you follow?", "food")
+    # with st.expander("**🍽️ What kind of diet do you follow?**"):
+        diet_options = list(diet_emission_factors.keys())
 
-            # Setup initial session state
-            if "diet_type" not in st.session_state:
-                st.session_state["diet_type"] = "Average (mixed)"
+        # Setup initial session state
+        if "diet_type" not in st.session_state:
+            st.session_state["diet_type"] = "Average (mixed)"
 
-            cols = st.columns(len(diet_emission_factors))
+        cols = st.columns(len(diet_emission_factors))
 
-            for i, (diet, _) in enumerate(diet_emission_factors.items()):
-                is_selected = st.session_state["diet_type"] == diet
+        for i, (diet, _) in enumerate(diet_emission_factors.items()):
+            is_selected = st.session_state["diet_type"] == diet
 
-                # Apply a different color if selected
-                bg_color = "#4CAF50" if is_selected else "#f0f0f0"
-                text_color = "white" if is_selected else "black"
-                border_color = "#4CAF50" if is_selected else "#ccc"
+            # Apply a different color if selected
+            bg_color = "#4CAF50" if is_selected else "#f0f0f0"
+            text_color = "white" if is_selected else "black"
+            border_color = "#4CAF50" if is_selected else "#ccc"
 
-                with cols[i]:
-                    with stylable_container(
-                        f"button_style_{diet.replace(' ', '_')}",
-                        css_styles=f"""
-                            button {{
-                                background-color: {bg_color};
-                                color: {text_color};
-                                border: 1px solid {border_color};
-                                border-radius: 6px;
-                                margin-bottom: 16px;
-                                transition: all 0.2s ease;
-                            }}
-                            button:hover {{
-                                background-color: #45a049 !important;
-                                color: white !important;
-                                border-color: #45a049 !important;
-                            }}
-                            button:active {{
-                                background-color: #3e8e41 !important;
-                                color: white !important;
-                                border-color: #3e8e41 !important;
-                                transform: scale(0.98);
-                            }}
-                            button:focus,
-                            button:focus-visible {{
-                                color: white !important;
-                                border-color: #3e8e41 !important;
-                                box-shadow: none !important;
-                            }}
-                        """,
-                    ):
-                        if st.button(diet, use_container_width=True):
-                            st.session_state["diet_type"] = diet
-                            st.rerun()
+            with cols[i]:
+                with stylable_container(
+                    f"button_style_{diet.replace(' ', '_')}",
+                    css_styles=f"""
+                        button {{
+                            background-color: {bg_color};
+                            color: {text_color};
+                            border: 1px solid {border_color};
+                            border-radius: 6px;
+                            margin-bottom: 16px;
+                            transition: all 0.2s ease;
+                        }}
+                        button:hover {{
+                            background-color: #45a049 !important;
+                            color: white !important;
+                            border-color: #45a049 !important;
+                        }}
+                        button:active {{
+                            background-color: #3e8e41 !important;
+                            color: white !important;
+                            border-color: #3e8e41 !important;
+                            transform: scale(0.98);
+                        }}
+                        button:focus,
+                        button:focus-visible {{
+                            color: white !important;
+                            border-color: #3e8e41 !important;
+                            box-shadow: none !important;
+                        }}
+                    """,
+                ):
+                    if st.button(diet, use_container_width=True):
+                        st.session_state["diet_type"] = diet
+                        st.rerun()
 
         # Store selection in user_data
         user_data['food'] = diet_emission_factors[st.session_state['diet_type']] * 1000  # convert to kg
