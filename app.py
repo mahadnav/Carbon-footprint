@@ -189,13 +189,15 @@ with tabs[2]:
     with stylable_container(
         key="custom_expander_title",
         css_styles="""
-            div.expander-title {
+            summary {
                 font-weight: bold;
                 color: #333;
                 transition: color 0.2s ease;
+                list-style: none; /* removes default arrow style */
             }
-            div.expander-title:hover {
+            summary:hover {
                 color: green;
+                cursor: pointer;
             }
         """,
     ):
