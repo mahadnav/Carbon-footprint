@@ -90,6 +90,8 @@ with tabs[0]:
     with col2:
         people_count = st.number_input("How many people live in your household?", min_value=1, value=1, step=1, key='people_count')
         user_data['people_count'] = people_count
+    
+    expander_style()
     with st.expander("➕ Enter your household energy usage"):
         col1, col2 = st.columns(2)
         with col1:
