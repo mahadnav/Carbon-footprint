@@ -206,7 +206,7 @@ with tabs[2]:
     }
 
     # --- Food/Diet ---
-    with styled_expander("🍽️ What kind of diet do you follow?", "food")
+    with styled_expander("🍽️ What kind of diet do you follow?", "food"):
     # with st.expander("**🍽️ What kind of diet do you follow?**"):
         diet_options = list(diet_emission_factors.keys())
 
