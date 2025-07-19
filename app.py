@@ -227,6 +227,15 @@ with tabs[2]:
                             border-color: #3e8e41 !important;
                             transform: scale(0.98);
                         }}
+                        button:focus,
+                        button:focus-visible,
+                        button:active {{
+                            background-color: {bg_color} !important;
+                            color: {text_color} !important;
+                            border-color: {border_color} !important;
+                            outline: none !important;
+                            box-shadow: none !important;
+                        }}
                     """,
                 ):
                     if st.button(diet, use_container_width=True):
