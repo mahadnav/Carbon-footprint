@@ -228,11 +228,7 @@ with tabs[2]:
                             transform: scale(0.98);
                         }}
                         button:focus,
-                        button:focus-visible,
-                        button:active {{
-                            background-color: {bg_color} !important;
-                            color: {text_color} !important;
-                            border-color: {border_color} !important;
+                        button:focus-visible {{
                             outline: none !important;
                             box-shadow: none !important;
                         }}
