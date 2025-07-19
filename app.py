@@ -212,12 +212,18 @@ with tabs[2]:
                             color: {text_color};
                             border: 1px solid {border_color};
                             border-radius: 6px;
-                            margin-bottom: 16px
+                            margin-bottom: 16px;
+                            transition: all 0.2s ease;
                         }}
                         button:hover {{
-                            opacity: 0.9;
+                            background-color: #45a049 !important;
+                            color: white !important;
+                            border-color: #45a049 !important;
                         }}
                         button:active {{
+                            background-color: #3e8e41 !important;
+                            color: white !important;
+                            border-color: #3e8e41 !important;
                             transform: scale(0.98);
                         }}
                     """,
