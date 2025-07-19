@@ -123,6 +123,8 @@ with tabs[1]:
 
     with st.container():
         st.markdown("### 🚗 Cars")
+
+        expander_style()
         with st.expander("➕ Add your car details"):
             car_cols = st.columns(3)
             with car_cols[1]:
@@ -143,6 +145,8 @@ with tabs[1]:
     # BIKE SECTION
     with st.container():
         st.markdown("### 🏍️ Motorcycles")
+        
+        expander_style()
         with st.expander("➕ Add motorcycle details"):
             bike_cols = st.columns(3)
             with bike_cols[1]:
@@ -163,6 +167,8 @@ with tabs[1]:
     # BUS SECTION
     with st.container():
         st.markdown("### 🚌 Public Bus Travel")
+        
+        expander_style()
         with st.expander("➕ Add bus travel details"):
             cols = st.columns(2)
             with cols[0]:
@@ -273,21 +279,25 @@ with tabs[2]:
         user_data['food'] = diet_emission_factors[st.session_state['diet_type']] * 1000  # convert to kg
 
     # --- Electronics ---
+    expander_style()
     with st.expander("**📱 How many new electronic devices did you purchase this year?**"):
         devices = st.slider("Number of new devices (phones, laptops, etc.):", 0, 10, 2, key="device_count")
         user_data['electronics'] = devices * device_emission_factor * 1000  # convert to kg
 
     # --- Clothing ---
+    expander_style()
     with st.expander("**👕 Clothing Spending**"):
         choice = st.selectbox("Select your yearly spending on clothing:", list(spending_ranges.keys()), index=2, key="clothing_range")
         user_data['clothing'] = spending_ranges[choice] * emission_per_pkr
 
     # --- Furniture ---
+    expander_style()
     with st.expander("**🪑 Furniture Spending**"):
         choice = st.selectbox("Select your yearly spending on furniture:", list(spending_ranges.keys()), index=2, key="furniture_range")
         user_data['furniture'] = spending_ranges[choice] * emission_per_pkr
 
     # --- Recreation ---
+    expander_style()
     with st.expander("**🎮 Recreation Spending**"):
         choice = st.selectbox("Select your yearly spending on recreation (travel, entertainment):", list(spending_ranges.keys()), index=2, key="recreation_range")
         user_data['recreation'] = spending_ranges[choice] * emission_per_pkr
