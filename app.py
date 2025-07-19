@@ -190,8 +190,13 @@ with tabs[2]:
     with st.expander("🍽️ What kind of diet do you follow?"):
         diet_options = list(diet_emission_factors.keys())
 
-        if "diet_type" not in st.session_state:
-            st.session_state["diet_type"] = "Average (mixed)"
+        if "trigger_rerun" not in st.session_state:
+            st.session_state["trigger_rerun"] = False
+
+        # --- Trigger rerun only once ---
+        if st.session_state["trigger_rerun"]:
+            st.session_state["trigger_rerun"] = False
+            st.experimental_rerun()
 
         cols = st.columns(len(diet_emission_factors))
 
@@ -230,7 +235,7 @@ with tabs[2]:
                 ):
                     if st.button(diet, use_container_width=True, key=f"btn_{diet}"):
                         st.session_state["diet_type"] = diet
-                        st.experimental_rerun()
+                        st.session_state["trigger_rerun"] = True
 
         # Store selection in user_data
         user_data['food'] = diet_emission_factors[st.session_state['diet_type']] * 1000  # convert to kg
