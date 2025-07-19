@@ -233,7 +233,7 @@ with tabs[2]:
                             color: {text_color};
                             border: 1px solid {border_color};
                             border-radius: 6px;
-                            margin-bottom: 16px;
+                            margin-bottom: 12px;
                             transition: all 0.2s ease;
                         }}
                         button:hover {{
