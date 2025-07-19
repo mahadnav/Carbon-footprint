@@ -193,13 +193,6 @@ with tabs[2]:
         # Setup initial session state
         if "diet_type" not in st.session_state:
             st.session_state["diet_type"] = "Average (mixed)"
-        if "rerun_diet" not in st.session_state:
-            st.session_state["rerun_diet"] = False
-
-        # Safe rerun outside UI scope
-        if st.session_state["rerun_diet"]:
-            st.session_state["rerun_diet"] = False
-            st.rerun()
 
         cols = st.columns(len(diet_emission_factors))
 
@@ -238,7 +231,7 @@ with tabs[2]:
                 ):
                     if st.button(diet, use_container_width=True):
                         st.session_state["diet_type"] = diet
-                        st.session_state["rerun_diet"] = True
+                        st.rerun()
 
         # Store selection in user_data
         user_data['food'] = diet_emission_factors[st.session_state['diet_type']] * 1000  # convert to kg
