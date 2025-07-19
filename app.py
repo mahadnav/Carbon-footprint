@@ -195,7 +195,7 @@ with tabs[2]:
                 transition: color 0.2s ease;
             }
             div.expander-title:hover {
-                color: #2c7be5;  /* Your hover color */
+                color: green;
             }
         """,
     ):
