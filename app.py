@@ -1,6 +1,7 @@
 import streamlit as st
+from streamlit_extras.stylable_container import stylable_container
 import pandas as pd
-import matplotlib.pyplot as plt
+
 
 def calculate_emissions(data):
     factors = {
@@ -189,19 +190,38 @@ with tabs[2]:
     with st.expander("🍽️ What kind of diet do you follow?"):
         diet_options = list(diet_emission_factors.keys())
 
-        if 'diet_type' not in st.session_state:
-            st.session_state['diet_type'] = diet_options[1]
+        if "diet_type" not in st.session_state:
+            st.session_state["diet_type"] = "Average (mixed)"
 
-        cols = st.columns(len(diet_options))
+        cols = st.columns(len(diet_emission_factors))
 
-        for i, diet in enumerate(diet_emission_factors.keys()):
+        for i, (diet, _) in enumerate(diet_emission_factors.items()):
             is_selected = st.session_state["diet_type"] == diet
-            button_color = "#4CAF50" if is_selected else "#f0f0f0"
+
+            # Apply a different color if selected
+            bg_color = "#4CAF50" if is_selected else "#f0f0f0"
             text_color = "white" if is_selected else "black"
+            border_color = "#4CAF50" if is_selected else "#ccc"
 
             with cols[i]:
-                with st.container(border=True, style=f"background-color: {button_color}; color: {text_color}; text-align: center; padding: 0.75rem; border-radius: 0.5rem; cursor: pointer;"):
-                    if st.button(diet, key=f"btn_{diet}"):
+                with stylable_container(
+                    f"button_style_{diet.replace(' ', '_')}",
+                    css_styles=f"""
+                        button {{
+                            background-color: {bg_color};
+                            color: {text_color};
+                            border: 1px solid {border_color};
+                            border-radius: 6px;
+                        }}
+                        button:hover {{
+                            opacity: 0.9;
+                        }}
+                        button:active {{
+                            transform: scale(0.98);
+                        }}
+                    """,
+                ):
+                    if st.button(diet, use_container_width=True, key=f"btn_{diet}"):
                         st.session_state["diet_type"] = diet
 
         # Store selection in user_data
