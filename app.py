@@ -92,7 +92,7 @@ with tabs[0]:
         user_data['people_count'] = people_count
     
     expander_style()
-    with st.expander("➕ Enter your household energy usage"):
+    with st.expander("**➕ Enter your household energy usage**"):
         col1, col2 = st.columns(2)
         with col1:
             user_data['electricity'] = st.number_input("Electricity (kWh/year)", min_value=0, value=10000, placeholder="e.g. 10,000", format="%d")
@@ -125,7 +125,7 @@ with tabs[1]:
         st.markdown("### 🚗 Cars")
 
         expander_style()
-        with st.expander("➕ Add your car details"):
+        with st.expander("**➕ Add your car details**"):
             car_cols = st.columns(3)
             with car_cols[1]:
                 num_cars = st.number_input("Number of Cars", min_value=0, value=0, step=1, key='num_cars', format="%d")
@@ -147,7 +147,7 @@ with tabs[1]:
         st.markdown("### 🏍️ Motorcycles")
         
         expander_style()
-        with st.expander("➕ Add motorcycle details"):
+        with st.expander("**➕ Add motorcycle details**"):
             bike_cols = st.columns(3)
             with bike_cols[1]:
                 num_bikes = st.number_input("Number of Motorcycles", min_value=0, value=0, step=1, key='num_bikes', format="%d")
@@ -169,7 +169,7 @@ with tabs[1]:
         st.markdown("### 🚌 Public Bus Travel")
         
         expander_style()
-        with st.expander("➕ Add bus travel details"):
+        with st.expander("**➕ Add bus travel details**"):
             cols = st.columns(2)
             with cols[0]:
                 user_data['bus'] = st.number_input("Kilometers Traveled by Bus Per Year", min_value=0, value=0, key='bus_km', format="%d")
