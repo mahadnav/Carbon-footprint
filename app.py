@@ -292,7 +292,7 @@ with tabs[1]:
 
         expander_style()
         with st.expander("**➕ Add your flight details**"):
-            _, col2, _ = st.columns([1, 3, 1])
+            _, col2, _ = st.columns([1, 8, 1])
             with col2:
                 flights_taken = st.radio("Have you taken any flights in the past year?", 
                                     options=["Yes", "No"], 
