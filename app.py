@@ -320,12 +320,11 @@ with tabs[1]:
                         emissions = dist_km * flight_emission_factor * 160  # Assuming average flight capacity of 160 passengers
                         flight_emissions += emissions
 
-                st.markdown("---")
-                st.markdown(f"""
-                    <div style='font-size: 1.5rem; font-weight: bold;'>
-                        ✈️ Estimated Emissions for Your Trip: <span style='color:#4CAF50'>{flight_emissions:.2f}</span> tonnes CO₂
-                    </div>
-                """, unsafe_allow_html=True)
+            st.markdown(f"""
+                <div style='font-size: 1.5rem; font-weight: normal;'>
+                    ✈️ Estimated Emissions for Your Trip: <span style='color:#4CAF50'>{flight_emissions:.2f}</span> tonnes CO₂
+                </div>
+            """, unsafe_allow_html=True)
 
 
     # TOTAL EMISSIONS
