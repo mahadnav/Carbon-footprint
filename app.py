@@ -73,7 +73,7 @@ st.set_page_config(page_title="🌱 Carbon Footprint Calculator", layout="wide")
 st.markdown(
     """
     <div style='display: flex; align-items: center; gap: 12px;'>
-        <img src='./Other/flag-pakistan.png' width='40' style='margin-right:8px;'/>
+        <img src='flag-pakistan.png' width='40' style='margin-right:8px;'/>
         <span style='font-size:2rem; font-weight:700;'>Pakistan Carbon Footprint Calculator</span>
     </div>
     """,
