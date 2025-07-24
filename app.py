@@ -381,7 +381,7 @@ with tabs[3]:
                             background-color: #FFD43B;
                             border-radius: 10px;
                             text-align: center;
-                            min-height: 295px;
+                            min-height: 300px;
                             display: flex;
                             flex-direction: column;
                             justify-content: center;
