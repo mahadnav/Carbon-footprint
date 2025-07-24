@@ -316,8 +316,7 @@ with tabs[1]:
                     with col2:
                         arr = st.selectbox(f"Arrival Airport (Leg {i + 1})", list(airports.keys()), key=f"arr_{i}")
                     with col3:
-                        st.markdown("" \
-                        "", unsafe_allow_html=True)  # Empty space for alignment
+                        st.markdown("<div style='height: 10px;'></div>", unsafe_allow_html=True)  # Empty space for alignment
                         is_round = st.checkbox("Return?", key=f"return_{i}", value=True)
 
                     legs.append((dep, arr))
@@ -333,7 +332,7 @@ with tabs[1]:
                         dist_km = geodesic(airports[dep], airports[arr]).km
                         if is_round:
                             dist_km *= 2
-                        emissions = dist_km * flight_emission_factor  # Assuming average flight capacity of 160 passengers
+                        emissions = dist_km * flight_emission_factor
                         flight_emissions += emissions
 
             st.markdown(f"""
