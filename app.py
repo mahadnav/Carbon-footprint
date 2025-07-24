@@ -316,7 +316,7 @@ with tabs[1]:
                     with col2:
                         arr = st.selectbox(f"Arrival Airport (Leg {i + 1})", list(airports.keys()), key=f"arr_{i}")
                     with col3:
-                        st.markdown("<div style='height: 50px;'></div>", unsafe_allow_html=True)  # Empty space for alignment
+                        st.markdown("<div style='height: 35px;'></div>", unsafe_allow_html=True)  # Empty space for alignment
                         is_round = st.checkbox("Return?", key=f"return_{i}", value=True)
 
                     legs.append((dep, arr))
