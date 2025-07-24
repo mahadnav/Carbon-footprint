@@ -144,7 +144,7 @@ with tabs[1]:
             car_emissions = calculate_emissions(user_data)[0]['Cars']
             st.metric(label="Car Emissions", value=f"{car_emissions:,.2f} tonnes CO₂")
             st.markdown(f"""
-                <div style='font-size: 1.5rem; font-weight: normal;'>
+                <div style='font-size: 1.2rem; font-weight: normal;'>
                     Estimated Emissions for Your Car Travel: <span style='color:#4CAF50'>{car_emissions:.2f}</span> tonnes CO₂
                 </div>
             """, unsafe_allow_html=True)
@@ -171,7 +171,7 @@ with tabs[1]:
                 user_data['motorcycle'].append({'miles_driven': miles, 'fuel_efficiency': efficiency})
             bike_emissions = calculate_emissions(user_data)[0]['Motorcycle']
             st.markdown(f"""
-                <div style='font-size: 1.5rem; font-weight: normal;'>
+                <div style='font-size: 1.2rem; font-weight: normal;'>
                     Estimated Emissions for Your Motorcycle Travel: <span style='color:#4CAF50'>{bike_emissions:.2f}</span> tonnes CO₂
                 </div>
             """, unsafe_allow_html=True)
@@ -190,7 +190,7 @@ with tabs[1]:
 
             bus_emissions = calculate_emissions(user_data)[0]['Bus']
             st.markdown(f"""
-                <div style='font-size: 1.5rem; font-weight: normal;'>
+                <div style='font-size: 1.2rem; font-weight: normal;'>
                     Estimated Emissions for Your Bus Travel: <span style='color:#4CAF50'>{bus_emissions:.2f}</span> tonnes CO₂
                 </div>
             """, unsafe_allow_html=True)
@@ -349,7 +349,7 @@ with tabs[1]:
             flight_emissions = calculate_emissions(user_data)[0]['Flights']
 
             st.markdown(f"""
-                <div style='font-size: 1.5rem; font-weight: normal;'>
+                <div style='font-size: 1.2rem; font-weight: normal;'>
                     Estimated Emissions for Your Air Travel: <span style='color:#4CAF50'>{flight_emissions:.2f}</span> tonnes CO₂
                 </div>
             """, unsafe_allow_html=True)
