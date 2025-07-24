@@ -70,7 +70,15 @@ def calculate_emissions(data):
 
 # --- Page Setup ---
 st.set_page_config(page_title="🌱 Carbon Footprint Calculator", layout="wide")
-st.title("🌍 Pakistan Carbon Footprint Calculator")
+st.markdown(
+    """
+    <div style='display: flex; align-items: center; gap: 12px;'>
+        <img src='Other/flag-pakistan.png' width='40' style='margin-right:8px;'/>
+        <span style='font-size:2rem; font-weight:700;'>Pakistan Carbon Footprint Calculator</span>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
 
 st.markdown("""
 Welcome to your personal carbon footprint dashboard. Fill in details across the tabs to get an estimate of your annual CO₂ emissions.
