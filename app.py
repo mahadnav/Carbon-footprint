@@ -32,7 +32,8 @@ def calculate_emissions(data):
         'electricity': 0.5004,
         'gas': 2.2,
         'fuel': 2.7,
-        'flights': 200,
+        'bus': 0.1234,
+        'flights': 0.15,
         'food': 0.0016,
         'clothing': 0.007,
         'electronics': 0.0017,
@@ -62,7 +63,8 @@ def calculate_emissions(data):
         'Household': household_emissions / 1000,
         'Cars': sum((c['miles_driven'] / c['fuel_efficiency']) * factors['fuel'] for c in data.get('cars', [])) / 1000,
         'Motorcycle': sum((b['miles_driven'] / b['fuel_efficiency']) * factors['fuel'] for b in data.get('motorcycle', [])) / 1000,
-        'Bus': data.get('bus', 0) * 0.05 / 1000,
+        'Bus': data.get('bus', 0) * factors['bus'] / 1000,
+        'Flights': data.get('flight_distance', 0) * factors['flights']/1000,
         'Secondary': sum(data.get(k, 0) for k in ['food', 'clothing', 'electronics', 'furniture', 'recreation']) / 1000
     }
 
@@ -326,18 +328,18 @@ with tabs[1]:
                     legs.append((dep, arr))
                     round_trip_flags.append(is_round)
 
-                # Constants
-                flight_emission_factor = 0.00015  # tonnes CO₂ per km per passenger
-
                 # Calculate total emissions
-                flight_emissions = 0
+                flight_distance = 0
                 for (dep, arr), is_round in zip(legs, round_trip_flags):
                     if dep != arr:
                         dist_km = geodesic(airports[dep], airports[arr]).km
                         if is_round:
                             dist_km *= 2
-                        emissions = dist_km * flight_emission_factor
-                        flight_emissions += emissions
+                        flight_distance += dist_km
+            
+            # Store flight emissions in user_data
+            user_data['flight_distance'] = flight_distance
+            flight_emissions = calculate_emissions(user_data)[0]['Flights']
 
             st.markdown(f"""
                 <div style='font-size: 1.5rem; font-weight: normal;'>
@@ -354,6 +356,7 @@ with tabs[1]:
         unsafe_allow_html=True
     )
 
+# --- Secondary Emissions Tab ---
 with tabs[2]:
     st.markdown(
         "<h2 style='font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem;'>🛍️ Secondary Emissions</h2>"
