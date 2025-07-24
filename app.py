@@ -292,14 +292,18 @@ with tabs[1]:
 
         expander_style()
         with st.expander("**➕ Add your flight details**"):
-            _, col2, _ = st.columns([4.5, 2, 4], vertical_alignment="center")
+            # Create three columns and center the radio button in the middle one
+            _, col2, _ = st.columns([1, 2, 1])
+
             with col2:
-                flights_taken = st.radio("Have you taken any flights in the past year?", 
-                                    options=["Yes", "No"], 
-                                    index=1, 
-                                    key="flights_taken", 
-                                    horizontal=True    
-                                )
+                st.markdown("<h4 style='text-align: center;'>Have you taken a flight this year?</h4>", unsafe_allow_html=True)
+                flights_taken = st.radio(
+                    label="",
+                    options=["Yes", "No"],
+                    index=1,
+                    horizontal=True,  # Optional: horizontal layout
+                    label_visibility="collapsed"  # Hide the default label
+                )
             
             if flights_taken == "No":
                 flight_distance = 0
