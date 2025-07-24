@@ -1,6 +1,7 @@
 import streamlit as st
 from streamlit_extras.stylable_container import stylable_container
 import pandas as pd
+from geopy.distance import geodesic
 
 def expander_style():
         return st.markdown("""
@@ -179,9 +180,152 @@ with tabs[1]:
             bus_emissions = calculate_emissions(user_data)[0]['Bus']
             st.metric(label="Bus Emissions", value=f"{bus_emissions:,.2f} tonnes CO₂")
 
+    with st.container():
+        st.markdown("### ✈️ Air Travel")
+
+        airports = {
+            # --- Pakistan Airports ---
+            "Islamabad (ISB)": (33.6167, 73.0991),
+            "Lahore (LHE)": (31.5216, 74.4036),
+            "Karachi (KHI)": (24.9065, 67.1608),
+            "Multan (MUX)": (30.2032, 71.4191),
+            "Peshawar (PEW)": (33.9939, 71.5146),
+            "Quetta (UET)": (30.2514, 66.9378),
+            "Sialkot (SKT)": (32.5356, 74.3639),
+            "Faisalabad (LYP)": (31.3654, 72.9948),
+            "Bahawalpur (BHV)": (29.3481, 71.7180),
+            "Rahim Yar Khan (RYK)": (28.3839, 70.2796),
+            "Gwadar (GWD)": (25.2322, 62.3295),
+            "Turbat (TUK)": (25.9864, 63.0302),
+            "Skardu (KDU)": (35.3354, 75.5361),
+            "Gilgit (GIL)": (35.9188, 74.3336),
+
+            # --- Gulf / Middle East ---
+            "Dubai (DXB)": (25.2532, 55.3657),
+            "Abu Dhabi (AUH)": (24.4329, 54.6511),
+            "Sharjah (SHJ)": (25.3286, 55.5171),
+            "Doha (DOH)": (25.2736, 51.6080),
+            "Muscat (MCT)": (23.5933, 58.2844),
+            "Jeddah (JED)": (21.6796, 39.1565),
+            "Riyadh (RUH)": (24.9576, 46.6988),
+            "Dammam (DMM)": (26.4711, 49.7979),
+            "Medina (MED)": (24.5539, 39.7051),
+            "Gassim (ELQ)": (26.3028, 43.7744),
+            "Bahrain (BAH)": (26.2708, 50.6336),
+            "Kuwait City (KWI)": (29.2266, 47.9689),
+            "Musandam (KHS)": (26.2081, 56.2625),
+            "Sana'a (SAH)": (15.4675, 44.2194),
+            "Aden (ADE)": (12.7844, 45.0161),
+            "Erbil (EBL)": (36.2333, 44.0083),
+            "Basra (BSR)": (30.5494, 47.6542),
+            "Sulaymaniyah (ISU)": (35.5600, 45.4400),
+            "Najaf (NJF)": (31.9894, 44.4042),
+            "Sulaymaniyah (ISU)": (35.5600, 45.4400),
+            "Kuwait City (KWI)": (29.2266, 47.9689),
+            "Muscat (MCT)": (23.5933, 58.2844),
+
+            # --- Central & South Asia ---
+            "Tashkent (TAS)": (41.2579, 69.2817),
+            "Baku (GYD)": (40.4675, 50.0467),
+            "Kuala Lumpur (KUL)": (2.7456, 101.7092),
+            "Beijing (PEK)": (40.0801, 116.5846),
+            "Baghdad (BGW)": (33.2625, 44.2346),
+            "Najaf (NJF)": (31.9894, 44.4042),
+            "Bishkek (FRU)": (43.0617, 74.4777),
+            "Almaty (ALA)": (43.3528, 77.0402),
+            "Dushanbe (DYU)": (38.5433, 68.7811),
+            "Kathmandu (KTM)": (27.6961, 85.3597),
+            "Colombo (CMB)": (7.1800, 79.8842),
+            "Dhaka (DAC)": (23.8431, 90.3978),
+            "Mumbai (BOM)": (19.0887, 72.8689),
+            "Delhi (DEL)": (28.5562, 77.1000),
+            "Chennai (MAA)": (12.9948, 80.1785),
+            "Bangkok (BKK)": (13.6811, 100.7476),
+            "Singapore (SIN)": (1.3502, 103.9940),
+            "Hong Kong (HKG)": (22.3080, 113.9185),
+            "Jakarta (CGK)": (-6.1256, 106.6552),
+            "Seoul (ICN)": (37.4692, 126.4500),
+            "Tokyo (NRT)": (35.7647, 140.3864),
+            "Shanghai (PVG)": (31.1436, 121.8052),
+            "Manila (MNL)": (14.5086, 121.0190),
+            "Hanoi (HAN)": (21.2210, 105.8042),
+            "Ho Chi Minh City (SGN)": (10.8181, 106.6511),
+            "Kabul (KBL)": (34.5650, 69.2120),
+
+            # --- Europe & North America ---
+            "London Heathrow (LHR)": (51.4700, -0.4543),
+            "London Gatwick (LGW)": (51.1537, -0.1821),
+            "Paris Charles de Gaulle (CDG)": (49.0097, 2.5479),
+            "Toronto Pearson (YYZ)": (43.6777, -79.6248),
+            "New York JFK (JFK)": (40.6413, -73.7781),
+            "Los Angeles (LAX)": (33.9425, -118.4081),
+            "San Francisco (SFO)": (37.6189, -122.3750),
+            "Chicago O'Hare (ORD)": (41.9742, -87.9073),
+            "Miami (MIA)": (25.7932, -80.2906),
+            "Dallas Fort Worth (DFW)": (32.8968, -97.0380),
+            "Atlanta (ATL)": (33.6407, -84.4279),
+            "Seattle (SEA)": (47.4502, -122.3088),
+            "Washington Dulles (IAD)": (38.9445, -77.4558),
+            "Boston Logan (BOS)": (42.3641, -71.0052),
+            "Vancouver (YVR)": (49.1939, -123.1830),
+            "Montreal (YUL)": (45.4706, -73.7400),
+            "Calgary (YYC)": (51.1139, -114.0200),
+            "Ottawa (YOW)": (45.3222, -75.6692),
+            "Mexico City (MEX)": (19.4361, -99.0721)
+        }
+
+        flights_taken = st.radio("Have you taken any flights in the past year?", 
+                            options=["Yes", "No"], 
+                            index=1, 
+                            key="flights_taken", 
+                            horizontal=True
+                            )
+        
+        if flights_taken == "Yes":
+            # Select number of legs (segments) in the trip
+            num_legs = st.number_input("How many destinations are in your trip?", min_value=1, max_value=6, value=0)
+
+            # Toggle for return or one-way flight for each leg
+            round_trip_flags = []
+            legs = []
+
+            st.markdown("### Trip Details")
+            for i in range(num_legs):
+                st.markdown(f"**Leg {i + 1}**")
+                col1, col2, col3 = st.columns([4, 4, 2])
+                with col1:
+                    dep = st.selectbox(f"Departure Airport (Leg {i + 1})", list(airports.keys()), key=f"dep_{i}")
+                with col2:
+                    arr = st.selectbox(f"Arrival Airport (Leg {i + 1})", list(airports.keys()), key=f"arr_{i}")
+                with col3:
+                    is_round = st.checkbox("Return?", key=f"return_{i}", value=True)
+
+                legs.append((dep, arr))
+                round_trip_flags.append(is_round)
+
+            # Constants
+            flight_emission_factor = 0.00015  # tonnes CO₂ per km per passenger
+
+            # Calculate total emissions
+            flight_emissions = 0
+            for (dep, arr), is_round in zip(legs, round_trip_flags):
+                if dep != arr:
+                    dist_km = geodesic(airports[dep], airports[arr]).km
+                    if is_round:
+                        dist_km *= 2
+                    emissions = dist_km * flight_emission_factor * 160  # Assuming average flight capacity of 160 passengers
+                    flight_emissions += emissions
+
+            st.markdown("---")
+            st.markdown(f"""
+                <div style='font-size: 1.5rem; font-weight: bold;'>
+                    ✈️ Estimated Emissions for Your Trip: <span style='color:#4CAF50'>{flight_emissions:.2f}</span> tonnes CO₂
+                </div>
+            """, unsafe_allow_html=True)
+
 
     # TOTAL EMISSIONS
-    vehicle_emissions = car_emissions + bike_emissions + bus_emissions
+    vehicle_emissions = car_emissions + bike_emissions + bus_emissions + flight_emissions
     st.markdown(
         f"<h4 style='color: #444; text-align: center; margin-top: 2rem;'>"
         f"🚗 Your Transportation Carbon Footprint: <span style='color:#d43f3a'>{vehicle_emissions:.2f}</span> tonnes CO₂e</h4>",
