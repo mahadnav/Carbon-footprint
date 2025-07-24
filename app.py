@@ -72,9 +72,11 @@ def calculate_emissions(data):
 st.set_page_config(page_title="🌱 Carbon Footprint Calculator", layout="wide")
 st.markdown(
     """
-    <div style='display: flex; align-items: center; gap: 12px;'>
-        <img src='flag-pakistan.png' width='40' style='margin-right:8px;'/>
-        <span style='font-size:2rem; font-weight:700;'>Pakistan Carbon Footprint Calculator</span>
+    <div style='display: flex; align-items: center; gap: 12px; padding: 10px 0;'>
+        <img src='flag-pakistan.png' style='width: 40px; height: auto; display: block;' />
+        <div style='font-size: 2rem; font-weight: 700; color: #333;'>
+            Pakistan Carbon Footprint Calculator
+        </div>
     </div>
     """,
     unsafe_allow_html=True
