@@ -312,9 +312,9 @@ with tabs[1]:
                     st.markdown(f"**Leg {i + 1}**")
                     col1, col2, col3 = st.columns([4, 4, 2])
                     with col1:
-                        dep = st.selectbox(f"Departure Airport (Leg {i + 1})", list(airports.keys()), key=f"dep_{i}")
+                        dep = st.selectbox(f"Departure Airport (Leg {i + 1})", sorted(list(airports.keys())), key=f"dep_{i}")
                     with col2:
-                        arr = st.selectbox(f"Arrival Airport (Leg {i + 1})", list(airports.keys()), key=f"arr_{i}")
+                        arr = st.selectbox(f"Arrival Airport (Leg {i + 1})", sorted(list(airports.pop(f"{dep}").keys())), key=f"arr_{i}")
                     with col3:
                         st.markdown("<div style='height: 35px;'></div>", unsafe_allow_html=True)  # Empty space for alignment
                         is_round = st.checkbox("Return?", key=f"return_{i}", value=True)
