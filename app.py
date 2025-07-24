@@ -340,7 +340,7 @@ with tabs[3]:
                 height: 100%;
             }
             .grey-box {
-                background-color: #9E9E9E;
+                background-color: #636363;
                 color: white;
                 padding: 20px;
                 border-radius: 10px;
