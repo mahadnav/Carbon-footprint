@@ -142,7 +142,6 @@ with tabs[1]:
                     efficiency = st.number_input("Fuel Efficiency (km/l)", min_value=1.0, value=12.0, key=f'car_eff_{i}')
                 user_data['cars'].append({'miles_driven': miles, 'fuel_efficiency': efficiency})
             car_emissions = calculate_emissions(user_data)[0]['Cars']
-            st.metric(label="Car Emissions", value=f"{car_emissions:,.2f} tonnes CO₂")
             st.markdown(f"""
                 <div style='font-size: 1.2rem; font-weight: normal;'>
                     Estimated Emissions for Your Car Travel: <span style='color:#4CAF50'>{car_emissions:.2f}</span> tonnes CO₂
