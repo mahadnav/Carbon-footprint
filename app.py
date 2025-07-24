@@ -69,9 +69,8 @@ def calculate_emissions(data):
     return emissions, total
 
 # --- Page Setup ---
-st.set_page_config(page_title="🌱 Carbon Footprint Calculator", layout="wide")
-st.title("## 🇵🇰 Pakistan Carbon Footprint Calculator")
-# st.markdown("## 🇵🇰 **Pakistan Carbon Footprint Calculator**")
+st.set_page_config(page_title="🇵🇰 Carbon Footprint Calculator", layout="wide")
+st.title("🇵🇰 Pakistan Carbon Footprint Calculator")
 
 st.markdown("""
 Welcome to your personal carbon footprint dashboard. Fill in details across the tabs to get an estimate of your annual CO₂ emissions.
