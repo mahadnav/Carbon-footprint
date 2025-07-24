@@ -274,54 +274,56 @@ with tabs[1]:
             "Mexico City (MEX)": (19.4361, -99.0721)
         }
 
-        flights_taken = st.radio("Have you taken any flights in the past year?", 
-                            options=["Yes", "No"], 
-                            index=1, 
-                            key="flights_taken", 
-                            horizontal=True
-                            )
-        
-        if flights_taken == "Yes":
-            # Select number of legs (segments) in the trip
-            num_legs = st.number_input("How many destinations are in your trip?", min_value=1, max_value=6, value=1, step=1, key="num_legs")
+        expander_style()
+        with st.expander("**➕ Add your flight details**"):
+            flights_taken = st.radio("Have you taken any flights in the past year?", 
+                                options=["Yes", "No"], 
+                                index=1, 
+                                key="flights_taken", 
+                                horizontal=True
+                                )
+            
+            if flights_taken == "Yes":
+                # Select number of legs (segments) in the trip
+                num_legs = st.number_input("How many destinations are in your trip?", min_value=1, max_value=6, value=1, step=1, key="num_legs")
 
-            # Toggle for return or one-way flight for each leg
-            round_trip_flags = []
-            legs = []
+                # Toggle for return or one-way flight for each leg
+                round_trip_flags = []
+                legs = []
 
-            st.markdown("### Trip Details")
-            for i in range(num_legs):
-                st.markdown(f"**Leg {i + 1}**")
-                col1, col2, col3 = st.columns([4, 4, 2])
-                with col1:
-                    dep = st.selectbox(f"Departure Airport (Leg {i + 1})", list(airports.keys()), key=f"dep_{i}")
-                with col2:
-                    arr = st.selectbox(f"Arrival Airport (Leg {i + 1})", list(airports.keys()), key=f"arr_{i}")
-                with col3:
-                    is_round = st.checkbox("Return?", key=f"return_{i}", value=True)
+                st.markdown("### Trip Details")
+                for i in range(num_legs):
+                    st.markdown(f"**Leg {i + 1}**")
+                    col1, col2, col3 = st.columns([4, 4, 2])
+                    with col1:
+                        dep = st.selectbox(f"Departure Airport (Leg {i + 1})", list(airports.keys()), key=f"dep_{i}")
+                    with col2:
+                        arr = st.selectbox(f"Arrival Airport (Leg {i + 1})", list(airports.keys()), key=f"arr_{i}")
+                    with col3:
+                        is_round = st.checkbox("Return?", key=f"return_{i}", value=True)
 
-                legs.append((dep, arr))
-                round_trip_flags.append(is_round)
+                    legs.append((dep, arr))
+                    round_trip_flags.append(is_round)
 
-            # Constants
-            flight_emission_factor = 0.00015  # tonnes CO₂ per km per passenger
+                # Constants
+                flight_emission_factor = 0.00015  # tonnes CO₂ per km per passenger
 
-            # Calculate total emissions
-            flight_emissions = 0
-            for (dep, arr), is_round in zip(legs, round_trip_flags):
-                if dep != arr:
-                    dist_km = geodesic(airports[dep], airports[arr]).km
-                    if is_round:
-                        dist_km *= 2
-                    emissions = dist_km * flight_emission_factor * 160  # Assuming average flight capacity of 160 passengers
-                    flight_emissions += emissions
+                # Calculate total emissions
+                flight_emissions = 0
+                for (dep, arr), is_round in zip(legs, round_trip_flags):
+                    if dep != arr:
+                        dist_km = geodesic(airports[dep], airports[arr]).km
+                        if is_round:
+                            dist_km *= 2
+                        emissions = dist_km * flight_emission_factor * 160  # Assuming average flight capacity of 160 passengers
+                        flight_emissions += emissions
 
-            st.markdown("---")
-            st.markdown(f"""
-                <div style='font-size: 1.5rem; font-weight: bold;'>
-                    ✈️ Estimated Emissions for Your Trip: <span style='color:#4CAF50'>{flight_emissions:.2f}</span> tonnes CO₂
-                </div>
-            """, unsafe_allow_html=True)
+                st.markdown("---")
+                st.markdown(f"""
+                    <div style='font-size: 1.5rem; font-weight: bold;'>
+                        ✈️ Estimated Emissions for Your Trip: <span style='color:#4CAF50'>{flight_emissions:.2f}</span> tonnes CO₂
+                    </div>
+                """, unsafe_allow_html=True)
 
 
     # TOTAL EMISSIONS
