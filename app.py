@@ -188,6 +188,16 @@ with tabs[1]:
         unsafe_allow_html=True
     )
 
+if "user_data" not in st.session_state:
+        st.session_state["user_data"] = {
+            "food": 0,
+            "electronics": 0,
+            "clothing": 0,
+            "furniture": 0,
+            "recreation": 0
+        }
+user_data = st.session_state["user_data"]
+
 
 with tabs[2]:
     st.markdown(
