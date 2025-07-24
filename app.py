@@ -298,6 +298,7 @@ with tabs[1]:
             with col2:
                 st.markdown("<h4 style='text-align: center;'>Have you taken a flight this year?</h4>", unsafe_allow_html=True)
                 flights_taken = st.radio(
+                    label="",
                     options=["Yes", "No"],
                     index=1,
                     horizontal=True,  # Optional: horizontal layout
