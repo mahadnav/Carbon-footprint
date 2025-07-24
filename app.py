@@ -301,7 +301,7 @@ with tabs[1]:
                 flight_emissions = 0
             else:
                 # Select number of legs (segments) in the trip
-                num_legs = st.number_input("How many destinations are in your trip?", min_value=1, max_value=6, value=1, step=1, key="num_legs")
+                num_legs = st.number_input("How many destinations are in your trip?", min_value=1, max_value=20, value=1, step=1, key="num_legs")
 
                 # Toggle for return or one-way flight for each leg
                 round_trip_flags = []
