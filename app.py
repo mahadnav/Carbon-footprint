@@ -328,14 +328,17 @@ with tabs[1]:
                     legs.append((dep, arr))
                     round_trip_flags.append(is_round)
 
-                # Calculate total emissions
-                flight_distance = 0
-                for (dep, arr), is_round in zip(legs, round_trip_flags):
-                    if dep != arr:
-                        dist_km = geodesic(airports[dep], airports[arr]).km
-                        if is_round:
-                            dist_km *= 2
-                        flight_distance += dist_km
+                if arr == None or dep == None:
+                    flight_distance = 0  # Skip if no airports selected
+                else:
+                    # Calculate total emissions
+                    flight_distance = 0
+                    for (dep, arr), is_round in zip(legs, round_trip_flags):
+                        if dep != arr:
+                            dist_km = geodesic(airports[dep], airports[arr]).km
+                            if is_round:
+                                dist_km *= 2
+                            flight_distance += dist_km
             
             # Store flight emissions in user_data
             user_data['flight_distance'] = flight_distance
