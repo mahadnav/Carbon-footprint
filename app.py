@@ -283,7 +283,9 @@ with tabs[1]:
                                 horizontal=True
                                 )
             
-            if flights_taken == "Yes":
+            if flights_taken == "No":
+                flight_emissions = 0
+            else:
                 # Select number of legs (segments) in the trip
                 num_legs = st.number_input("How many destinations are in your trip?", min_value=1, max_value=6, value=1, step=1, key="num_legs")
 
