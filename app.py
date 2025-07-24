@@ -331,7 +331,7 @@ with tabs[1]:
                         dist_km = geodesic(airports[dep], airports[arr]).km
                         if is_round:
                             dist_km *= 2
-                        emissions = dist_km * flight_emission_factor * 160  # Assuming average flight capacity of 160 passengers
+                        emissions = dist_km * flight_emission_factor  # Assuming average flight capacity of 160 passengers
                         flight_emissions += emissions
 
             st.markdown(f"""
