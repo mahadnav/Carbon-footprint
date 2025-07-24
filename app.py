@@ -110,12 +110,12 @@ with tabs[0]:
         unsafe_allow_html=True
     )
 
-# --- Vehicles Tab ---
+# --- Transport Tab ---
 with tabs[1]:
     # Page Title
     st.markdown(
-        "<h2 style='font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem;'>🚘 Vehicle Emissions</h2>"
-        "<h4 style='color: gray; font-size: 1.15rem;'>Add your vehicle details to estimate yearly CO₂ emissions.</h4>",
+        "<h2 style='font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem;'>🚘 Transport Emissions</h2>"
+        "<h4 style='color: gray; font-size: 1.15rem;'>Add your transport details to estimate yearly CO₂ emissions.</h4>",
         unsafe_allow_html=True
     )
 
@@ -290,11 +290,13 @@ with tabs[1]:
 
         expander_style()
         with st.expander("**➕ Add your flight details**"):
-            flights_taken = st.radio("Have you taken any flights in the past year?", 
-                                options=["Yes", "No"], 
-                                index=1, 
-                                key="flights_taken", 
-                                horizontal=True
+            _, col2, _ = st.columns(3)
+            with col2:
+                flights_taken = st.radio("Have you taken any flights in the past year?", 
+                                    options=["Yes", "No"], 
+                                    index=1, 
+                                    key="flights_taken", 
+                                    horizontal=True
                                 )
             
             if flights_taken == "No":
