@@ -65,7 +65,7 @@ def calculate_emissions(data):
         'Secondary': sum(data.get(k, 0) for k in ['food', 'clothing', 'electronics', 'furniture', 'recreation']) / 1000
     }
 
-    total = sum(emissions.values())  # to metric tons
+    total = sum(emissions.values())  # to metric tonnes
     return emissions, total
 
 # --- Page Setup ---
@@ -105,7 +105,7 @@ with tabs[0]:
         household_emissions = calculate_emissions(user_data)[0]['Household']
         st.markdown(
         f"<h4 style='color: #444; text-align: center; margin-top: 2rem;'>"
-        f"⚡ Your Energy Carbon Footprint: <span style='color:#d43f3a'>{household_emissions:.2f}</span> tons CO₂</h4>",
+        f"⚡ Your Energy Carbon Footprint: <span style='color:#d43f3a'>{household_emissions:.2f}</span> tonnes CO₂</h4>",
         unsafe_allow_html=True
     )
 
@@ -139,7 +139,7 @@ with tabs[1]:
                     efficiency = st.number_input("Fuel Efficiency (km/l)", min_value=1.0, value=12.0, key=f'car_eff_{i}')
                 user_data['cars'].append({'miles_driven': miles, 'fuel_efficiency': efficiency})
             car_emissions = calculate_emissions(user_data)[0]['Cars']
-            st.metric(label="Car Emissions", value=f"{car_emissions:,.2f} tons CO₂")
+            st.metric(label="Car Emissions", value=f"{car_emissions:,.2f} tonnes CO₂")
 
 
     # BIKE SECTION
@@ -161,7 +161,7 @@ with tabs[1]:
                     efficiency = st.number_input("Fuel Efficiency (km/l)", min_value=1.0, value=30.0, key=f'bike_eff_{i}')
                 user_data['motorcycle'].append({'miles_driven': miles, 'fuel_efficiency': efficiency})
             bike_emissions = calculate_emissions(user_data)[0]['Motorcycle']
-            st.metric(label="Motorcycle Emissions", value=f"{bike_emissions:,.2f} tons CO₂")
+            st.metric(label="Motorcycle Emissions", value=f"{bike_emissions:,.2f} tonnes CO₂")
 
 
     # BUS SECTION
@@ -177,14 +177,14 @@ with tabs[1]:
                 st.markdown("")
 
             bus_emissions = calculate_emissions(user_data)[0]['Bus']
-            st.metric(label="Bus Emissions", value=f"{bus_emissions:,.2f} tons CO₂")
+            st.metric(label="Bus Emissions", value=f"{bus_emissions:,.2f} tonnes CO₂")
 
 
     # TOTAL EMISSIONS
     vehicle_emissions = car_emissions + bike_emissions + bus_emissions
     st.markdown(
         f"<h4 style='color: #444; text-align: center; margin-top: 2rem;'>"
-        f"🚗 Your Transportation Carbon Footprint: <span style='color:#d43f3a'>{vehicle_emissions:.2f}</span> tons CO₂e</h4>",
+        f"🚗 Your Transportation Carbon Footprint: <span style='color:#d43f3a'>{vehicle_emissions:.2f}</span> tonnes CO₂e</h4>",
         unsafe_allow_html=True
     )
 
@@ -306,7 +306,7 @@ with tabs[2]:
     sec_emissions = calculate_emissions(user_data)[0]['Secondary']
     st.markdown(
         f"<h4 style='color: #444; text-align: center; margin-top: 2rem;'>"
-        f"🛒 Your Secondary Carbon Footprint: <span style='color:#d43f3a'>{sec_emissions:.2f}</span> tons CO₂e</h4>",
+        f"🛒 Your Secondary Carbon Footprint: <span style='color:#d43f3a'>{sec_emissions:.2f}</span> tonnes CO₂e</h4>",
         unsafe_allow_html=True
     )
 
