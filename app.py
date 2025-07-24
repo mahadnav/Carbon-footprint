@@ -188,16 +188,6 @@ with tabs[1]:
         unsafe_allow_html=True
     )
 
-if "user_data" not in st.session_state:
-        st.session_state["user_data"] = {
-            "food": 0,
-            "electronics": 0,
-            "clothing": 0,
-            "furniture": 0,
-            "recreation": 0
-        }
-user_data = st.session_state["user_data"]
-
 
 with tabs[2]:
     st.markdown(
@@ -219,12 +209,14 @@ with tabs[2]:
 
     # --- Spending Ranges ---
     spending_ranges = {
-        "0 - 5,000 PKR": 2500,
+        "0": 0,
+        "less than 5,000 PKR": 2500,
         "5,000 - 10,000 PKR": 7500,
         "10,000 - 20,000 PKR": 15000,
         "20,000 - 50,000 PKR": 35000,
         "50,000 - 100,000 PKR": 75000,
-        "100,000+ PKR": 125000
+        "100,000 - 200,000 PKR": 150000,
+        "greater than 200,000 PKR": 250000,
     }
 
     # --- Food/Diet ---
@@ -297,19 +289,19 @@ with tabs[2]:
     # --- Clothing ---
     expander_style()
     with st.expander("**👕 Clothing Spending**"):
-        choice = st.selectbox("Select your yearly spending on clothing:", list(spending_ranges.keys()), index=2, key="clothing_range")
+        choice = st.selectbox("Select your yearly spending on clothing:", list(spending_ranges.keys()), index=0, key="clothing_range")
         user_data['clothing'] = spending_ranges[choice] * emission_per_pkr
 
     # --- Furniture ---
     expander_style()
     with st.expander("**🪑 Furniture Spending**"):
-        choice = st.selectbox("Select your yearly spending on furniture:", list(spending_ranges.keys()), index=2, key="furniture_range")
+        choice = st.selectbox("Select your yearly spending on furniture:", list(spending_ranges.keys()), index=0, key="furniture_range")
         user_data['furniture'] = spending_ranges[choice] * emission_per_pkr
 
     # --- Recreation ---
     expander_style()
     with st.expander("**🎮 Recreation Spending**"):
-        choice = st.selectbox("Select your yearly spending on recreation (travel, entertainment):", list(spending_ranges.keys()), index=2, key="recreation_range")
+        choice = st.selectbox("Select your yearly spending on recreation (travel, entertainment):", list(spending_ranges.keys()), index=0, key="recreation_range")
         user_data['recreation'] = spending_ranges[choice] * emission_per_pkr
 
     # --- Result ---
