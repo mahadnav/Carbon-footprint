@@ -119,11 +119,11 @@ with tabs[1]:
         unsafe_allow_html=True
     )
 
-    user_data['cars'] = []
-    user_data['motorcycle'] = []
-
+    # CAR SECTION
     with st.container():
         st.markdown("### 🚗 Cars")
+
+        user_data['cars'] = []
 
         expander_style()
         with st.expander("**➕ Add your car details**"):
@@ -141,11 +141,17 @@ with tabs[1]:
                 user_data['cars'].append({'miles_driven': miles, 'fuel_efficiency': efficiency})
             car_emissions = calculate_emissions(user_data)[0]['Cars']
             st.metric(label="Car Emissions", value=f"{car_emissions:,.2f} tonnes CO₂")
-
+            st.markdown(f"""
+                <div style='font-size: 1.5rem; font-weight: normal;'>
+                    Estimated Emissions for Your Car Travel: <span style='color:#4CAF50'>{car_emissions:.2f}</span> tonnes CO₂
+                </div>
+            """, unsafe_allow_html=True)
 
     # BIKE SECTION
     with st.container():
         st.markdown("### 🏍️ Motorcycles")
+
+        user_data['motorcycle'] = []
         
         expander_style()
         with st.expander("**➕ Add motorcycle details**"):
@@ -162,8 +168,11 @@ with tabs[1]:
                     efficiency = st.number_input("Fuel Efficiency (km/l)", min_value=1.0, value=30.0, key=f'bike_eff_{i}')
                 user_data['motorcycle'].append({'miles_driven': miles, 'fuel_efficiency': efficiency})
             bike_emissions = calculate_emissions(user_data)[0]['Motorcycle']
-            st.metric(label="Motorcycle Emissions", value=f"{bike_emissions:,.2f} tonnes CO₂")
-
+            st.markdown(f"""
+                <div style='font-size: 1.5rem; font-weight: normal;'>
+                    Estimated Emissions for Your Motorcycle Travel: <span style='color:#4CAF50'>{bike_emissions:.2f}</span> tonnes CO₂
+                </div>
+            """, unsafe_allow_html=True)
 
     # BUS SECTION
     with st.container():
@@ -178,8 +187,13 @@ with tabs[1]:
                 st.markdown("")
 
             bus_emissions = calculate_emissions(user_data)[0]['Bus']
-            st.metric(label="Bus Emissions", value=f"{bus_emissions:,.2f} tonnes CO₂")
+            st.markdown(f"""
+                <div style='font-size: 1.5rem; font-weight: normal;'>
+                    Estimated Emissions for Your Bus Travel: <span style='color:#4CAF50'>{bus_emissions:.2f}</span> tonnes CO₂
+                </div>
+            """, unsafe_allow_html=True)
 
+    # AIR TRAVEL SECTION
     with st.container():
         st.markdown("### ✈️ Air Travel")
 
@@ -322,7 +336,7 @@ with tabs[1]:
 
             st.markdown(f"""
                 <div style='font-size: 1.5rem; font-weight: normal;'>
-                    ✈️ Estimated Emissions for Your Trip: <span style='color:#4CAF50'>{flight_emissions:.2f}</span> tonnes CO₂
+                    Estimated Emissions for Your Air Travel: <span style='color:#4CAF50'>{flight_emissions:.2f}</span> tonnes CO₂
                 </div>
             """, unsafe_allow_html=True)
 
@@ -334,7 +348,6 @@ with tabs[1]:
         f"🚗 Your Transportation Carbon Footprint: <span style='color:#d43f3a'>{vehicle_emissions:.2f}</span> tonnes CO₂e</h4>",
         unsafe_allow_html=True
     )
-
 
 with tabs[2]:
     st.markdown(
