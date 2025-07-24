@@ -83,7 +83,7 @@ user_data = {}
 with tabs[0]:
     st.markdown(
         "<h2 style='font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem;'>⚡ Energy Emissions</h2>"
-        "<h4 style='color: gray; font-size: 1.25rem;'>Add your household energy use details to estimate yearly CO₂ emissions.</h4>",
+        "<h4 style='color: gray; font-size: 1.15rem;'>Add your household energy use details to estimate yearly CO₂ emissions.</h4>",
         unsafe_allow_html=True
     )
     _, col2, _ = st.columns(3)
@@ -105,7 +105,7 @@ with tabs[0]:
         household_emissions = calculate_emissions(user_data)[0]['Household']
         st.markdown(
         f"<h4 style='color: #444; text-align: center; margin-top: 2rem;'>"
-        f"⚡ Your Energy Carbon Footprint: <span style='color:#d43f3a'>{household_emissions:.2f}</span> metric tons CO₂</h4>",
+        f"⚡ Your Energy Carbon Footprint: <span style='color:#d43f3a'>{household_emissions:.2f}</span> tons CO₂</h4>",
         unsafe_allow_html=True
     )
 
@@ -114,7 +114,7 @@ with tabs[1]:
     # Page Title
     st.markdown(
         "<h2 style='font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem;'>🚘 Vehicle Emissions</h2>"
-        "<h4 style='color: gray; font-size: 1.25rem;'>Add your vehicle details to estimate yearly CO₂ emissions.</h4>",
+        "<h4 style='color: gray; font-size: 1.15rem;'>Add your vehicle details to estimate yearly CO₂ emissions.</h4>",
         unsafe_allow_html=True
     )
 
@@ -139,7 +139,7 @@ with tabs[1]:
                     efficiency = st.number_input("Fuel Efficiency (km/l)", min_value=1.0, value=12.0, key=f'car_eff_{i}')
                 user_data['cars'].append({'miles_driven': miles, 'fuel_efficiency': efficiency})
             car_emissions = calculate_emissions(user_data)[0]['Cars']
-            st.metric(label="Car Emissions", value=f"{car_emissions:,.2f} metric tons CO₂")
+            st.metric(label="Car Emissions", value=f"{car_emissions:,.2f} tons CO₂")
 
 
     # BIKE SECTION
@@ -161,7 +161,7 @@ with tabs[1]:
                     efficiency = st.number_input("Fuel Efficiency (km/l)", min_value=1.0, value=30.0, key=f'bike_eff_{i}')
                 user_data['motorcycle'].append({'miles_driven': miles, 'fuel_efficiency': efficiency})
             bike_emissions = calculate_emissions(user_data)[0]['Motorcycle']
-            st.metric(label="Motorcycle Emissions", value=f"{bike_emissions:,.2f} metric tons CO₂")
+            st.metric(label="Motorcycle Emissions", value=f"{bike_emissions:,.2f} tons CO₂")
 
 
     # BUS SECTION
@@ -177,14 +177,14 @@ with tabs[1]:
                 st.markdown("")
 
             bus_emissions = calculate_emissions(user_data)[0]['Bus']
-            st.metric(label="Bus Emissions", value=f"{bus_emissions:,.2f} metric tons CO₂")
+            st.metric(label="Bus Emissions", value=f"{bus_emissions:,.2f} tons CO₂")
 
 
     # TOTAL EMISSIONS
     vehicle_emissions = car_emissions + bike_emissions + bus_emissions
     st.markdown(
         f"<h4 style='color: #444; text-align: center; margin-top: 2rem;'>"
-        f"🚗 Your Transportation Carbon Footprint: <span style='color:#d43f3a'>{vehicle_emissions:.2f}</span> metric tons CO₂</h4>",
+        f"🚗 Your Transportation Carbon Footprint: <span style='color:#d43f3a'>{vehicle_emissions:.2f}</span> tons CO₂e</h4>",
         unsafe_allow_html=True
     )
 
@@ -192,7 +192,7 @@ with tabs[1]:
 with tabs[2]:
     st.markdown(
         "<h2 style='font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem;'>🛍️ Secondary Emissions</h2>"
-        "<h4 style='color: gray; font-size: 1.25rem;'>Estimate your yearly CO₂ emissions from lifestyle choices</h4>",
+        "<h4 style='color: gray; font-size: 1.15rem;'>Estimate your yearly CO₂ emissions from lifestyle choices.</h4>",
         unsafe_allow_html=True
     )
 
@@ -306,7 +306,7 @@ with tabs[2]:
     sec_emissions = calculate_emissions(user_data)[0]['Secondary']
     st.markdown(
         f"<h4 style='color: #444; text-align: center; margin-top: 2rem;'>"
-        f"🛒 Your Secondary Carbon Footprint: <span style='color:#d43f3a'>{sec_emissions:.2f}</span> metric tons CO₂e</h4>",
+        f"🛒 Your Secondary Carbon Footprint: <span style='color:#d43f3a'>{sec_emissions:.2f}</span> tons CO₂e</h4>",
         unsafe_allow_html=True
     )
 
@@ -339,6 +339,13 @@ with tabs[3]:
                 border-radius: 10px;
                 height: 100%;
             }
+            .grey-box {
+                background-color: #9E9E9E;
+                color: white;
+                padding: 20px;
+                border-radius: 10px;
+                height: 100%;
+            }
             .category-box {
                 background-color: #f5f5f5;
                 padding: 20px;
@@ -360,7 +367,7 @@ with tabs[3]:
     """, unsafe_allow_html=True)
 
     if total_emissions < 2.1:
-        st.markdown("<div class='main-title'>🎉 Congratulations!</div>", unsafe_allow_html=True)
+        st.markdown("<div class='main-title'>🎉 Hooray!</div>", unsafe_allow_html=True)
         st.markdown("<div class='subtitle'>Your annual footprint is less that the national average!</div>", unsafe_allow_html=True)
     else:
         st.markdown("<div class='main-title'>🚨 Oops!</div>", unsafe_allow_html=True)
@@ -386,7 +393,7 @@ with tabs[3]:
             <div class='result-box'>
                 <div style='font-size: 20px;'>Your Carbon Footprint</div>
                 <div style='font-size: 50px; font-weight: bold;'>{total_emissions}</div>
-                <div style='font-size: 20px;'>tonnes CO₂</div>
+                <div style='font-size: 20px;'>tonnes CO₂e</div>
             </div>
         """, unsafe_allow_html=True)
 
@@ -395,10 +402,11 @@ with tabs[3]:
             <div style='height: 17px;'></div>
             <div class='black-box'>
                 <div style='font-size: 16px;'>National Average Carbon Footprint</div>
-                <div style='font-size: 36px;'>2.1 tonnes CO₂</div>
+                <div style='font-size: 36px;'>2.1 tonnes CO₂e</div>
+                <div style='font-size: 16px;'>per capita</div>
             </div>
             <div style='height: 20px;'></div>
-            <div class='black-box'>
+            <div class='grey-box'>
                 <div style='font-size: 16px;'>Your Carbon Footprint is</div>
                 <div style='font-size: 36px;'>{round(total_emissions/6.7 * 100)}%</div>
                 <div style='font-size: 16px;'>of the Global Average for 2025</div>
@@ -410,7 +418,8 @@ with tabs[3]:
             <div style='height: 17px;'></div>
             <div class='black-box'>
                 <div style='font-size: 16px;'>Global Average</div>
-                <div style='font-size: 36px;'>6.7 tonnes CO₂</div>
+                <div style='font-size: 36px;'>6.7 tonnes CO₂e</div>
+                <div style='font-size: 16px;'>per capita</div>
             </div>
             <div style='height: 20px;'></div>
             <!--
@@ -432,7 +441,7 @@ with tabs[3]:
             <div style='height: 17px;'></div>
             <div class='category-box' style='background-color: #3FA9D5;'>
                 <div style='font-size: 24px; font-color: white'><b>⚡ Household Energy</b></div>
-                <div>Your consumption is equal to <b>{household_emissions:.2f} tonnes CO₂</b></div>
+                <div>Your consumption is equal to <b>{household_emissions:.2f} tonnes CO₂e</b></div>
             </div>
         """, unsafe_allow_html=True)
 
@@ -441,7 +450,7 @@ with tabs[3]:
             <div style='height: 17px;'></div>
             <div class='category-box' style='background-color: #4CAF50;'>
                 <div style='font-size: 24px;'><b>🚗 Transport</b></div>
-                <div>Your consumption is equal to <b>{vehicle_emissions:.2f} tonnes CO₂</b></div>
+                <div>Your consumption is equal to <b>{vehicle_emissions:.2f} tonnes CO₂e</b></div>
             </div>
         """, unsafe_allow_html=True)
 
@@ -450,7 +459,7 @@ with tabs[3]:
             <div style='height: 17px;'></div>
             <div class='category-box' style='background-color: #F1A9FF;'>
                 <div style='font-size: 24px;'><b>🛒 Secondary</b></div>
-                <div>Your consumption is equal to <b>{sec_emissions:.2f} tonnes CO₂</b></div>
+                <div>Your consumption is equal to <b>{sec_emissions:.2f} tonnes CO₂e</b></div>
             </div>
         """, unsafe_allow_html=True)
 
