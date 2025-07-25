@@ -633,6 +633,7 @@ with tabs[3]:
             <div class='category-box' style='background-color: #AD1457;'>
                 <div style='font-size: 24px; color: #ffffff;'><b>🛒 Secondary</b></div>
                 <div style='color: #fafafa;'>Your consumption is equal to <b>{sec_emissions:.2f} tonnes CO₂e</b></div>
+                <div style='height: 17px;'></div>
             </div>
         """, unsafe_allow_html=True)
 
