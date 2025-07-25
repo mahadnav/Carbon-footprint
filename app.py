@@ -2,6 +2,7 @@ import streamlit as st
 from streamlit_extras.stylable_container import stylable_container
 import pandas as pd
 from geopy.distance import geodesic
+import base64
 
 def expander_style():
         return st.markdown("""
@@ -71,6 +72,12 @@ def calculate_emissions(data):
     total = sum(emissions.values())  # to metric tonnes
     return emissions, total
 
+def get_base64_image(image_path):
+    with open(image_path, "rb") as img_file:
+        return base64.b64encode(img_file.read()).decode()
+
+# Use your uploaded image path
+image_base64 = get_base64_image("footprint.png")
 
 
 ######################### Main Code #########################
@@ -554,9 +561,31 @@ with tabs[3]:
     
     col1, col2, col3 = st.columns([2, 1.5, 1.5])
     with col1:
-        st.markdown("""
+        # st.markdown("""
+        #             <style>
+        #                 .result-box {
+        #                     background-color: #FFD43B;
+        #                     border-radius: 10px;
+        #                     text-align: center;
+        #                     min-height: 319px;
+        #                     display: flex;
+        #                     flex-direction: column;
+        #                     justify-content: center;
+        #                 }
+        #             </style>
+        #         """, unsafe_allow_html=True)
+
+        # st.markdown(f"""
+        #     <div class='result-box'>
+        #         <div style='font-size: 20px;'>Your Carbon Footprint</div>
+        #         <div style='font-size: 50px; font-weight: bold;'>{total_emissions}</div>
+        #         <div style='font-size: 20px;'>tonnes CO₂e</div>
+        #     </div>
+        # """, unsafe_allow_html=True)
+
+        st.markdown(f"""
                     <style>
-                        .result-box {
+                        .result-box {{
                             background-color: #FFD43B;
                             border-radius: 10px;
                             text-align: center;
@@ -564,7 +593,11 @@ with tabs[3]:
                             display: flex;
                             flex-direction: column;
                             justify-content: center;
-                        }
+                            background-image: url("data:image/png;base64,{image_base64}");
+                            background-repeat: no-repeat;
+                            background-position: center;
+                            background-size: 150px;
+                        }}
                     </style>
                 """, unsafe_allow_html=True)
 
