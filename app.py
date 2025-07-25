@@ -593,14 +593,32 @@ with tabs[3]:
                             display: flex;
                             flex-direction: column;
                             justify-content: center;
+                            position: relative;
+                            overflow: hidden;
+                        }}
+
+                        .result-box::before {{
+                            content: "";
                             background-image: url("data:image/png;base64,{image_base64}");
                             background-repeat: no-repeat;
                             background-position: center;
-                            background-size: 150px;
+                            background-size: 160px;
+                            opacity: 0.1;
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            right: 0;
+                            bottom: 0;
+                            z-index: 0;
+                        }}
+
+                        .result-box > div {{
+                            position: relative;
+                            z-index: 1;
                         }}
                     </style>
                 """, unsafe_allow_html=True)
-
+                    
         st.markdown(f"""
             <div class='result-box'>
                 <div style='font-size: 20px;'>Your Carbon Footprint</div>
