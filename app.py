@@ -566,28 +566,6 @@ with tabs[3]:
     
     col1, col2, col3 = st.columns([2, 1.5, 1.5])
     with col1:
-        # st.markdown("""
-        #             <style>
-        #                 .result-box {
-        #                     background-color: #FFD43B;
-        #                     border-radius: 10px;
-        #                     text-align: center;
-        #                     min-height: 319px;
-        #                     display: flex;
-        #                     flex-direction: column;
-        #                     justify-content: center;
-        #                 }
-        #             </style>
-        #         """, unsafe_allow_html=True)
-
-        # st.markdown(f"""
-        #     <div class='result-box'>
-        #         <div style='font-size: 20px;'>Your Carbon Footprint</div>
-        #         <div style='font-size: 50px; font-weight: bold;'>{total_emissions}</div>
-        #         <div style='font-size: 20px;'>tonnes CO₂e</div>
-        #     </div>
-        # """, unsafe_allow_html=True)
-
         st.markdown(f"""
                     <style>
                         .result-box {{
@@ -681,7 +659,10 @@ with tabs[3]:
                 <div style='height: 17px;'></div>
                 <div class='category-box' style='background-color: #1A237E;'>
                     <div style='font-size: 24px; color: #fafafa;'><b>⚡ Household Energy</b></div>
-                    <div style='color: #fafafa;'>Your consumption is equal to <b>0 tCO₂e</b></div>
+                    <div style='color: #fafafa;'>
+                        Your consumption is equal to 
+                        <span style='font-size: 18px;'><b>0 tCO₂e</b></span>
+                    </div>
                     <div style='height: 10px;'></div>
                 </div>
             """, unsafe_allow_html=True)
