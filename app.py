@@ -86,7 +86,8 @@ st.set_page_config(page_title="🇵🇰 Carbon Footprint Calculator", layout="wi
 st.title("🇵🇰 Pakistan Carbon Footprint Calculator")
 
 st.markdown("""
-Welcome to your personal carbon footprint dashboard. Fill in details across the tabs to get an estimate of your annual CO₂e emissions.
+<h2>Welcome to your personal carbon footprint dashboard!</h2> 
+<h4>Fill in details across the tabs to get an estimate of your annual CO₂e emissions.</h4>
 """)
 
 tabs = st.tabs(["Household", "Transport", "Secondary", "Total"])
