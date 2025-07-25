@@ -613,7 +613,7 @@ with tabs[3]:
         st.markdown(f"""
             <div style='height: 17px;'></div>
             <div class='category-box' style='background-color: #3FA9D5;'>
-                <div style='font-size: 24px; font-color: white'><b>⚡ Household Energy</b></div>
+                <div style='font-size: 24px font-color: #ffffff;'><b>⚡ Household Energy</b></div>
                 <div>Your consumption is equal to <b>{household_emissions:.2f} tonnes CO₂e</b></div>
             </div>
         """, unsafe_allow_html=True)
