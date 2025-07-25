@@ -608,7 +608,7 @@ with tabs[3]:
     st.markdown("<div class='main-title'>Let's break it down...</div>", unsafe_allow_html=True)
     st.markdown(f"<h6 style='font-size: 16px;'>Your footprint is equal to <b>{total_emissions} tCO₂e</b></h6>", unsafe_allow_html=True)
 
-    colA, colB, colC = st.columns(3)
+    colA, colB, colC = st.columns(3, gap='small')
     with colA:
         st.markdown(f"""
             <div style='height: 17px;'></div>
