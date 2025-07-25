@@ -82,8 +82,8 @@ image_base64 = get_base64_image("footprint.png")
 
 ######################### Main Code #########################
 
-st.set_page_config(layout="wide")
-st.title("🇵🇰 Pakistan Carbon Footprint Calculator")
+st.set_page_config(page_title="🇵🇰 Carbon Footprint Calculator", layout="wide")
+# st.title("🇵🇰 Pakistan Carbon Footprint Calculator")
 
 st.markdown("""
     <div style='display: flex; align-items: center; gap: 12px; margin-bottom: 0.5rem;'>
