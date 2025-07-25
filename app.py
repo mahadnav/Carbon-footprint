@@ -667,32 +667,62 @@ with tabs[3]:
 
     colA, colB, colC = st.columns(3, gap='small')
     with colA:
-        st.markdown(f"""
-            <div style='height: 17px;'></div>
-            <div class='category-box' style='background-color: #1A237E;'>
-                <div style='font-size: 24px; color: #fafafa;'><b>⚡ Household Energy</b></div>
-                <div style='color: #fafafa;'>Your consumption is equal to <b>{household_emissions:.2f} tCO₂e</b></div>
-                <div style='height: 10px;'></div>
-            </div>
-        """, unsafe_allow_html=True)
+        if household_emissions != 0:
+            st.markdown(f"""
+                <div style='height: 17px;'></div>
+                <div class='category-box' style='background-color: #1A237E;'>
+                    <div style='font-size: 24px; color: #fafafa;'><b>⚡ Household Energy</b></div>
+                    <div style='color: #fafafa;'>Your consumption is equal to <b>{household_emissions:.2f} tCO₂e</b></div>
+                    <div style='height: 10px;'></div>
+                </div>
+            """, unsafe_allow_html=True)
+        else:
+            st.markdown(f"""
+                <div style='height: 17px;'></div>
+                <div class='category-box' style='background-color: #1A237E;'>
+                    <div style='font-size: 24px; color: #fafafa;'><b>⚡ Household Energy</b></div>
+                    <div style='color: #fafafa;'>Your consumption is equal to <b>0 tCO₂e</b></div>
+                    <div style='height: 10px;'></div>
+                </div>
+            """, unsafe_allow_html=True)
 
     with colB:
-        st.markdown(f"""
-            <div style='height: 17px;'></div>
-            <div class='category-box' style='background-color: #1B5E20;'>
-                <div style='font-size: 24px; color: #ffffff;'><b>🚗 Transport</b></div>
-                <div style='color: #fafafa;'>Your consumption is equal to <b>{vehicle_emissions:.2f} tCO₂e</b></div>
-                <div style='height: 10px;'></div>
-            </div>
-        """, unsafe_allow_html=True)
+        if vehicle_emissions != 0:
+            st.markdown(f"""
+                <div style='height: 17px;'></div>
+                <div class='category-box' style='background-color: #1B5E20;'>
+                    <div style='font-size: 24px; color: #ffffff;'><b>🚗 Transport</b></div>
+                    <div style='color: #fafafa;'>Your consumption is equal to <b>{vehicle_emissions:.2f} tCO₂e</b></div>
+                    <div style='height: 10px;'></div>
+                </div>
+            """, unsafe_allow_html=True)
+        else:
+            st.markdown(f"""
+                <div style='height: 17px;'></div>
+                <div class='category-box' style='background-color: #1B5E20;'>
+                    <div style='font-size: 24px; color: #ffffff;'><b>🚗 Transport</b></div>
+                    <div style='color: #fafafa;'>Your consumption is equal to <b>0 tCO₂e</b></div>
+                    <div style='height: 10px;'></div>
+                </div>
+            """, unsafe_allow_html=True)
 
     with colC:
-        st.markdown(f"""
-            <div style='height: 17px;'></div>
-            <div class='category-box' style='background-color: #AD1457;'>
-                <div style='font-size: 24px; color: #ffffff;'><b>🛒 Secondary</b></div>
-                <div style='color: #fafafa;'>Your consumption is equal to <b>{sec_emissions:.2f} tCO₂e</b></div>
-                <div style='height: 10px;'></div>
-            </div>
-        """, unsafe_allow_html=True)
+        if sec_emissions != 0:
+            st.markdown(f"""
+                <div style='height: 17px;'></div>
+                <div class='category-box' style='background-color: #AD1457;'>
+                    <div style='font-size: 24px; color: #ffffff;'><b>🛒 Secondary</b></div>
+                    <div style='color: #fafafa;'>Your consumption is equal to <b>{sec_emissions:.2f} tCO₂e</b></div>
+                    <div style='height: 10px;'></div>
+                </div>
+            """, unsafe_allow_html=True)
+        else:
+            st.markdown(f"""
+                <div style='height: 17px;'></div>
+                <div class='category-box' style='background-color: #AD1457;'>
+                    <div style='font-size: 24px; color: #ffffff;'><b>🛒 Secondary</b></div>
+                    <div style='color: #fafafa;'><b>Your consumption is equal to 0 tCO₂e</b></div>
+                    <div style='height: 10px;'></div>
+                </div>
+            """, unsafe_allow_html=True)
 
