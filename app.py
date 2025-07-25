@@ -544,7 +544,7 @@ with tabs[3]:
 
     if total_emissions < 6.7:
         st.markdown("<div class='main-title'>🎉 Hooray!</div>", unsafe_allow_html=True)
-        st.markdown("<div class='subtitle'>Your annual footprint is less that the global average!</div>", unsafe_allow_html=True)
+        st.markdown("<div class='subtitle'>Your annual footprint is less than the global average!</div>", unsafe_allow_html=True)
     else:
         st.markdown("<div class='main-title'>🚨 Oops!</div>", unsafe_allow_html=True)
         st.markdown("<div class='subtitle'>Your annual footprint is above the global average. Let's work on reducing it!</div>", unsafe_allow_html=True)
@@ -598,12 +598,6 @@ with tabs[3]:
                 <div style='font-size: 16px;'>per capita</div>
             </div>
             <div style='height: 20px;'></div>
-            <!--
-            <div class='black-box'>
-                <div style='font-size: 16px;'>GO WILD - WWF'S CLUB FOR KIDS</div>
-                <div style='margin-top: 10px;'>Fun facts, puzzles, crafts & more</div>
-            </div>
-            -->
         """, unsafe_allow_html=True)
 
     st.markdown("<hr style='margin: 30px 0;'>", unsafe_allow_html=True)
