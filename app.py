@@ -97,7 +97,7 @@ st.markdown("""
         Fill in details across the tabs to get an estimate of your annual CO₂e emissions.
     </div>
     <div style='font-size: 1rem; color: #888;'>
-        This tool is designed to help you understand your impact on the environment and find ways to reduce it.
+        This tool is designed to help you understand your impact on the environment.
     </div>
 """, unsafe_allow_html=True)
 
