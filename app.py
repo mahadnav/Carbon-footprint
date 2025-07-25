@@ -620,20 +620,20 @@ with tabs[3]:
                 <div style='font-size: 16px;'>per capita</div>
             </div>
             <div style='height: 20px;'></div>
-            <div class='grey-box'>
-                <div style='font-size: 16px;'>Your Carbon Footprint is</div>
-                <div style='font-size: 36px;'>{round(total_emissions/6.7 * 100)}%</div>
-                <div style='font-size: 16px;'>of the Global Average for 2025</div>
+            <div class='black-box'>
+                <div style='font-size: 16px;'>Global Average</div>
+                <div style='font-size: 36px;'>6.7 tonnes CO₂e</div>
+                <div style='font-size: 16px;'>per capita</div>
             </div>
         """, unsafe_allow_html=True)
 
     with col3:
         st.markdown(f"""
             <div style='height: 17px;'></div>
-            <div class='black-box'>
-                <div style='font-size: 16px;'>Global Average</div>
-                <div style='font-size: 36px;'>6.7 tonnes CO₂e</div>
-                <div style='font-size: 16px;'>per capita</div>
+            <div class='grey-box'>
+                <div style='font-size: 16px;'>Your Carbon Footprint is</div>
+                <div style='font-size: 36px;'>{round(total_emissions/6.7 * 100)}%</div>
+                <div style='font-size: 16px;'>of the Global Average for 2025</div>
             </div>
             <div style='height: 20px;'></div>
         """, unsafe_allow_html=True)
