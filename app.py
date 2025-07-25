@@ -622,8 +622,7 @@ with tabs[3]:
         st.markdown(f"""
             <div class='result-box'>
                 <h2 style='font-size: 24px;'><b>Your Annual Carbon Footprint</b></h2>
-                <div style='font-size: 50px; font-weight: bold;'>{total_emissions}</div>
-                <div style='font-size: 20px;'>tonnes CO₂e</div>
+                <div style='font-size: 50px; font-weight: bold;'>{total_emissions}</div> <div style='font-size: 20px;'>tCO₂e</div>
             </div>
         """, unsafe_allow_html=True)
 
