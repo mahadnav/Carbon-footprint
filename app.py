@@ -661,7 +661,8 @@ with tabs[3]:
                     <div style='font-size: 24px; color: #fafafa;'><b>⚡ Household Energy</b></div>
                     <div style='color: #fafafa;'>
                         Your consumption is equal to 
-                        <span style='font-size: 24px;'><b>0 tCO₂e</b></span>
+                        <span style='font-size: 24px;'><b>0</b></span>
+                        tCO₂e
                     </div>
                     <div style='height: 10px;'></div>
                 </div>
