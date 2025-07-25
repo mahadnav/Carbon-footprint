@@ -636,7 +636,7 @@ with tabs[3]:
                     {round(total_emissions/6.7 * 100)}
                     <span style='font-size: 24px;'>%</span>
                 </div>
-                <div style='font-size: 16px;'>of the Global Average for 2025</div>
+                <div style='font-size: 16px;'>of the global average</div>
             </div>
             <div style='height: 20px;'></div>
         """, unsafe_allow_html=True)
