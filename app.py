@@ -88,7 +88,8 @@ st.title("🇵🇰 Pakistan Carbon Footprint Calculator")
 st.markdown(
      "<h2>Welcome to your personal carbon footprint dashboard!</h2>" 
      "<h3 style='color: gray;'>Fill in details across the tabs to get an estimate of your annual CO₂e emissions.</h3>"
-     "<h4 style='color: gray;'>This tool is designed to help you understand your impact on the environment and find ways to reduce it.</h4>",)
+     "<h4 style='color: gray;'>This tool is designed to help you understand your impact on the environment and find ways to reduce it.</h4>",
+     unsafe_allow_html=True)
 
 tabs = st.tabs(["Household", "Transport", "Secondary", "Total"])
 user_data = {}
