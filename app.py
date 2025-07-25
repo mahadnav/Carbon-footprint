@@ -632,7 +632,10 @@ with tabs[3]:
             <div style='height: 17px;'></div>
             <div class='grey-box'>
                 <div style='font-size: 16px;'>Your Carbon Footprint is</div>
-                <div style='font-size: 36px;'>{round(total_emissions/6.7 * 100)}%</div>
+                <div style='font-size: 36px;'>
+                    {round(total_emissions/6.7 * 100)}
+                    <span style='font-size: 24px;'>%</span>
+                </div>
                 <div style='font-size: 16px;'>of the Global Average for 2025</div>
             </div>
             <div style='height: 20px;'></div>
