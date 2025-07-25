@@ -71,12 +71,15 @@ def calculate_emissions(data):
     total = sum(emissions.values())  # to metric tonnes
     return emissions, total
 
-# --- Page Setup ---
+
+
+######################### Main Code #########################
+
 st.set_page_config(page_title="🇵🇰 Carbon Footprint Calculator", layout="wide")
 st.title("🇵🇰 Pakistan Carbon Footprint Calculator")
 
 st.markdown("""
-Welcome to your personal carbon footprint dashboard. Fill in details across the tabs to get an estimate of your annual CO₂ emissions.
+Welcome to your personal carbon footprint dashboard. Fill in details across the tabs to get an estimate of your annual CO₂e emissions.
 """)
 
 tabs = st.tabs(["Household", "Transport", "Secondary", "Total"])
@@ -86,7 +89,7 @@ user_data = {}
 with tabs[0]:
     st.markdown(
         "<h2 style='font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem;'>⚡ Energy Emissions</h2>"
-        "<h4 style='color: gray; font-size: 1.15rem;'>Add your household energy use details to estimate yearly CO₂ emissions.</h4>",
+        "<h4 style='color: gray; font-size: 1.15rem;'>Add your household energy use details to estimate yearly CO₂e emissions.</h4>",
         unsafe_allow_html=True
     )
     _, col2, _ = st.columns(3)
@@ -108,7 +111,7 @@ with tabs[0]:
         household_emissions = calculate_emissions(user_data)[0]['Household']
         st.markdown(
         f"<h4 style='color: #444; text-align: center; margin-top: 2rem;'>"
-        f"⚡ Your Energy Carbon Footprint: <span style='color:#d43f3a'>{household_emissions:.2f}</span> tonnes CO₂</h4>",
+        f"⚡ Your Energy Carbon Footprint: <span style='color:#d43f3a'>{household_emissions:.2f}</span> tonnes CO₂e</h4>",
         unsafe_allow_html=True
     )
 
@@ -117,7 +120,7 @@ with tabs[1]:
     # Page Title
     st.markdown(
         "<h2 style='font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem;'>🚘 Transport Emissions</h2>"
-        "<h4 style='color: gray; font-size: 1.15rem;'>Add your transport details to estimate yearly CO₂ emissions.</h4>",
+        "<h4 style='color: gray; font-size: 1.15rem;'>Add your transport details to estimate yearly CO₂e emissions.</h4>",
         unsafe_allow_html=True
     )
 
@@ -144,7 +147,7 @@ with tabs[1]:
             car_emissions = calculate_emissions(user_data)[0]['Cars']
             st.markdown(f"""
                 <div style='font-size: 1.2rem; font-weight: normal;'>
-                    Estimated Emissions for Your Car Travel: <span style='color:#4CAF50'>{car_emissions:.2f}</span> tonnes CO₂
+                    Estimated Emissions for Your Car Travel: <span style='color:#4CAF50'>{car_emissions:.2f}</span> tonnes CO₂e
                 </div>
             """, unsafe_allow_html=True)
 
@@ -171,7 +174,7 @@ with tabs[1]:
             bike_emissions = calculate_emissions(user_data)[0]['Motorcycle']
             st.markdown(f"""
                 <div style='font-size: 1.2rem; font-weight: normal;'>
-                    Estimated Emissions for Your Motorcycle Travel: <span style='color:#4CAF50'>{bike_emissions:.2f}</span> tonnes CO₂
+                    Estimated Emissions for Your Motorcycle Travel: <span style='color:#4CAF50'>{bike_emissions:.2f}</span> tonnes CO₂e
                 </div>
             """, unsafe_allow_html=True)
 
@@ -190,7 +193,7 @@ with tabs[1]:
             bus_emissions = calculate_emissions(user_data)[0]['Bus']
             st.markdown(f"""
                 <div style='font-size: 1.2rem; font-weight: normal;'>
-                    Estimated Emissions for Your Bus Travel: <span style='color:#4CAF50'>{bus_emissions:.2f}</span> tonnes CO₂
+                    Estimated Emissions for Your Bus Travel: <span style='color:#4CAF50'>{bus_emissions:.2f}</span> tonnes CO₂e
                 </div>
             """, unsafe_allow_html=True)
 
@@ -349,7 +352,7 @@ with tabs[1]:
 
             st.markdown(f"""
                 <div style='font-size: 1.2rem; font-weight: normal;'>
-                    Estimated Emissions for Your Air Travel: <span style='color:#4CAF50'>{flight_emissions:.2f}</span> tonnes CO₂
+                    Estimated Emissions for Your Air Travel: <span style='color:#4CAF50'>{flight_emissions:.2f}</span> tonnes CO₂e
                 </div>
             """, unsafe_allow_html=True)
 
