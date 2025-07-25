@@ -606,7 +606,7 @@ with tabs[3]:
     st.markdown("<hr style='margin: 30px 0;'>", unsafe_allow_html=True)
 
     st.markdown("<div class='main-title'>Let's break it down...</div>", unsafe_allow_html=True)
-    st.markdown(f"<h6 style='font-size: 10px;'>Your footprint is equal to <b>{total_emissions} tCO₂e</b></h6>", unsafe_allow_html=True)
+    st.markdown(f"<h6 style='font-size: 20px;'>Your footprint is equal to <b>{total_emissions} tCO₂e</b></h6>", unsafe_allow_html=True)
 
     colA, colB, colC = st.columns(3)
     with colA:
