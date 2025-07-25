@@ -85,10 +85,10 @@ image_base64 = get_base64_image("footprint.png")
 st.set_page_config(page_title="🇵🇰 Carbon Footprint Calculator", layout="wide")
 st.title("🇵🇰 Pakistan Carbon Footprint Calculator")
 
-st.markdown("""
-<h2>Welcome to your personal carbon footprint dashboard!</h2> 
-<h4>Fill in details across the tabs to get an estimate of your annual CO₂e emissions.</h4>
-""")
+st.markdown(
+     "<h2>Welcome to your personal carbon footprint dashboard!</h2>" 
+     "<h3 style='color: gray;'>Fill in details across the tabs to get an estimate of your annual CO₂e emissions.</h3>"
+     "<h4 style='color: gray;'>This tool is designed to help you understand your impact on the environment and find ways to reduce it.</h4>",)
 
 tabs = st.tabs(["Household", "Transport", "Secondary", "Total"])
 user_data = {}
