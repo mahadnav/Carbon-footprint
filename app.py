@@ -60,6 +60,13 @@ def tabs_style():
             border-bottom: 0.1rem solid #4CAF50 !important;
         }
                        
+        .stTabs [aria-selected="true"]::after {
+            content: none !important;
+            height: 0px !important;
+            border: none !important;
+            background: none !important;
+        }
+                        
         .stTabs::-webkit-scrollbar {
             height: 1px;
         }
