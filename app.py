@@ -78,11 +78,11 @@ def tabs_style():
 
 def calculate_emissions(data):
     factors = {
-        'electricity': 0.5004,
-        'gas': 2.2,
-        'fuel': 2.7,
-        'bus': 0.1234,
-        'flights': 0.15,
+        'electricity': 0.5004, # kg CO2e per kWh
+        'gas': 2.2, # kg CO2e per m³
+        'fuel': 2.7, # kg CO2e per litre of petrol
+        'bus': 0.1234, # kg CO2e per km per passenger
+        'flights': 0.115, # kg CO2e per km per passenger
     }
 
     electricity = data.get('electricity', 0)
