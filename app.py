@@ -35,6 +35,7 @@ def tabs_style():
         <style>
 
         .stTabs [data-baseweb="tab"] {
+            padding: 10px 20px;
             background-color: #ffffff;
             border-radius: 10px 10px 0 0;
             margin-right: 2px;
@@ -42,7 +43,7 @@ def tabs_style():
         }
                        
         .stTabs [data-baseweb="tab"] > div:hover {
-            font-size: 17px !important;
+            font-size: 18px !important;
             transition: font-size 0.2s ease-in-out;
         }
 
