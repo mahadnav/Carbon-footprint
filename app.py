@@ -43,12 +43,11 @@ def tabs_style():
         }
                        
         .stTabs [data-baseweb="tab"] > div:hover {
-            font-size: 18px !important;
+            font-size: 16px !important;
             transition: font-size 0.3s ease-in-out;
         }
 
         .stTabs [data-baseweb="tab"]:hover {
-            font-size: 18px;
             background-color: #4CAF50;
             color: white;         
         }
