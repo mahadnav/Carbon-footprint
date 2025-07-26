@@ -35,11 +35,11 @@ def tabs_style():
         <style>
 
         .stTabs [data-baseweb="tab"] {
-            padding: 10px 10px;
+            padding: 10px 20px;
             background-color: #ffffff;
             border-radius: 10px 10px 10px 10px;
-            margin-right: 2px;
-            transition: all 0.2s ease-in-out;
+            margin-right: 5px;
+            transition: all 0.3s ease-in-out;
         }
                        
         .stTabs [data-baseweb="tab"] > div:hover {
