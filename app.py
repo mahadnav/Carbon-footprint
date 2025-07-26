@@ -34,8 +34,8 @@ def tabs_style():
     return st.markdown("""
         <style>
                        
-        .stTabs [data-baseweb="tab-list"] button [data-testid="stMarkdownContainer"] p {
-            font-size: 18px; /* Adjust this value to your desired font size */
+        .stTabs [aria-selected="true"] button [data-testid="stMarkdownContainer"] p {
+            font-size: 18px; 
         }
 
         .stTabs [data-baseweb="tab"] {
