@@ -39,9 +39,7 @@ def tabs_style():
             background-color: #ffffff;
             border-radius: 10px 10px 10px 10px;
             margin-right: 1px;
-            white-space: pre-wrap;
-            gap: 1px;
-            font-size: 18px;
+            gap: 5px;
             transition: all 0.3s ease-in-out;
         }
                        
