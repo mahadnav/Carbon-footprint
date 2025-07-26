@@ -87,7 +87,7 @@ def selectbox_style():
         }
 
         .stSelectbox > div:hover {
-            border-color: #45a049 !important;
+            border-color: none !important;
             box-shadow: 0 4px 10px rgba(76, 175, 80, 0.15);
         }
 
