@@ -116,14 +116,14 @@ def selectbox_style():
         }
 
         .stSelectbox input {
-            color: #999 !important;
+            color: #4CAF50 !important;
             font-size: 16px !important;
         }
 
         .stSelectbox svg {
             stroke: #4CAF50 !important;
-            width: 18px !important;
-            height: 18px !important;
+            width: 20px !important;
+            height: 20px !important;
         }
         
         .stSelectbox > div > div > svg {
