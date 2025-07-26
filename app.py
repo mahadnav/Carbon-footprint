@@ -60,10 +60,13 @@ def tabs_style():
             box-shadow: none !important;
             border-bottom: none !important;
         }
-                       
-        .stTabs [aria-selected="true"]::after {
-            content: none !important;
-            display: none !important;
+        
+        div[data-baseweb="tab-highlight"] {
+            background-color: transparent ;
+        }
+
+        div[data-baseweb="tab-border"] {
+            display: none ;
         }
                        
         .stTabs::-webkit-scrollbar-thumb {
