@@ -84,7 +84,6 @@ def selectbox_style():
             border: none !important;
             background-color: none !important;
             padding: 6px 10px !important;
-            transition: all 0.2s ease-in-out;
         }
 
         .stSelectbox > div:hover {
