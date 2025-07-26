@@ -33,14 +33,6 @@ def expander_style():
 def tabs_style():
     return st.markdown("""
         <style>
-        /* Make tabs responsive and centered */
-        .stTabs {
-            overflow-x: auto;
-            white-space: nowrap;
-            display: flex;
-            flex-wrap: nowrap;
-            justify-content: left;
-        }
 
         .stTabs [data-baseweb="tab"] {
             font-size: 16px;
