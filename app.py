@@ -37,11 +37,6 @@ def calculate_emissions(data):
         'fuel': 2.7,
         'bus': 0.1234,
         'flights': 0.15,
-        'food': 0.0016,
-        'clothing': 0.007,
-        'electronics': 0.0017,
-        'furniture': 0.0014,
-        'recreation': 0.0009
     }
 
     electricity = data.get('electricity', 0)
@@ -404,7 +399,8 @@ with tabs[2]:
 
     # --- EPA Emission Factors ---
     diet_emission_factors = {
-        "Meat-heavy": 3.3,
+        "Meat-heavy (mutton/beef)": 3.3,
+        "Meat-heavy (chicken)": 1.9,
         "Average (mixed)": 2.5,
         "Vegetarian": 1.7,
         "Vegan": 1.5
@@ -487,24 +483,28 @@ with tabs[2]:
         user_data['food'] = diet_emission_factors[st.session_state['diet_type']] * 1000  # convert to kg
 
     # --- Electronics ---
+    electronic_emission = 0.0017
     expander_style()
     with st.expander("**📱 How many new electronic devices did you purchase this year?**"):
         devices = st.slider("Number of new devices (phones, laptops, etc.):", 0, 10, 2, key="device_count")
         user_data['electronics'] = devices * device_emission_factor * 1000  # convert to kg
 
     # --- Clothing ---
+    clothing_emission = 0.007
     expander_style()
     with st.expander("**👕 Clothing Spending**"):
         choice = st.selectbox("Select your yearly spending on clothing:", list(spending_ranges.keys()), index=0, key="clothing_range")
-        user_data['clothing'] = spending_ranges[choice] * emission_per_pkr
+        user_data['clothing'] = spending_ranges[choice] * clothing_emission
 
     # --- Furniture ---
+    furniture_emission = 0.0014
     expander_style()
     with st.expander("**🪑 Furniture Spending**"):
         choice = st.selectbox("Select your yearly spending on furniture:", list(spending_ranges.keys()), index=0, key="furniture_range")
         user_data['furniture'] = spending_ranges[choice] * emission_per_pkr
 
     # --- Recreation ---
+    recreation_emission = 0.0009
     expander_style()
     with st.expander("**🎮 Recreation Spending**"):
         choice = st.selectbox("Select your yearly spending on recreation (travel, entertainment):", list(spending_ranges.keys()), index=0, key="recreation_range")
