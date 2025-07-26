@@ -588,7 +588,7 @@ with tabs[2]:
     electronic_emission = 0.0017
     expander_style()
     with st.expander("**📱 How many new electronic devices did you purchase this year?**"):
-        devices = st.slider("Number of new devices (phones, laptops, etc.):", 0, 10, 2, key="device_count")
+        devices = st.slider("Number of new devices (phones, laptops, etc.):", 0, 10, 0, key="device_count")
         user_data['electronics'] = devices * device_emission_factor * 1000  # convert to kg
 
     # --- Clothing ---
