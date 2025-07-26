@@ -100,6 +100,20 @@ def selectbox_style():
             color: #222 !important;
         }
 
+        /* Remove focus border from inner div when active */
+        .stSelectbox [data-baseweb="select"] > div:focus {
+            outline: none !important;
+            box-shadow: none !important;
+            border: none !important;
+        }
+
+        /* Remove hover/focus ring from input */
+        .stSelectbox input:focus {
+            outline: none !important;
+            box-shadow: none !important;
+            border: none !important;
+        }
+
         /* Dropdown options */
         .stSelectbox [data-baseweb="option"] {
             font-size: 15px !important;
@@ -119,15 +133,9 @@ def selectbox_style():
             width: 20px !important;
             height: 20px !important;
         }
-
-        /* Remove red focus border / outline */
-        .stSelectbox [data-baseweb="select"]:focus {
-            outline: none !important;
-            box-shadow: none !important;
-            border: none !important;
-        }
         </style>
     """, unsafe_allow_html=True)
+
 
 
 def calculate_emissions(data):
