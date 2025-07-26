@@ -123,7 +123,7 @@ def selectbox_style():
             stroke: #4CAF50 !important;
             width: 20px !important;
             height: 20px !important;
-            transition: transform 0.3s ease-in-out;
+            transition: transform 0.5s ease-in-out;
         }
         
         .stSelectbox > div > div > svg {
