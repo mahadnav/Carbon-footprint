@@ -66,7 +66,7 @@ def tabs_style():
             left: 0;
             right: 0;
             height: 3px;
-            background-color: #4CAF50;
+            background-color: #ffffff;
             border-radius: 0 0 10px 10px;
             transition: width 0.3s ease;
         }
