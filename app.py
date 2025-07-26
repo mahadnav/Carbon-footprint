@@ -56,6 +56,7 @@ def tabs_style():
             background-color: #4CAF50 !important;
             color: white !important;
             font-weight: bold;
+            font-size: 18px !important;
             box-shadow: none !important;
             border-bottom: none !important;
         }
