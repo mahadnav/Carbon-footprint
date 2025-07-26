@@ -87,7 +87,6 @@ def selectbox_style():
         }
 
         .stSelectbox > div:hover {
-            border-color: none !important;
             box-shadow: 0 4px 10px rgba(76, 175, 80, 0.15);
         }
 
@@ -114,7 +113,7 @@ def selectbox_style():
 
         /* Dropdown options */
         .stSelectbox [data-baseweb="option"] {
-            font-size: 15px !important;
+            font-size: 16px !important;
             color: #333 !important;
             padding: 10px 14px !important;
         }
@@ -122,14 +121,14 @@ def selectbox_style():
         /* Placeholder styling */
         .stSelectbox input {
             color: #999 !important;
-            font-size: 15px !important;
+            font-size: 18px !important;
         }
 
         /* Green dropdown arrow */
         .stSelectbox svg {
             stroke: #4CAF50 !important;
-            width: 20px !important;
-            height: 20px !important;
+            width: 30px !important;
+            height: 30px !important;
         }
         </style>
     """, unsafe_allow_html=True)
