@@ -17,7 +17,7 @@ def expander_style():
         }
 
         details:hover summary {
-            color: #2E8B57 !important; /* Hover color */
+            color: #2E8B57 !important;
             cursor: pointer;
         }
 
@@ -44,7 +44,7 @@ def tabs_style():
                        
         .stTabs [data-baseweb="tab"] > div:hover {
             font-size: 18px !important;
-            transition: font-size 0.5s ease-in-out;
+            transition: font-size 0.4s ease-in-out;
         }
 
         .stTabs [data-baseweb="tab"]:hover {
