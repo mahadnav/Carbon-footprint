@@ -93,9 +93,8 @@ def selectbox_style():
         /* Selected text styling */
         .stSelectbox div[data-baseweb="select"] > div:first-child {
             background-color: #fcfcfc;
-            border-color: #4CAF50;
             border-radius: 10px;
-            border: 2px solid #4CAF50;
+            border: 1.2px solid #4CAF50;
         }
 
         .stSelectbox [data-baseweb="select"] > div:focus {
