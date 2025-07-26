@@ -68,7 +68,7 @@ def tabs_style():
             height: 3px;
             background-color: #ffffff;
             border-radius: 0 0 10px 10px;
-            transition: width 0.3s ease;
+            transition: width 1s ease;
         }
         .stTabs::-webkit-scrollbar {
             height: 1px;
