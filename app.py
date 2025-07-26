@@ -78,7 +78,7 @@ def tabs_style():
 def selectbox_style():
     st.markdown("""
         <style>
-        /* Container for the entire selectbox */
+        /* Outer container */
         .stSelectbox > div {
             border-radius: 12px !important;
             border: 1px solid #4CAF50 !important;
@@ -88,40 +88,47 @@ def selectbox_style():
             transition: all 0.2s ease-in-out;
         }
 
-        /* On hover - soft highlight */
         .stSelectbox > div:hover {
             border-color: #45a049 !important;
             box-shadow: 0 4px 10px rgba(76, 175, 80, 0.15);
         }
 
-        /* Selected option */
+        /* Selected text styling */
         .stSelectbox [data-baseweb="select"] {
             font-size: 16px !important;
             font-weight: 500 !important;
             color: #222 !important;
         }
 
-        /* Options in dropdown */
+        /* Dropdown options */
         .stSelectbox [data-baseweb="option"] {
             font-size: 15px !important;
             color: #333 !important;
             padding: 10px 14px !important;
         }
 
-        /* Placeholder (before selection) */
+        /* Placeholder styling */
         .stSelectbox input {
             color: #999 !important;
             font-size: 15px !important;
         }
 
-        /* Remove default arrow styling */
+        /* Green dropdown arrow */
         .stSelectbox svg {
             stroke: #4CAF50 !important;
             width: 20px !important;
             height: 20px !important;
         }
+
+        /* Remove red focus border / outline */
+        .stSelectbox [data-baseweb="select"]:focus {
+            outline: none !important;
+            box-shadow: none !important;
+            border: none !important;
+        }
         </style>
     """, unsafe_allow_html=True)
+
 
 def calculate_emissions(data):
     factors = {
