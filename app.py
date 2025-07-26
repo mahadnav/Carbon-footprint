@@ -33,12 +33,24 @@ def expander_style():
 def tabs_style():
     return st.markdown("""
     <style>
-    .stTabs {
-        background-color: #f0f0f0;
-        color: #1B5E20;
-        border-radius: 8px;
-        padding: 10px;
-    }
+    details summary {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #333;
+            transition: color 0.2s ease;
+        }
+
+        details:hover summary {
+            color: #2E8B57 !important; /* Hover color */
+            cursor: pointer;
+        }
+
+        details {
+            margin-bottom: 16px;
+            border-radius: 6px;
+            border: 1px solid #eee;
+            padding: 5px;
+        }
     </style>
     """, unsafe_allow_html=True)
 
@@ -117,12 +129,11 @@ st.markdown("""
     </div>
 """, unsafe_allow_html=True)
 
-         
+tabs_style()         
 tabs = st.tabs(["Household", "Transport", "Secondary", "Total"])
 user_data = {}
 
 # --- Energy Tab ---
-tabs_style()  
 with tabs[0]:
     st.markdown(
         "<h2 style='font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem;'>⚡ Energy Emissions</h2>"
