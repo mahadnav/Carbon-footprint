@@ -78,27 +78,47 @@ def tabs_style():
 def selectbox_style():
     st.markdown("""
         <style>
-        /* Selectbox container */
+        /* Container for the entire selectbox */
         .stSelectbox > div {
-            border-radius: 8px !important;
+            border-radius: 12px !important;
             border: 1px solid #4CAF50 !important;
-            background-color: #f5f5f5 !important;
-            padding: 4px 8px !important;
+            background-color: #f9f9f9 !important;
+            padding: 6px 10px !important;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+            transition: all 0.2s ease-in-out;
         }
+
+        /* On hover - soft highlight */
+        .stSelectbox > div:hover {
+            border-color: #45a049 !important;
+            box-shadow: 0 4px 10px rgba(76, 175, 80, 0.15);
+        }
+
         /* Selected option */
         .stSelectbox [data-baseweb="select"] {
-            font-size: 15px !important;
+            font-size: 16px !important;
+            font-weight: 500 !important;
             color: #222 !important;
         }
-        /* Dropdown options */
+
+        /* Options in dropdown */
         .stSelectbox [data-baseweb="option"] {
             font-size: 15px !important;
-            color: #222 !important;
+            color: #333 !important;
+            padding: 10px 14px !important;
         }
-        /* Placeholder text */
+
+        /* Placeholder (before selection) */
         .stSelectbox input {
-            color: #888 !important;
+            color: #999 !important;
             font-size: 15px !important;
+        }
+
+        /* Remove default arrow styling */
+        .stSelectbox svg {
+            stroke: #4CAF50 !important;
+            width: 20px !important;
+            height: 20px !important;
         }
         </style>
     """, unsafe_allow_html=True)
