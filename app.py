@@ -55,6 +55,10 @@ def tabs_style():
             font-weight: bold;
             border-bottom: 0.3rem solid #4CAF50 !important;
         }
+        
+        .stTabs [data-baseweb="tab"] {
+        border-bottom: none !important;
+        }
 
         /* Scroll bar for overflow on small screens */
         .stTabs::-webkit-scrollbar {
