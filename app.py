@@ -38,7 +38,6 @@ def tabs_style():
         color: #1B5E20;
         border-radius: 8px;
         padding: 10px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
     </style>
     """, unsafe_allow_html=True)
