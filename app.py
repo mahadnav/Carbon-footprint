@@ -62,11 +62,11 @@ def tabs_style():
 
         /* Scroll bar for overflow on small screens */
         .stTabs::-webkit-scrollbar {
-            height: 2px;
+            height: 1px;
         }
         .stTabs::-webkit-scrollbar-thumb {
             background: #ccc;
-            border-radius: 10px;
+            border-radius: 1px;
         }
         </style>
     """, unsafe_allow_html=True)
