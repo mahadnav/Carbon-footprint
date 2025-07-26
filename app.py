@@ -75,6 +75,34 @@ def tabs_style():
         </style>
     """, unsafe_allow_html=True)
 
+def selectbox_style():
+    st.markdown("""
+        <style>
+        /* Selectbox container */
+        .stSelectbox > div {
+            border-radius: 8px !important;
+            border: 1px solid #4CAF50 !important;
+            background-color: #f5f5f5 !important;
+            padding: 4px 8px !important;
+        }
+        /* Selected option */
+        .stSelectbox [data-baseweb="select"] {
+            font-size: 15px !important;
+            color: #222 !important;
+        }
+        /* Dropdown options */
+        .stSelectbox [data-baseweb="option"] {
+            font-size: 15px !important;
+            color: #222 !important;
+        }
+        /* Placeholder text */
+        .stSelectbox input {
+            color: #888 !important;
+            font-size: 15px !important;
+        }
+        </style>
+    """, unsafe_allow_html=True)
+
 def calculate_emissions(data):
     factors = {
         'electricity': 0.5004, # kg CO2e per kWh
@@ -538,6 +566,7 @@ with tabs[2]:
     clothing_emission = 0.007
     expander_style()
     with st.expander("**👕 Clothing Spending**"):
+        selectbox_style()
         choice = st.selectbox("Select your yearly spending on clothing:", list(spending_ranges.keys()), index=0, key="clothing_range")
         user_data['clothing'] = spending_ranges[choice] * clothing_emission
 
@@ -545,6 +574,7 @@ with tabs[2]:
     furniture_emission = 0.0014
     expander_style()
     with st.expander("**🪑 Furniture Spending**"):
+        selectbox_style()
         choice = st.selectbox("Select your yearly spending on furniture:", list(spending_ranges.keys()), index=0, key="furniture_range")
         user_data['furniture'] = spending_ranges[choice] * emission_per_pkr
 
@@ -552,6 +582,7 @@ with tabs[2]:
     recreation_emission = 0.0009
     expander_style()
     with st.expander("**🎮 Recreation Spending**"):
+        selectbox_style()
         choice = st.selectbox("Select your yearly spending on recreation (travel, entertainment):", list(spending_ranges.keys()), index=0, key="recreation_range")
         user_data['recreation'] = spending_ranges[choice] * emission_per_pkr
 
