@@ -53,7 +53,7 @@ def tabs_style():
             background-color: #4CAF50 !important;
             color: white !important;
             font-weight: bold;
-            border-radius: 10px 10px 0 0 !important;
+            font-size: 20px;
             border-bottom: 0.1rem solid #4CAF50 !important;
         }
         
