@@ -140,7 +140,7 @@ with tabs[0]:
         household_emissions = calculate_emissions(user_data)[0]['Household']
         st.markdown(
         f"<h4 style='color: #444; text-align: center; margin-top: 2rem;'>"
-        f"⚡ Your Energy Carbon Footprint: <span style='color:#d43f3a'>{household_emissions:.2f}</span> tonnes CO₂e</h4>",
+        f"⚡ Your Energy Carbon Footprint: <span style='color:#d43f3a'>{household_emissions:.2f}</span> tCO₂e</h4>",
         unsafe_allow_html=True
     )
 
@@ -176,7 +176,7 @@ with tabs[1]:
             car_emissions = calculate_emissions(user_data)[0]['Cars']
             st.markdown(f"""
                 <div style='font-size: 1.2rem; font-weight: normal;'>
-                    Estimated Emissions for Your Car Travel: <span style='color:#4CAF50'>{car_emissions:.2f}</span> tonnes CO₂e
+                    Estimated Emissions for Your Car Travel: <span style='color:#4CAF50'>{car_emissions:.2f}</span> tCO₂e
                 </div>
             """, unsafe_allow_html=True)
 
@@ -203,7 +203,7 @@ with tabs[1]:
             bike_emissions = calculate_emissions(user_data)[0]['Motorcycle']
             st.markdown(f"""
                 <div style='font-size: 1.2rem; font-weight: normal;'>
-                    Estimated Emissions for Your Motorcycle Travel: <span style='color:#4CAF50'>{bike_emissions:.2f}</span> tonnes CO₂e
+                    Estimated Emissions for Your Motorcycle Travel: <span style='color:#4CAF50'>{bike_emissions:.2f}</span> tCO₂e
                 </div>
             """, unsafe_allow_html=True)
 
@@ -222,7 +222,7 @@ with tabs[1]:
             bus_emissions = calculate_emissions(user_data)[0]['Bus']
             st.markdown(f"""
                 <div style='font-size: 1.2rem; font-weight: normal;'>
-                    Estimated Emissions for Your Bus Travel: <span style='color:#4CAF50'>{bus_emissions:.2f}</span> tonnes CO₂e
+                    Estimated Emissions for Your Bus Travel: <span style='color:#4CAF50'>{bus_emissions:.2f}</span> tCO₂e
                 </div>
             """, unsafe_allow_html=True)
 
@@ -381,7 +381,7 @@ with tabs[1]:
 
             st.markdown(f"""
                 <div style='font-size: 1.2rem; font-weight: normal;'>
-                    Estimated Emissions for Your Air Travel: <span style='color:#4CAF50'>{flight_emissions:.2f}</span> tonnes CO₂e
+                    Estimated Emissions for Your Air Travel: <span style='color:#4CAF50'>{flight_emissions:.2f}</span> tCO₂e
                 </div>
             """, unsafe_allow_html=True)
 
@@ -390,7 +390,7 @@ with tabs[1]:
     vehicle_emissions = car_emissions + bike_emissions + bus_emissions + flight_emissions
     st.markdown(
         f"<h4 style='color: #444; text-align: center; margin-top: 2rem;'>"
-        f"🚗 Your Transportation Carbon Footprint: <span style='color:#d43f3a'>{vehicle_emissions:.2f}</span> tonnes CO₂e</h4>",
+        f"🚗 Your Transportation Carbon Footprint: <span style='color:#d43f3a'>{vehicle_emissions:.2f}</span> tCO₂e</h4>",
         unsafe_allow_html=True
     )
 
@@ -514,7 +514,7 @@ with tabs[2]:
     sec_emissions = calculate_emissions(user_data)[0]['Secondary']
     st.markdown(
         f"<h4 style='color: #444; text-align: center; margin-top: 2rem;'>"
-        f"🛒 Your Secondary Carbon Footprint: <span style='color:#d43f3a'>{sec_emissions:.2f}</span> tonnes CO₂e</h4>",
+        f"🛒 Your Secondary Carbon Footprint: <span style='color:#d43f3a'>{sec_emissions:.2f}</span> tCO₂e</h4>",
         unsafe_allow_html=True
     )
 
@@ -633,13 +633,13 @@ with tabs[3]:
             <div style='height: 17px;'></div>
             <div class='black-box'>
                 <div style='font-size: 16px;'>National Average Carbon Footprint</div>
-                <div style='font-size: 36px; font-weight: bold;'>2.1 tonnes CO₂e</div>
+                <div style='font-size: 36px; font-weight: bold;'>2.1 tCO₂e</div>
                 <div style='font-size: 16px;'>per capita</div>
             </div>
             <div style='height: 20px;'></div>
             <div class='black-box'>
                 <div style='font-size: 16px;'>Global Average</div>
-                <div style='font-size: 36px; font-weight: bold;'>6.7 tonnes CO₂e</div>
+                <div style='font-size: 36px; font-weight: bold;'>6.7 tCO₂e</div>
                 <div style='font-size: 16px;'>per capita</div>
             </div>
         """, unsafe_allow_html=True)
