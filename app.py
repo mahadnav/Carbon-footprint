@@ -57,8 +57,7 @@ def tabs_style():
         }
         
         .stTabs [aria-selected="true"]::after {
-        background-color: #4CAF50 !important;
-        content: none;
+            content: none;
         }
 
         /* Scroll bar for overflow on small screens */
