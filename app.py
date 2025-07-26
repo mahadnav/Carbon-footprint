@@ -53,7 +53,7 @@ def tabs_style():
             background-color: #4CAF50 !important;
             color: white !important;
             font-weight: bold;
-            border-bottom: 0.3rem solid #4CAF50 !important;
+            border-bottom: 0.1rem solid #4CAF50 !important;
         }
         
         .stTabs [aria-selected="true"]::after {
