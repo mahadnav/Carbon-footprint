@@ -33,6 +33,10 @@ def expander_style():
 def tabs_style():
     return st.markdown("""
         <style>
+                       
+        .stTabs [data-baseweb="tab-list"] button [data-testid="stMarkdownContainer"] p {
+            font-size: 18px; /* Adjust this value to your desired font size */
+        }
 
         .stTabs [data-baseweb="tab"] {
             padding: 10px 20px;
@@ -56,7 +60,6 @@ def tabs_style():
             background-color: #4CAF50 !important;
             color: white !important;
             font-weight: bold;
-            font-size: 18px !important;
             box-shadow: none !important;
             border-bottom: none !important;
         }
