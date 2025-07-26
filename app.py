@@ -35,7 +35,7 @@ def tabs_style():
         <style>
 
         .stTabs [data-baseweb="tab"] {
-            font-size: 16px;
+            font-size: 18px;
             padding: 10px 20px;
             color: #333;
             background-color: #ffffff;
