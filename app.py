@@ -140,7 +140,7 @@ with tabs[0]:
         household_emissions = calculate_emissions(user_data)[0]['Household']
         st.markdown(
         f"<h4 style='color: #444; text-align: center; margin-top: 2rem;'>"
-        f"⚡ Your Energy Carbon Footprint: <span style='color:#d43f3a'>{household_emissions:.2f}</span> tCO₂e</h4>",
+        f"⚡ Your Energy Carbon Footprint is <span style='color:#d43f3a'>{household_emissions:.2f}</span> tCO₂e</h4>",
         unsafe_allow_html=True
     )
 
@@ -390,7 +390,7 @@ with tabs[1]:
     vehicle_emissions = car_emissions + bike_emissions + bus_emissions + flight_emissions
     st.markdown(
         f"<h4 style='color: #444; text-align: center; margin-top: 2rem;'>"
-        f"🚗 Your Transportation Carbon Footprint: <span style='color:#d43f3a'>{vehicle_emissions:.2f}</span> tCO₂e</h4>",
+        f"🚗 Your Transportation Carbon Footprint is <span style='color:#d43f3a'>{vehicle_emissions:.2f}</span> tCO₂e</h4>",
         unsafe_allow_html=True
     )
 
@@ -514,7 +514,7 @@ with tabs[2]:
     sec_emissions = calculate_emissions(user_data)[0]['Secondary']
     st.markdown(
         f"<h4 style='color: #444; text-align: center; margin-top: 2rem;'>"
-        f"🛒 Your Secondary Carbon Footprint: <span style='color:#d43f3a'>{sec_emissions:.2f}</span> tCO₂e</h4>",
+        f"🛒 Your Secondary Carbon Footprint is <span style='color:#d43f3a'>{sec_emissions:.2f}</span> tCO₂e</h4>",
         unsafe_allow_html=True
     )
 
