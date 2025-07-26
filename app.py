@@ -50,10 +50,10 @@ def tabs_style():
         }
 
         .stTabs [aria-selected="true"] {
-            background-color: #4CAF50 !important; /* green when selected */
+            background-color: #4CAF50 !important;
             color: white !important;
             font-weight: bold;
-            border-bottom: 3px solid #4CAF50;
+            border-bottom: 0.3rem solid #4CAF50 !important;
         }
 
         /* Scroll bar for overflow on small screens */
