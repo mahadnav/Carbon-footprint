@@ -122,6 +122,7 @@ tabs = st.tabs(["Household", "Transport", "Secondary", "Total"])
 user_data = {}
 
 # --- Energy Tab ---
+tabs_style()  
 with tabs[0]:
     st.markdown(
         "<h2 style='font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem;'>⚡ Energy Emissions</h2>"
