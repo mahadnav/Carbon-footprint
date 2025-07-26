@@ -87,10 +87,9 @@ def selectbox_style():
         }
 
         .stSelectbox > div:hover {
-            box-shadow: none;
+            box-shadow: none;       
         }
 
-        /* Selected text styling */
         .stSelectbox div[data-baseweb="select"] > div:first-child {
             background-color: #fcfcfc;
             border-radius: 10px;
@@ -124,6 +123,7 @@ def selectbox_style():
             stroke: #4CAF50 !important;
             width: 20px !important;
             height: 20px !important;
+            transition: transform 0.3s ease-in-out;
         }
         
         .stSelectbox > div > div > svg {
