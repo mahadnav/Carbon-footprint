@@ -72,7 +72,7 @@ def tabs_style():
         }
                        
         .stTabs [data-baseweb="tab"]:hover::after {
-            width: 100%;
+            width: 0%;
             background-color: #4CAF50;
         }
                        
