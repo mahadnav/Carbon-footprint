@@ -30,6 +30,19 @@ def expander_style():
         </style>
         """, unsafe_allow_html=True)
 
+def tabs_style():
+    return st.markdown("""
+    <style>
+    .stTabs {
+        background-color: #f0f0f0;
+        color: #1B5E20;
+        border-radius: 8px;
+        padding: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    </style>
+    """, unsafe_allow_html=True)
+
 def calculate_emissions(data):
     factors = {
         'electricity': 0.5004,
@@ -88,7 +101,6 @@ def user_percentile(total_emissions):
 
     return user_percentile
 
-# Use your uploaded image path
 image_base64 = get_base64_image("footprint.png")
 
 
@@ -106,6 +118,8 @@ st.markdown("""
     </div>
 """, unsafe_allow_html=True)
 
+
+tabs_style()           
 tabs = st.tabs(["Household", "Transport", "Secondary", "Total"])
 user_data = {}
 
