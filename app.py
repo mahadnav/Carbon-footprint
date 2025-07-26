@@ -659,7 +659,7 @@ with tabs[3]:
             <div style='height: 20px;'></div>
 
             <div class='grey-box'>
-                <div style='font-size: 16px;'>You're amongst Pakistan's top</div>
+                <div style='font-size: 16px;'>You're among Pakistan's top</div>
                 <div style='font-size: 36px; font-weight: bold;'>
                     {round(user_percentile(total_emissions), 1)}
                     <span style='font-size: 24px;'>%</span>
