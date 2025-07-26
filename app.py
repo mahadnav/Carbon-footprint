@@ -32,26 +32,47 @@ def expander_style():
 
 def tabs_style():
     return st.markdown("""
-    <style>
-    details summary {
-            font-size: 1.2rem;
-            font-weight: bold;
+        <style>
+        /* Make tabs responsive and centered */
+        .stTabs {
+            overflow-x: auto;
+            white-space: nowrap;
+            display: flex;
+            flex-wrap: nowrap;
+            justify-content: center;
+        }
+
+        .stTabs [data-baseweb="tab"] {
+            font-size: 16px;
+            padding: 10px 20px;
             color: #333;
-            transition: color 0.2s ease;
+            background-color: #f5f5f5;
+            border-radius: 10px 10px 0 0;
+            margin-right: 8px;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
-        details:hover summary {
-            color: #2E8B57 !important; /* Hover color */
-            cursor: pointer;
+        .stTabs [data-baseweb="tab"]:hover {
+            background-color: #4CAF50; /* green on hover */
+            color: white;
         }
 
-        details {
-            margin-bottom: 16px;
-            border-radius: 6px;
-            border: 1px solid #eee;
-            padding: 5px;
+        .stTabs [aria-selected="true"] {
+            background-color: #4CAF50 !important; /* green when selected */
+            color: white !important;
+            font-weight: bold;
+            border-bottom: 3px solid #4CAF50;
         }
-    </style>
+
+        /* Scroll bar for overflow on small screens */
+        .stTabs::-webkit-scrollbar {
+            height: 6px;
+        }
+        .stTabs::-webkit-scrollbar-thumb {
+            background: #ccc;
+            border-radius: 10px;
+        }
+        </style>
     """, unsafe_allow_html=True)
 
 def calculate_emissions(data):
