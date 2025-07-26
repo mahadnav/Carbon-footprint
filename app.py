@@ -45,7 +45,7 @@ def tabs_style():
         }
 
         .stTabs [data-baseweb="tab"]:hover {
-            background-color: #4CAF50; /* green on hover */
+            background-color: #4CAF50;
             color: white;
         }
 
@@ -59,8 +59,17 @@ def tabs_style():
         .stTabs [aria-selected="true"]::after {
             content: none;
         }
-
-        /* Scroll bar for overflow on small screens */
+        .stTabs [data-baseweb="tab"]::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background-color: #4CAF50;
+            border-radius: 0 0 10px 10px;
+            transition: width 0.3s ease;
+        }
         .stTabs::-webkit-scrollbar {
             height: 1px;
         }
