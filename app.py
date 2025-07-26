@@ -81,7 +81,7 @@ def selectbox_style():
                 
         .stSelectbox > div {
             border-radius: 12px !important;
-            border: 1px solid #4CAF50 !important;
+            border: none !important;
             background-color: none !important;
             padding: 6px 10px !important;
             transition: all 0.2s ease-in-out;
