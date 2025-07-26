@@ -45,6 +45,7 @@ def tabs_style():
         }
 
         .stTabs [data-baseweb="tab"]:hover {
+            font-size: 18px;
             background-color: #4CAF50;
             color: white;
         }
@@ -53,7 +54,6 @@ def tabs_style():
             background-color: #4CAF50 !important;
             color: white !important;
             font-weight: bold;
-            font-size: 20px;
             border-bottom: 0.1rem solid #4CAF50 !important;
         }
         
