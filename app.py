@@ -60,7 +60,7 @@ def tabs_style():
             content: none;
         }
         .stTabs [data-baseweb="tab"]::after {
-            content: "";
+            content: none;
             position: absolute;
             bottom: 0;
             left: 0;
