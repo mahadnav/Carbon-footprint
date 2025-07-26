@@ -78,6 +78,14 @@ def tabs_style():
 def selectbox_style():
     st.markdown("""
         <style>
+                
+        .stSelectbox > div {
+            border-radius: 12px !important;
+            border: 1px solid #4CAF50 !important;
+            background-color: none !important;
+            padding: 6px 10px !important;
+            transition: all 0.2s ease-in-out;
+        }
 
         .stSelectbox > div:hover {
             border-color: #45a049 !important;
