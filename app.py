@@ -38,7 +38,7 @@ def tabs_style():
             padding: 10px 20px;
             background-color: #ffffff;
             border-radius: 10px 10px 10px 10px;
-            margin-right: 5px;
+            margin-right: 1px;
             transition: all 0.3s ease-in-out;
         }
                        
