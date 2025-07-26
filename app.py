@@ -57,14 +57,6 @@ def tabs_style():
             background-color: #4CAF50;
             color: white;         
         }
-
-        .stTabs [aria-selected="true"] {
-            background-color: #4CAF50 !important;
-            color: white !important;
-            font-weight: bold;
-            box-shadow: none !important;
-            border-bottom: none !important;
-        }
         
         div[data-baseweb="tab-highlight"] {
             background-color: transparent !important;
