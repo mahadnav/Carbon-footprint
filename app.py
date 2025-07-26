@@ -40,7 +40,7 @@ def tabs_style():
             color: #333;
             background-color: #ffffff;
             border-radius: 10x 10px 0 0;
-            margin-right: 1px;
+            margin-right: 2px;
             transition: background-color 0.5s ease, color 0.5s ease;
         }
 
