@@ -39,7 +39,7 @@ def tabs_style():
             white-space: nowrap;
             display: flex;
             flex-wrap: nowrap;
-            justify-content: center;
+            justify-content: left;
         }
 
         .stTabs [data-baseweb="tab"] {
