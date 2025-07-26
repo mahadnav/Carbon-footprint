@@ -56,8 +56,8 @@ def tabs_style():
             border-bottom: 0.3rem solid #4CAF50 !important;
         }
         
-        .stTabs [data-baseweb="tab"] {
-        border-bottom: none !important;
+        .stTabs [aria-selected="true"]::after {
+        background-color: #4CAF50 !important;
         }
 
         /* Scroll bar for overflow on small screens */
