@@ -38,9 +38,9 @@ def tabs_style():
             font-size: 16px;
             padding: 10px 20px;
             color: #333;
-            background-color: #f5f5f5;
+            background-color: #ffffff;
             border-radius: 10px 10px 0 0;
-            margin-right: 8px;
+            margin-right: 2px;
             transition: background-color 0.3s ease, color 0.3s ease;
         }
 
