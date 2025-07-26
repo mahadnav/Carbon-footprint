@@ -86,7 +86,7 @@ def selectbox_style():
 
         /* Selected text styling */
         .stSelectbox div[data-baseweb="select"] > div:first-child {
-            background-color: #e0e0e0; /* Light gray background */
+            background-color: #fafafa;
             border-color: #4CAF50; /* Green border */
             border-radius: 5px;
         }
