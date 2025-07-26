@@ -33,13 +33,18 @@ def expander_style():
 def tabs_style():
     return st.markdown("""
         <style>
+                       
+        .stTabs > .tablist > .react-tabs__tab--selected {
+            background-color: #4CAF50;
+            color: #ffffff;
+            font-size: 18px;
+        }
 
         .stTabs [data-baseweb="tab"] {
             padding: 10px 20px;
             background-color: #ffffff;
             border-radius: 10px 10px 10px 10px;
             margin-right: 1px;
-            gap: 5px;
             transition: all 0.3s ease-in-out;
         }
                        
