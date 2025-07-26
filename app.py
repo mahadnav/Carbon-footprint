@@ -633,13 +633,13 @@ with tabs[3]:
             <div style='height: 17px;'></div>
             <div class='black-box'>
                 <div style='font-size: 16px;'>National Average Carbon Footprint</div>
-                <div style='font-size: 36px;'>2.1 tonnes CO₂e</div>
+                <div style='font-size: 36px; font-weight: bold;'>2.1 tonnes CO₂e</div>
                 <div style='font-size: 16px;'>per capita</div>
             </div>
             <div style='height: 20px;'></div>
             <div class='black-box'>
                 <div style='font-size: 16px;'>Global Average</div>
-                <div style='font-size: 36px;'>6.7 tonnes CO₂e</div>
+                <div style='font-size: 36px; font-weight: bold;'>6.7 tonnes CO₂e</div>
                 <div style='font-size: 16px;'>per capita</div>
             </div>
         """, unsafe_allow_html=True)
@@ -649,7 +649,7 @@ with tabs[3]:
             <div style='height: 17px;'></div>
             <div class='grey-box'>
                 <div style='font-size: 16px;'>Your Carbon Footprint is</div>
-                <div style='font-size: 36px;'>
+                <div style='font-size: 36px; font-weight: bold;'>
                     {round(total_emissions/6.7 * 100)}
                     <span style='font-size: 24px;'>%</span>
                 </div>
@@ -659,10 +659,11 @@ with tabs[3]:
             <div style='height: 20px;'></div>
 
             <div class='grey-box'>
-                <div style='font-size: 16px;'>You belong to Pakistan's top</div>
+                <div style='font-size: 16px;'>You're amongst Pakistan's top</div>
                 <div style='font-size: 36px; font-weight: bold;'>
                     {round(user_percentile(total_emissions), 1)}
                     <span style='font-size: 24px;'>%</span>
+                    <div style='font-size: 16px;'>emitters</div>
                 </div>
             </div>
             """, unsafe_allow_html=True)
