@@ -41,7 +41,7 @@ def tabs_style():
             background-color: #ffffff;
             border-radius: 10px 10px 0 0;
             margin-right: 2px;
-            transition: background-color 0.3s ease, color 0.3s ease;
+            transition: all 0.2s ease-in-out;
         }
 
         .stTabs [data-baseweb="tab"]:hover {
