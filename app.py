@@ -127,7 +127,7 @@ def selectbox_style():
         }
         
         .stSelectbox [data-baseweb="select"][aria-expanded="true"] svg {
-            transform: rotate(180deg);
+            transform: rotate(270deg);
         }
         </style>
     """, unsafe_allow_html=True)
