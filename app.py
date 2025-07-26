@@ -330,8 +330,8 @@ with tabs[1]:
                 st.markdown("<h5 style='text-align: left;'>Have you taken a flight this year?</h5>", unsafe_allow_html=True)
                 flights_taken = st.radio(
                     label="",
-                    options=["Yes", "No"],
-                    index=1,
+                    options=["No", "Yes"],
+                    index=0,
                     horizontal=True,  # Optional: horizontal layout
                     label_visibility="collapsed"  # Hide the default label
                 )
@@ -386,7 +386,7 @@ with tabs[1]:
             """, unsafe_allow_html=True)
 
 
-    # TOTAL EMISSIONS
+    # TOTAL TRANSPORT EMISSIONS
     vehicle_emissions = car_emissions + bike_emissions + bus_emissions + flight_emissions
     st.markdown(
         f"<h4 style='color: #444; text-align: center; margin-top: 2rem;'>"
