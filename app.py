@@ -33,12 +33,6 @@ def expander_style():
 def tabs_style():
     return st.markdown("""
         <style>
-                       
-        .stTabs > .tablist > .react-tabs__tab--selected {
-            background-color: #4CAF50;
-            color: #ffffff;
-            font-size: 18px;
-        }
 
         .stTabs [data-baseweb="tab"] {
             padding: 10px 20px;
@@ -56,6 +50,14 @@ def tabs_style():
         .stTabs [data-baseweb="tab"]:hover {
             background-color: #4CAF50;
             color: white;         
+        }
+
+        .stTabs [aria-selected="true"] {
+            background-color: #4CAF50 !important;
+            color: white !important;
+            font-weight: bold;
+            box-shadow: none !important;
+            border-bottom: none !important;
         }
         
         div[data-baseweb="tab-highlight"] {
