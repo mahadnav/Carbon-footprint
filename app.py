@@ -78,15 +78,6 @@ def tabs_style():
 def selectbox_style():
     st.markdown("""
         <style>
-        /* Outer container */
-        .stSelectbox > div {
-            border-radius: 12px !important;
-            border: 1px solid #4CAF50 !important;
-            background-color: #f9f9f9 !important;
-            padding: 6px 10px !important;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-            transition: all 0.2s ease-in-out;
-        }
 
         .stSelectbox > div:hover {
             border-color: #45a049 !important;
@@ -94,10 +85,10 @@ def selectbox_style():
         }
 
         /* Selected text styling */
-        .stSelectbox [data-baseweb="select"] {
-            font-size: 16px !important;
-            font-weight: 500 !important;
-            color: #222 !important;
+        .stSelectbox div[data-baseweb="select"] > div:first-child {
+            background-color: #e0e0e0; /* Light gray background */
+            border-color: #4CAF50; /* Green border */
+            border-radius: 5px;
         }
 
         /* Remove focus border from inner div when active */
@@ -135,8 +126,6 @@ def selectbox_style():
         }
         </style>
     """, unsafe_allow_html=True)
-
-
 
 def calculate_emissions(data):
     factors = {
