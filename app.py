@@ -59,21 +59,17 @@ def tabs_style():
         .stTabs [aria-selected="true"]::after {
             content: none;
         }
+                       
         .stTabs [data-baseweb="tab"]::after {
             content: none;
             position: absolute;
             bottom: 0;
             left: 0;
             right: 0;
-            height: 3px;
+            height: 1px;
             background-color: #ffffff;
             border-radius: 0 0 10px 10px;
             transition: width 1s ease;
-        }
-                       
-        .stTabs [data-baseweb="tab"]:hover::after {
-            width: 0%;
-            background-color: #4CAF50;
         }
                        
         .stTabs::-webkit-scrollbar {
