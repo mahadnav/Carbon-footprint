@@ -95,6 +95,7 @@ def selectbox_style():
             background-color: #fcfcfc;
             border-color: #4CAF50;
             border-radius: 10px;
+            border: 2px solid #4CAF50;
         }
 
         .stSelectbox [data-baseweb="select"] > div:focus {
