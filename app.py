@@ -43,14 +43,16 @@ def tabs_style():
             margin-right: 2px;
             transition: all 0.2s ease-in-out;
         }
+                       
+        .stTabs [data-baseweb="tab"] > div:hover {
+            font-size: 18px !important;
+            transition: font-size 0.2s ease-in-out;
+        }
 
         .stTabs [data-baseweb="tab"]:hover {
             font-size: 18px;
             background-color: #4CAF50;
-            color: white;
-            cursor: pointer;
-            font-size: 18px;
-            transition: all 0.2s ease-in-out;           
+            color: white;         
         }
 
         .stTabs [aria-selected="true"] {
