@@ -662,6 +662,7 @@ with tabs[3]:
                     {round(user_percentile(total_emissions), 1)}
                     <span style='font-size: 24px;'>%</span>
                 </div>
+            </div>
             """, unsafe_allow_html=True)
 
     st.markdown("<hr style='margin: 30px 0;'>", unsafe_allow_html=True)
