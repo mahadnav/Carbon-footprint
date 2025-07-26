@@ -61,7 +61,7 @@ def tabs_style():
         }
         
         div[data-baseweb="tab-highlight"] {
-            background-color: transparent ;
+            background-color: grey ;
         }
 
         div[data-baseweb="tab-border"] {
