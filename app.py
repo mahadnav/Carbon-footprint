@@ -663,7 +663,7 @@ with tabs[3]:
                 <div style='font-size: 36px; font-weight: bold;'>
                     {round(user_percentile(total_emissions), 1)}
                     <span style='font-size: 24px;'>%</span>
-                    <div style='font-size: 16px;'>emitters</div>
+                    <div style='font-size: 16px; font-weight: normal;'>emitters</div>
                 </div>
             </div>
             """, unsafe_allow_html=True)
