@@ -48,6 +48,9 @@ def tabs_style():
             font-size: 18px;
             background-color: #4CAF50;
             color: white;
+            cursor: pointer;
+            font-size: 18px;
+            transition: all 0.2s ease-in-out;           
         }
 
         .stTabs [aria-selected="true"] {
