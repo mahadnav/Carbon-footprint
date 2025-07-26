@@ -56,22 +56,6 @@ def tabs_style():
             font-weight: bold;
             border-bottom: 0.1rem solid #4CAF50 !important;
         }
-        
-        .stTabs [aria-selected="true"]::after {
-            content: none;
-        }
-                       
-        .stTabs [data-baseweb="tab"]::after {
-            content: none;
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background-color: #ffffff;
-            border-radius: 0 0 10px 10px;
-            transition: width 1s ease;
-        }
                        
         .stTabs::-webkit-scrollbar {
             height: 1px;
