@@ -65,7 +65,7 @@ def tabs_style():
         }
 
         div[data-baseweb="tab-border"] {
-            background-color: #fcfcfc !important;
+            background-color: #ececec !important;
         }
                        
         .stTabs::-webkit-scrollbar-thumb {
