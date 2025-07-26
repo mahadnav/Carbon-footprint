@@ -93,38 +93,33 @@ def selectbox_style():
         /* Selected text styling */
         .stSelectbox div[data-baseweb="select"] > div:first-child {
             background-color: #fcfcfc;
-            border-color: #4CAF50; /* Green border */
+            border-color: #4CAF50;
             border-radius: 10px;
         }
 
-        /* Remove focus border from inner div when active */
         .stSelectbox [data-baseweb="select"] > div:focus {
             outline: none !important;
             box-shadow: none !important;
             border: none !important;
         }
 
-        /* Remove hover/focus ring from input */
         .stSelectbox input:focus {
             outline: none !important;
             box-shadow: none !important;
             border: none !important;
         }
 
-        /* Dropdown options */
         .stSelectbox [data-baseweb="option"] {
             font-size: 16px !important;
-            color: #333 !important;
+            color: #4CAF50 !important;
             padding: 10px 14px !important;
         }
 
-        /* Placeholder styling */
         .stSelectbox input {
             color: #999 !important;
-            font-size: 18px !important;
+            font-size: 16px !important;
         }
 
-        /* Green dropdown arrow */
         .stSelectbox svg {
             stroke: #4CAF50 !important;
             width: 30px !important;
