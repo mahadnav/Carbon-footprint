@@ -117,8 +117,7 @@ st.markdown("""
     </div>
 """, unsafe_allow_html=True)
 
-
-tabs_style()           
+         
 tabs = st.tabs(["Household", "Transport", "Secondary", "Total"])
 user_data = {}
 
