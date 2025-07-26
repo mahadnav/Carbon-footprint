@@ -39,9 +39,9 @@ def tabs_style():
             padding: 10px 20px;
             color: #333;
             background-color: #ffffff;
-            border-radius: 8x 8px 0 0;
+            border-radius: 10x 10px 0 0;
             margin-right: 1px;
-            transition: background-color 0.1s ease, color 0.1s ease;
+            transition: background-color 0.5s ease, color 0.5s ease;
         }
 
         .stTabs [data-baseweb="tab"]:hover {
