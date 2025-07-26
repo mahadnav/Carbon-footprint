@@ -546,7 +546,6 @@ with tabs[3]:
                 padding: 20px;
                 border-radius: 10px;
                 height: 100%;
-                width: 80%;
             }
             .grey-box {
                 background-color: #636363;
