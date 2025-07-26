@@ -70,7 +70,7 @@ def tabs_style():
                        
         .stTabs::-webkit-scrollbar-thumb {
             background: #ccc;
-            border-radius: 8px;
+            border-radius: 4px;
         }
         </style>
     """, unsafe_allow_html=True)
