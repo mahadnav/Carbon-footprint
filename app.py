@@ -655,8 +655,10 @@ with tabs[3]:
                 </div>
                 <div style='font-size: 16px;'>of the global average</div>
             </div>
+
             <div style='height: 20px;'></div>
-            <<div class='grey-box' style='background-color: #f2f2f2; border-radius: 10px; padding: 16px; text-align: center;'>
+
+            <div class='grey-box'>
                 <div style='font-size: 16px;'>You belong to Pakistan's top</div>
                 <div style='font-size: 36px; font-weight: bold;'>
                     {round(user_percentile(total_emissions), 1)}
