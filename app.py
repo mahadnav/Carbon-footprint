@@ -70,6 +70,12 @@ def tabs_style():
             border-radius: 0 0 10px 10px;
             transition: width 1s ease;
         }
+                       
+        .stTabs [data-baseweb="tab"]:hover::after {
+            width: 100%;
+            background-color: #4CAF50;
+        }
+                       
         .stTabs::-webkit-scrollbar {
             height: 1px;
         }
