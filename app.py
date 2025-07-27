@@ -61,6 +61,7 @@ def tabs_style():
 
         .stTabs [data-baseweb="tab"]:hover {
             background-color: #4CAF50;
+            font-weight: bold;
             color: white;         
         }
 
