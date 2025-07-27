@@ -203,6 +203,18 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
+st.markdown("""
+    <script>
+    const resizeObserver = new ResizeObserver(entries => {
+        for (let entry of entries) {
+        const height = entry.contentRect.height;
+        parent.postMessage({type: 'streamlit:height', height}, '*');
+        }
+    });
+    resizeObserver.observe(document.body);
+    </script>
+    """, unsafe_allow_html=True)
+
 image_base64 = get_base64_image("footprint.png")
 
 
