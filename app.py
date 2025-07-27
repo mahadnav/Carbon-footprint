@@ -41,7 +41,8 @@ def tabs_style():
             justify-content: center;
             border-radius: 12px;
             padding: 0;
-            margin: 0;
+            margin: auto;
+            width: fit-content;
         }
 
         .stTabs [data-baseweb="tab"] {
