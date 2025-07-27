@@ -193,7 +193,7 @@ def user_percentile(total_emissions):
 st.markdown("""
     <style>
     .block-container {
-        padding-top: 0rem;
+        padding-top: 2rem;
         padding-bottom: 0rem;
     }
     .main {
