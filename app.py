@@ -439,17 +439,16 @@ with tabs[1]:
                     label="",
                     options=["No", "Yes"],
                     index=0,
-                    horizontal=True,  # Optional: horizontal layout
-                    label_visibility="collapsed"  # Hide the default label
+                    horizontal=True,
+                    label_visibility="collapsed"
                 )
             
             if flights_taken == "No":
                 flight_distance = 0
             else:
-                # Select number of legs (segments) in the trip
+                # Select number of legs in the trip
                 num_legs = st.number_input("How many destinations are in your trip?", min_value=1, max_value=20, value=1, step=1, key="num_legs")
 
-                # Toggle for return or one-way flight for each leg
                 round_trip_flags = []
                 legs = []
 
@@ -460,7 +459,6 @@ with tabs[1]:
                     with col1:
                         dep = st.selectbox(f"Departure City (Leg {i + 1})", options=sorted(list(airports.keys())), index=None, placeholder='Choose your departure city', key=f"dep_{i}")
                     with col2:
-                        # Filter out the selected departure airport from the arrival options
                         arrival_options = sorted([airport for airport in airports.keys() if airport != dep])
                         arr = st.selectbox(f"Arrival City (Leg {i + 1})", options=arrival_options, index=None, placeholder="Choose your arrival city", key=f"arr_{i}")
                     with col3:
@@ -471,9 +469,8 @@ with tabs[1]:
                     round_trip_flags.append(is_round)
 
                 if arr == None or dep == None:
-                    flight_distance = 0  # Skip if no airports selected
+                    flight_distance = 0
                 else:
-                    # Calculate total emissions
                     flight_distance = 0
                     for (dep, arr), is_round in zip(legs, round_trip_flags):
                         if dep != arr:
@@ -523,7 +520,7 @@ with tabs[2]:
 
     # --- Spending Ranges ---
     spending_ranges = {
-        "0": 0,
+        "0 PKR": 0,
         "less than 5,000 PKR": 2500,
         "5,000 - 10,000 PKR": 7500,
         "10,000 - 20,000 PKR": 15000,
@@ -696,7 +693,7 @@ with tabs[3]:
         st.markdown("<div class='main-title'>🚨 Heads up!</div>", unsafe_allow_html=True)
         st.markdown("Your annual footprint is **above the global average**. Check how much of a differnence can your bring with small changes in your lifestyle.")
     
-    col1, col2, col3 = st.columns([2, 1.5, 1.5], gap='small')
+    col1, col2, col3 = st.columns([2, 2, 2], gap='small')
     with col1:
         st.markdown(f"""
                     <style>
