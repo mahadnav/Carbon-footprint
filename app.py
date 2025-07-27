@@ -839,6 +839,7 @@ with tabs[3]:
                         <span style='font-size: 24px;'><b>0</b></span>
                         tCO₂e
                     </div>
+                    <div style='height: 10px;'></div>
                 </div>
             """, unsafe_allow_html=True)
 
