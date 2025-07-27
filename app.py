@@ -215,9 +215,6 @@ st.markdown("""
     <div style='font-size: 1.5rem; font-weight: 500; margin-bottom: 0.5rem; color: #222;'>
         Welcome to your personal carbon footprint dashboard!
     </div>
-    <div style='font-size: 1.15rem; color: #666; margin-bottom: 0.25rem;'>
-        Fill in details across the tabs to get an estimate of your annual CO₂e emissions and be aware of your impact on the environment.
-    </div>
 """, unsafe_allow_html=True)
 
 tabs_style()         
