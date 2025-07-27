@@ -791,7 +791,7 @@ with tabs[3]:
             st.markdown(f"""
                 <div style='height: 17px;'></div>
                 <div class='category-box' style='background-color: #1A237E;'>
-                    <div style='font-size: 24px; color: #fafafa;'><b>⚡ Household Energy</b></div>
+                    <div style='font-size: 24px; color: #fafafa;'><b>⚡ Household</b></div>
                     <div style='color: #fafafa;'>
                         Your consumption is equal to 
                         <span style='font-size: 24px;'><b>{household_emissions:.2f}</b></span>
@@ -804,7 +804,7 @@ with tabs[3]:
             st.markdown(f"""
                 <div style='height: 17px;'></div>
                 <div class='category-box' style='background-color: #1A237E;'>
-                    <div style='font-size: 24px; color: #fafafa;'><b>⚡ Household Energy</b></div>
+                    <div style='font-size: 24px; color: #fafafa;'><b>⚡ Household</b></div>
                     <div style='color: #fafafa;'>
                         Your consumption is equal to 
                         <span style='font-size: 24px;'><b>0</b></span>
