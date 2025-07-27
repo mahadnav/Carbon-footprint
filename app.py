@@ -1,4 +1,5 @@
 import streamlit as st
+import hydralit_components as hc
 from streamlit_extras.stylable_container import stylable_container
 import pandas as pd
 from geopy.distance import geodesic
@@ -36,7 +37,7 @@ def tabs_style():
 
         .stTabs [data-baseweb="tab"] {
             padding: 10px 20px;
-            background-color: #ffffff;
+            background-color: #90EE90;
             border-radius: 10px 10px 10px 10px;
             margin-right: 1px;
             transition: all 0.3s ease-in-out;
