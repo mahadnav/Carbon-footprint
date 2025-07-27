@@ -200,9 +200,6 @@ st.markdown("""
         padding-left: 0rem;
         padding-right: 0rem;
     }
-    header, footer {
-        display: none;
-    }
     </style>
 """, unsafe_allow_html=True)
 
