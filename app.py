@@ -690,10 +690,10 @@ with tabs[3]:
 
     if total_emissions < 6.7:
         st.markdown("<div class='main-title'>🎉 Well done!</div>", unsafe_allow_html=True)
-        st.markdown("<h4>Your annual footprint is **below the global average**. Keep it up</h4>", unsafe_allow_html=True)
+        st.markdown("<h5>Your annual footprint is **below the global average**. Keep it up</h5>", unsafe_allow_html=True)
     else:
         st.markdown("<div class='main-title'>🚨 Heads up!</div>", unsafe_allow_html=True)
-        st.markdown("<h4>Your annual footprint is **above the global average**. Check how much of a differnence can your bring with small changes in your lifestyle.</h4>", unsafe_allow_html=True)
+        st.markdown("<h5>Your annual footprint is **above the global average**. Check how much of a differnence can your bring with small changes in your lifestyle.</h5>", unsafe_allow_html=True)
     
     col1, col2, col3 = st.columns([2, 1.5, 1.5], gap='small')
     with col1:
