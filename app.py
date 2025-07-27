@@ -48,7 +48,7 @@ def tabs_style():
         .stTabs [data-baseweb="tab"] {
             padding: 10px 40px;
             background-color: #90EE90;
-            border-radius: 10px 10px 10px 10px;
+            border-radius: 20px 20px 20px 20px;
             margin-right: 1px;
             transition: all 0.3s ease-in-out;
         }
