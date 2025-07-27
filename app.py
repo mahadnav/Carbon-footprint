@@ -1,5 +1,4 @@
 import streamlit as st
-import hydralit_components as hc
 from streamlit_extras.stylable_container import stylable_container
 import pandas as pd
 from geopy.distance import geodesic
