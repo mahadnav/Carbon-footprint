@@ -39,7 +39,7 @@ def tabs_style():
             gap: 10px !important;
             background-color: #90EE90 !important;
             justify-content: center;
-            border-radius: 15px;
+            border-radius: 20px;
             padding: 0;
             margin: auto;
             width: fit-content;
