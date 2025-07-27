@@ -10,7 +10,7 @@ def expander_style():
         return st.markdown("""
         <style>
         details summary {
-            font-size: 1.5rem;
+            font-size: 24px;
             font-weight: bold;
             color: #333;
             transition: color 0.2s ease;
