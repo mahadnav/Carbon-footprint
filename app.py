@@ -190,12 +190,13 @@ def user_percentile(total_emissions):
 
     return user_percentile
 
-st.markdown("""
-    <style>
-    footer, header {visibility: hidden !important;}
-    .css-164nlkn, .css-1v3fvcr {display: none !important;}  /* menu, fullscreen btn */
-    </style>
-""", unsafe_allow_html=True)
+hide_streamlit_style = """
+            <style>
+            #MainMenu {visibility: hidden;}
+            footer {visibility: hidden;}
+            </style>
+            """
+st.markdown(hide_streamlit_style, unsafe_allow_html=True) 
 
 image_base64 = get_base64_image("footprint.png")
 
