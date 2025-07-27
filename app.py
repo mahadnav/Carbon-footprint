@@ -34,10 +34,13 @@ def tabs_style():
     return st.markdown("""
         <style>
                        
-        .tab-container {
+        .stTabs [data-baseweb="tab-list"] {
             display: flex;
-            margin: 0;
+            gap: 0 !important;
+            background-color: #90EE90 !important;
+            border-radius: 12px;
             padding: 0;
+            margin: 0;
         }
 
         .stTabs [data-baseweb="tab"] {
