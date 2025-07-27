@@ -39,7 +39,7 @@ def tabs_style():
             gap: 10px !important;
             background-color: #90EE90 !important;
             justify-content: center;
-            border-radius: 12px;
+            border-radius: 15px;
             padding: 0;
             margin: auto;
             width: fit-content;
@@ -80,7 +80,7 @@ def tabs_style():
         }
                        
         .stTabs::-webkit-scrollbar-thumb {
-            background: #ccc;
+            background: transparent;
             border-radius: 4px;
         }
         </style>
