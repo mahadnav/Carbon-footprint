@@ -213,7 +213,7 @@ st.title("🇵🇰 Pakistan Carbon Footprint Calculator")
 
 st.markdown("""
     <div style='font-size: 1.5rem; font-weight: 500; margin-bottom: 0.5rem; color: #222;'>
-        Welcome to your personal carbon footprint dashboard!
+        Your personal carbon footprint dashboard!
     </div>
 """, unsafe_allow_html=True)
 
