@@ -35,6 +35,7 @@ def tabs_style():
         <style>
 
         .stTabs [data-baseweb="tab"] {
+            display: flex;
             padding: 10px 40px;
             background-color: #90EE90;
             border-radius: 10px 10px 10px 10px;
