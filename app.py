@@ -714,7 +714,7 @@ with tabs[3]:
                             background-image: url("data:image/png;base64,{image_base64}");
                             background-repeat: no-repeat;
                             background-position: center;
-                            background-size: 260px;
+                            background-size: 350px;
                             opacity: 0.1;
                             position: absolute;
                             top: 0;
