@@ -693,7 +693,7 @@ with tabs[3]:
         st.markdown("<div class='main-title'>🚨 Heads up!</div>", unsafe_allow_html=True)
         st.markdown("Your annual footprint is **above the global average**. Check how much of a differnence can your bring with small changes in your lifestyle.")
     
-    col1, col2, col3 = st.columns([2, 2, 2], gap='small')
+    col1, col2, col3 = st.columns([2, 1, 1], gap='small')
     with col1:
         st.markdown(f"""
                     <style>
