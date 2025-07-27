@@ -190,6 +190,22 @@ def user_percentile(total_emissions):
 
     return user_percentile
 
+st.markdown("""
+    <style>
+    .block-container {
+        padding-top: 0rem;
+        padding-bottom: 0rem;
+    }
+    .main {
+        padding-left: 0rem;
+        padding-right: 0rem;
+    }
+    header, footer {
+        display: none;
+    }
+    </style>
+""", unsafe_allow_html=True)
+
 image_base64 = get_base64_image("footprint.png")
 
 
