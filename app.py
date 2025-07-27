@@ -33,9 +33,14 @@ def expander_style():
 def tabs_style():
     return st.markdown("""
         <style>
+                       
+        .tab-container {
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
 
         .stTabs [data-baseweb="tab"] {
-            display: flex;
             padding: 10px 40px;
             background-color: #90EE90;
             border-radius: 10px 10px 10px 10px;
