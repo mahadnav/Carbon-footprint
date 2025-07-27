@@ -38,6 +38,7 @@ def tabs_style():
             display: flex;
             gap: 10px !important;
             background-color: #90EE90 !important;
+            justify-content: center;
             border-radius: 12px;
             padding: 0;
             margin: 0;
