@@ -148,14 +148,13 @@ def radio_style():
         <style>
             /* Center-align the radio label container */
             .stRadio > div {
-                display: flex;
                 justify-content: center;
                 align-items: center;
             }
 
             /* Individual radio options styling */
             label[data-baseweb="radio"] {
-                background-color: #f0f0f0;
+                background-color: #ffffff;
                 padding: 8px 20px;
                 border-radius: 10px;
                 margin: 5px;
@@ -166,12 +165,12 @@ def radio_style():
 
             /* Hover effect */
             label[data-baseweb="radio"]:hover {
-                background-color: #cce5ff;
+                background-color: #4CAF50;
             }
 
             /* Selected radio option styling */
             input[type="radio"]:checked + div {
-                background-color: #4CAF50 !important;
+                background-color: #ffffff !important;
                 color: white;
                 font-weight: bold;
             }
