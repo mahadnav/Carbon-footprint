@@ -165,12 +165,12 @@ def radio_style():
 
             /* Hover effect */
             label[data-baseweb="radio"]:hover {
-                background-color: #4CAF50;
+                background-color: #ffffff;
             }
 
             /* Selected radio option styling */
             input[type="radio"]:checked + div {
-                background-color: #4CAF50 !important;
+                background-color: #ffffff !important;
                 color: black;
                 font-weight: bold;
             }
