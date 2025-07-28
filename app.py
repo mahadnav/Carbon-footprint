@@ -212,8 +212,8 @@ def user_percentile(total_emissions):
     np.random.seed(42)
 
     low_income = np.random.normal(loc=0.9, scale=0.3, size=5000)        # 50%
-    middle_income = np.random.normal(loc=2.1, scale=0.5, size=4000)     # 40%
-    high_income = np.random.normal(loc=9, scale=1.5, size=1000)         # 10%
+    middle_income = np.random.normal(loc=2.1, scale=0.3, size=4000)     # 40%
+    high_income = np.random.normal(loc=9, scale=1, size=1000)         # 10%
 
     pakistan_emissions = np.concatenate([low_income, middle_income, high_income])
     pakistan_emissions = pakistan_emissions[pakistan_emissions > 0]
