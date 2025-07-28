@@ -143,16 +143,16 @@ def selectbox_style():
         </style>
     """, unsafe_allow_html=True)
 
-def radio_style():
-    st.markdown("""
+def radio_style(margin):
+    st.markdown(f"""
         <style>
         /* Center radio buttons */
-        .stRadio > div {
+        .stRadio > div {{
             justify-content: center;
-            margin-left: 95px;
-        }
+            margin-left: {margin}px;
+        }}
         
-        label[data-baseweb="radio"] {
+        label[data-baseweb="radio"] {{
             background-color: #fafafa;
             padding: 8px 10px;
             border-radius: 15px;
@@ -160,7 +160,7 @@ def radio_style():
             font-weight: bold;
             cursor: pointer;
             transition: background-color 0.3s ease;
-        }
+        }}
     </style>
     """, unsafe_allow_html=True)
 
@@ -256,7 +256,7 @@ with tabs[0]:
     with st.expander("**➕ Electricity**"):
         col1, col2, col3 = st.columns([1.8, 2, 1])
         with col2:
-            radio_style()
+            radio_style(95)
             st.markdown("<h5 style='text-align: left;'>Do you have solar installed in your house?</h5>", unsafe_allow_html=True)
             is_solar = st.radio("", 
                                 options=["Yes", "No"], 
@@ -493,7 +493,7 @@ with tabs[1]:
 
             with col2:
                 st.markdown("<h5 style='text-align: left;'>Have you taken a flight this year?</h5>", unsafe_allow_html=True)
-                radio_style()
+                radio_style(50)
                 flights_taken = st.radio(
                     label="",
                     options=["No", "Yes"],
