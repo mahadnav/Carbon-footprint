@@ -151,6 +151,16 @@ def radio_style():
             display: flex;
             justify-content: center;
         }
+        
+        label[data-baseweb="radio"] {
+            background-color: #ffffff;
+            padding: 10px 20px;
+            border-radius: 10px;
+            margin: 5px;
+            font-weight: normal;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
     </style>
     """, unsafe_allow_html=True)
 
