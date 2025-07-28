@@ -171,7 +171,7 @@ def radio_style():
             /* Selected radio option styling */
             input[type="radio"]:checked + div {
                 background-color: #ffffff !important;
-                color: white;
+                color: black;
                 font-weight: bold;
             }
 
