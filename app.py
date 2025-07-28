@@ -159,7 +159,7 @@ def radio_style():
             background-color: #ffffff;
             padding: 8px 10px;
             border-radius: 10px;
-            margin: 5px;
+            margin: 0px;
             font-weight: normal;
             cursor: pointer;
             transition: background-color 0.3s ease;
