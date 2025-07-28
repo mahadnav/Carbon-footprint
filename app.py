@@ -234,13 +234,15 @@ with tabs[0]:
     
     expander_style()
     with st.expander("**➕ Electricity**"):
-        col1, col2, col3 = st.columns(3)
+        col1, col2, col3 = st.columns([2, 2, 1])
         with col2:
-            is_solar = st.radio("Do you have solar installed in your house?", 
+            st.markdown("<h5 style='text-align: left;'>Do you have solar installed in your house?</h5>", unsafe_allow_html=True)
+            is_solar = st.radio("", 
                                 options=["Yes", "No"], 
                                 index=1, 
                                 key="is_solar",
-                                horizontal=True)
+                                horizontal=True,
+                                label_visibility="collapsed")
         if is_solar == "No":
             net_electricty = st.number_input("Total household electricity consumption this year (units)", min_value=0, value=0, placeholder="Enter the number of units e.g. 10,000", format="%d")
             user_data['electricity'] = net_electricty
