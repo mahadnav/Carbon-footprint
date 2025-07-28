@@ -211,7 +211,7 @@ def user_percentile(total_emissions):
     # Simulate realistic income-based emissions distribution
     np.random.seed(42)
 
-    low_income = np.random.normal(loc=0.9, scale=1.8, size=5000)        # 50%
+    low_income = np.random.normal(loc=0.9, scale=1, size=5000)        # 50%
     middle_income = np.random.normal(loc=2.1, scale=1, size=4000)     # 40%
     high_income = np.random.normal(loc=9, scale=3, size=1000)         # 10%
 
