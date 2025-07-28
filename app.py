@@ -148,7 +148,7 @@ def radio_style():
         <style>
             /* Center-align the radio label container */
             .stRadio > div {
-                justify-content: center;
+                justify-content: left;
                 align-items: left;
             }
 
