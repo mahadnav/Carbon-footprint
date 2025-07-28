@@ -156,9 +156,9 @@ def radio_style():
         }
         
         label[data-baseweb="radio"] {
-            background-color: #fcfcfc;
+            background-color: #fafafa;
             padding: 8px 10px;
-            border-radius: 10px;
+            border-radius: 15px;
             margin: 0px;
             font-weight: normal;
             cursor: pointer;
