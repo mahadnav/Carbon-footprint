@@ -275,11 +275,8 @@ with tabs[0]:
             electricity_consumption = st.number_input("Total household electricity consumption this year (units)", min_value=0, value=0, placeholder="Enter the number of units e.g. 10,000", format="%d")
             net_electricty = electricity_consumption - solar_units
             
-            if net_electricty <= 0:
-                user_data['electricity'] = 0
-            else:
-                user_data['electricity'] = net_electricty
-        elec_emissions = (net_electricty * 0.0005004) / people_count
+            user_data['electricity'] = max(net_electricty, 0)
+        elec_emissions = (user_data['electricity'] * 0.0005004) / people_count
         
         st.markdown(f"""
                 <div style='font-size: 1.2rem; font-weight: normal;'>
