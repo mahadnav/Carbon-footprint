@@ -218,7 +218,7 @@ def user_percentile(total_emissions):
     pakistan_emissions = np.concatenate([low_income, middle_income, high_income])
     pakistan_emissions = pakistan_emissions[pakistan_emissions > 0]
 
-    user_percentile = 100 - stats.percentileofscore(pakistan_emissions, total_emissions)
+    user_percentile = stats.percentileofscore(pakistan_emissions, total_emissions)
 
     return max(user_percentile, 1)
 
@@ -827,11 +827,11 @@ with tabs[3]:
             <div style='height: 20px;'></div>
 
             <div class='grey-box'>
-                <div style='font-size: 16px;'>You're among Pakistan's top</div>
+                <div style='font-size: 16px;'>Your Carbon Foorprint is more than</div>
                 <div style='font-size: 36px; font-weight: bold;'>
                     {round(user_percentile(total_emissions), 1)}
                     <span style='font-size: 24px;'>%</span>
-                    <div style='font-size: 16px; font-weight: normal;'>CO₂ emitters</div>
+                    <div style='font-size: 16px; font-weight: normal;'>of Pakistan's population</div>
                 </div>
             </div>
             """, unsafe_allow_html=True)
