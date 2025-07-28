@@ -143,6 +143,49 @@ def selectbox_style():
         </style>
     """, unsafe_allow_html=True)
 
+def radio_style():
+    return st.markdown("""
+        <style>
+            /* Center-align the radio label container */
+            .stRadio > div {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            /* Individual radio options styling */
+            label[data-baseweb="radio"] {
+                background-color: #f0f0f0;
+                padding: 8px 20px;
+                border-radius: 10px;
+                margin: 5px;
+                font-weight: 500;
+                transition: background-color 0.3s ease;
+                cursor: pointer;
+            }
+
+            /* Hover effect */
+            label[data-baseweb="radio"]:hover {
+                background-color: #cce5ff;
+            }
+
+            /* Selected radio option styling */
+            input[type="radio"]:checked + div {
+                background-color: #4CAF50 !important;
+                color: white;
+                font-weight: bold;
+            }
+
+            /* Prevent full-width expansion */
+            .stRadio {
+                width: fit-content;
+                margin: 0 auto;
+            }
+        </style>
+    """, unsafe_allow_html=True)
+    )
+
+
 def calculate_emissions(data):
     factors = {
         'electricity': 0.5004, # kg CO2e per kWh
@@ -235,11 +278,19 @@ with tabs[0]:
     with st.expander("**➕ Enter your household energy usage**"):
         col1, col2 = st.columns(2)
         with col1:
-            is_solar = st.radio("Do you have solar installed in your house?", options=["Yes", "No"], index=1, key="is_solar")
+            radio_style()
+            is_solar = st.radio("Do you have solar installed in your house?", 
+                                options=["Yes", "No"], 
+                                index=1, 
+                                key="is_solar",
+                                horizontal=True)
             if is_solar == "No":
                 user_data['electricity'] = st.number_input("Total household electricity consumption this year (units)", min_value=0, value=0, placeholder="Enter the number of units e.g. 10,000", format="%d")
             else:
-                solar_units = st.number_input("How many units were produced by solar this year?", min_value=0, value=0, placeholder="Enter the number of units e.g. 7,000", format="%d")
+                solar_units = st.number_input("How many units were produced by solar this year?", 
+                                              min_value=0, value=0, 
+                                              placeholder="Enter the number of units e.g. 7,000", 
+                                              format="%d")
                 electricity_consumption = st.number_input("Total household electricity consumption this year (units)", min_value=0, value=0, placeholder="Enter the number of units e.g. 10,000", format="%d")
                 net_electricty = electricity_consumption - solar_units
                 
