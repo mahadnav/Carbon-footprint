@@ -322,7 +322,7 @@ with tabs[1]:
         user_data['cars'] = []
 
         expander_style()
-        with st.expander("**➕ Add your car details**"):
+        with st.expander("**➕ Add car details**"):
             car_cols = st.columns(3)
             with car_cols[1]:
                 num_cars = st.number_input("Number of Cars", min_value=0, value=0, step=1, key='num_cars', format="%d")
