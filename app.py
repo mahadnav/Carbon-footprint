@@ -233,7 +233,7 @@ with tabs[0]:
         user_data['people_count'] = people_count
     
     expander_style()
-    with st.expander("**➕ Enter your household electricity consumption**"):
+    with st.expander("**➕ Electricity**"):
         col1, col2, col3 = st.columns(3)
         with col2:
             is_solar = st.radio("Do you have solar installed in your house?", 
@@ -258,18 +258,18 @@ with tabs[0]:
             elec_emissions = net_electricty * 0.0005004
         st.markdown(f"""
                 <div style='font-size: 1.2rem; font-weight: normal;'>
-                    Estimated Emissions From Natural Gas Consumption: <span style='color:#4CAF50'>{elec_emissions:.2f}</span> tCO₂e
+                    Estimated Emissions From Electricity Consumption: <span style='color:#4CAF50'>{elec_emissions:.2f}</span> tCO₂e
                 </div>
             """, unsafe_allow_html=True)
     
     expander_style()
-    with st.expander("**➕ Enter your household gas consumption this year**"):
+    with st.expander("**➕ Natural Gas**"):
             gas_consumption = st.number_input("Natural Gas (m³)", min_value=0, value=0, placeholder='e.g. 3,500', format="%d")
             user_data['gas'] = gas_consumption
             gas_emissions = gas_consumption * 0.0022
             st.markdown(f"""
                 <div style='font-size: 1.2rem; font-weight: normal;'>
-                    Estimated Emissions From Natural Gas Consumption: <span style='color:#4CAF50'>{gas_emissions:.2f}</span> tCO₂e
+                    Estimated Emissions From Electricity Consumption: <span style='color:#4CAF50'>{gas_emissions:.2f}</span> tCO₂e
                 </div>
             """, unsafe_allow_html=True)
 
