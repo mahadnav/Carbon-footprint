@@ -148,8 +148,7 @@ def radio_style():
         <style>
         /* Center radio buttons */
         .stRadio > div {
-            display: flex;
-            justify-content: flex-center;
+            justify-content: center;
         }
                 
         .custom-radio {
