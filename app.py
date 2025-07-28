@@ -174,6 +174,11 @@ def radio_style():
                 color: black;
                 font-weight: bold;
             }
+                
+            /* Style the SVG circle (radio button icon) */
+            svg[data-testid="icon"] > path {
+                fill: #4CAF50 !important;  /* Change this to any color you want */
+            }
 
             /* Prevent full-width expansion */
             .stRadio {
