@@ -143,53 +143,6 @@ def selectbox_style():
         </style>
     """, unsafe_allow_html=True)
 
-def radio_style():
-    return st.markdown("""
-        <style>
-            /* Center-align the radio label container */
-            .stRadio > div {
-                justify-content: left;
-                align-items: left;
-            }
-
-            /* Individual radio options styling */
-            label[data-baseweb="radio"] {
-                background-color: #ffffff;
-                padding: 8px 20px;
-                border-radius: 10px;
-                margin: 5px;
-                font-weight: 500;
-                transition: background-color 0.3s ease;
-                cursor: pointer;
-            }
-
-            /* Hover effect */
-            label[data-baseweb="radio"]:hover {
-                background-color: #ffffff;
-            }
-
-            /* Selected radio option styling */
-            input[type="radio"]:checked + div {
-                background-color: #ffffff !important;
-                color: black;
-                font-weight: bold;
-            }
-                
-            /* Override SVG fill (radio circle) using filter (works across browsers) */
-            label[data-baseweb="radio"] svg {
-                filter: invert(40%) sepia(90%) saturate(500%) hue-rotate(100deg);
-                height: 18px;
-                width: 18px;
-            }
-
-            /* Prevent full-width expansion */
-            .stRadio {
-                width: fit-content;
-                margin: 0 auto;
-            }
-        </style>
-    """, unsafe_allow_html=True)
-
 
 def calculate_emissions(data):
     factors = {
@@ -283,7 +236,6 @@ with tabs[0]:
     with st.expander("**➕ Enter your household energy usage**"):
         col1, col2 = st.columns(2)
         with col1:
-            radio_style()
             is_solar = st.radio("Do you have solar installed in your house?", 
                                 options=["Yes", "No"], 
                                 index=1, 
