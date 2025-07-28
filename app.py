@@ -496,8 +496,8 @@ with tabs[1]:
                 radio_style(50)
                 flights_taken = st.radio(
                     label="",
-                    options=["No", "Yes"],
-                    index=0,
+                    options=["Yes", "No"],
+                    index=1,
                     horizontal=True,
                     label_visibility="collapsed"
                 )
