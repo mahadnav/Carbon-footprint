@@ -521,7 +521,7 @@ with tabs[1]:
                         arrival_options = sorted([airport for airport in airports.keys() if airport != dep])
                         arr = st.selectbox(f"Arrival City (Leg {i + 1})", options=arrival_options, index=None, placeholder="Choose your arrival city", key=f"arr_{i}")
                     with col3:
-                        st.markdown("<div style='height: 35px;'></div>", unsafe_allow_html=True)  # Empty space for alignment
+                        st.markdown("<div style='height: 40px;'></div>", unsafe_allow_html=True)
                         is_round = st.checkbox("Return?", key=f"return_{i}", value=True)
 
                     legs.append((dep, arr))
