@@ -143,6 +143,16 @@ def selectbox_style():
         </style>
     """, unsafe_allow_html=True)
 
+def radio_style():
+    st.markdown("""
+        <style>
+        /* Center radio buttons */
+        .stRadio > div {
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+    """)
 
 def calculate_emissions(data):
     factors = {
@@ -236,6 +246,7 @@ with tabs[0]:
     with st.expander("**➕ Electricity**"):
         col1, col2, col3 = st.columns([2, 2, 1])
         with col2:
+            radio_style()
             st.markdown("<h5 style='text-align: left;'>Do you have solar installed in your house?</h5>", unsafe_allow_html=True)
             is_solar = st.radio("", 
                                 options=["Yes", "No"], 
