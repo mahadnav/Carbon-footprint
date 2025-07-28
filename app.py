@@ -156,7 +156,7 @@ def radio_style():
         }
         
         label[data-baseweb="radio"] {
-            background-color: #ffffff;
+            background-color: #fcfcfc;
             padding: 8px 10px;
             border-radius: 10px;
             margin: 0px;
