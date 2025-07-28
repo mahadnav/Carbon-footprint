@@ -151,12 +151,16 @@ def radio_style():
             display: flex;
             justify-content: flex-center;
         }
+                
+        .stRadio > div {{
+            margin-left: 10px;
+        }}
         
         label[data-baseweb="radio"] {
             background-color: #ffffff;
-            padding: 5px 5px;
+            padding: 8px 10px;
             border-radius: 10px;
-            margin: 30px;
+            margin: 5px;
             font-weight: normal;
             cursor: pointer;
             transition: background-color 0.3s ease;
