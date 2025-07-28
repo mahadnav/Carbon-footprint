@@ -489,10 +489,11 @@ with tabs[1]:
         expander_style()
         with st.expander("**➕ Add your flight details**"):
             # Create three columns and center the radio button in the middle one
-            _, col2, _ = st.columns([2, 2, 1])
+            _, col2, _ = st.columns([1.8, 2, 1])
 
             with col2:
                 st.markdown("<h5 style='text-align: left;'>Have you taken a flight this year?</h5>", unsafe_allow_html=True)
+                radio_style()
                 flights_taken = st.radio(
                     label="",
                     options=["No", "Yes"],
