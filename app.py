@@ -152,9 +152,9 @@ def radio_style():
             justify-content: flex-center;
         }
                 
-        .stRadio > div {{
-            margin-left: 25px;
-        }}
+        .custom-radio {
+            margin-left: 100px;
+        }
         
         label[data-baseweb="radio"] {
             background-color: #ffffff;
