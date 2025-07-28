@@ -153,7 +153,7 @@ def radio_style():
         }
                 
         .stRadio > div {{
-            margin-left: 10px;
+            margin-left: 25px;
         }}
         
         label[data-baseweb="radio"] {
