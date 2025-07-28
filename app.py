@@ -220,7 +220,7 @@ def user_percentile(total_emissions):
 
     user_percentile = 100 - stats.percentileofscore(pakistan_emissions, total_emissions)
 
-    return user_percentile
+    return max(user_percentile, 1)
 
 image_base64 = get_base64_image("footprint.png")
 
@@ -832,7 +832,7 @@ with tabs[3]:
             <div class='grey-box'>
                 <div style='font-size: 16px;'>You're among Pakistan's top</div>
                 <div style='font-size: 36px; font-weight: bold;'>
-                    {round(user_percentile(total_emissions))}
+                    {round(user_percentile(total_emissions), 1)}
                     <span style='font-size: 24px;'>%</span>
                     <div style='font-size: 16px; font-weight: normal;'>CO₂ emitters</div>
                 </div>
