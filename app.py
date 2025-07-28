@@ -268,7 +268,7 @@ with tabs[0]:
     with st.expander("**➕ Natural Gas**"):
             gas_consumption = st.number_input("Natural Gas (m³)", min_value=0, value=0, placeholder='e.g. 3,500', format="%d")
             user_data['gas'] = gas_consumption
-            gas_emissions = gas_consumption * 0.0022
+            gas_emissions = (gas_consumption * 0.0022) / people_count
             st.markdown(f"""
                 <div style='font-size: 1.2rem; font-weight: normal;'>
                     Estimated Emissions From Electricity Consumption: <span style='color:#4CAF50'>{gas_emissions:.2f}</span> tCO₂e
