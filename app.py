@@ -152,7 +152,7 @@ def radio_style():
             justify-content: center;
         }
     </style>
-    """)
+    """, unsafe_allow_html=True)
 
 def calculate_emissions(data):
     factors = {
