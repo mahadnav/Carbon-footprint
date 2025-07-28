@@ -256,7 +256,7 @@ with tabs[0]:
                 user_data['electricity'] = 0
             else:
                 user_data['electricity'] = net_electricty
-        elec_emissions = net_electricty * 0.0005004
+        elec_emissions = (net_electricty * 0.0005004) / people_count
         
         st.markdown(f"""
                 <div style='font-size: 1.2rem; font-weight: normal;'>
