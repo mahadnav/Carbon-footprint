@@ -829,7 +829,7 @@ with tabs[3]:
             <div class='grey-box'>
                 <div style='font-size: 16px;'>Your Carbon Foorprint is more than</div>
                 <div style='font-size: 36px; font-weight: bold;'>
-                    {round(user_percentile(total_emissions), 1)}
+                    {min(round(user_percentile(total_emissions), 1, 99))}
                     <span style='font-size: 24px;'>%</span>
                     <div style='font-size: 16px; font-weight: normal;'>of Pakistan's population</div>
                 </div>
