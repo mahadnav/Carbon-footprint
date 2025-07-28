@@ -484,7 +484,7 @@ with tabs[1]:
         }
 
         expander_style()
-        with st.expander("**➕ Add your flight details**"):
+        with st.expander("**➕ Add flight details**"):
             # Create three columns and center the radio button in the middle one
             _, col2, _ = st.columns([1.8, 2, 1])
 
