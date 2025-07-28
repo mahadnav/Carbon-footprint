@@ -149,7 +149,7 @@ def radio_style():
         /* Center radio buttons */
         .stRadio > div {
             justify-content: center;
-            margin-left: 70px;
+            margin-left: 80px;
         }
         
         label[data-baseweb="radio"] {
