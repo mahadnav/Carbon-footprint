@@ -183,7 +183,6 @@ def radio_style():
             }
         </style>
     """, unsafe_allow_html=True)
-    )
 
 
 def calculate_emissions(data):
