@@ -235,7 +235,18 @@ with tabs[0]:
     with st.expander("**➕ Enter your household energy usage**"):
         col1, col2 = st.columns(2)
         with col1:
-            user_data['electricity'] = st.number_input("Electricity (kWh/year)", min_value=0, value=0, placeholder="e.g. 10,000", format="%d")
+            is_solar = st.radio("Do you have solar installed in your house?", options=["Yes", "No"], index=1, key="is_solar")
+            if is_solar == "No":
+                user_data['electricity'] = st.number_input("Total household electricity consumption this year (units)", min_value=0, value=0, placeholder="Enter the number of units e.g. 10,000", format="%d")
+            else:
+                solar_units = st.number_input("How many units were produced by solar this year?", min_value=0, value=0, placeholder="Enter the number of units e.g. 7,000", format="%d")
+                electricity_consumption = st.number_input("Total household electricity consumption this year (units)", min_value=0, value=0, placeholder="Enter the number of units e.g. 10,000", format="%d")
+                net_electricty = electricity_consumption - solar_units
+                
+                if net_electricty <= 0:
+                    user_data['electricity'] = 0
+                else:
+                    user_data['electricity'] = net_electricty
         with col2:
             user_data['gas'] = st.number_input("Natural Gas (m³/year)", min_value=0, value=0, placeholder='e.g. 3,500', format="%d")
 
