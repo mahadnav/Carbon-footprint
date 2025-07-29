@@ -39,7 +39,7 @@ def tabs_style():
             justify-content: center;
             overflow-x: auto;
             white-space: nowrap;
-            max-width: 90%;
+            max-width: 95%;
             border-radius: 20px;
             padding: 0;
             margin: auto;
@@ -225,6 +225,13 @@ def user_percentile(total_emissions):
 
     return max(user_percentile, 1)
 
+def go_to_tab(direction):
+    index = tabs.index(st.session_state.current_tab)
+    if direction == "next" and index < len(tabs) - 1:
+        st.session_state.current_tab = tabs[index + 1]
+    elif direction == "prev" and index > 0:
+        st.session_state.current_tab = tabs[index - 1]
+
 image_base64 = get_base64_image("footprint.png")
 
 
@@ -241,6 +248,7 @@ st.markdown("""
 
 tabs_style()         
 tabs = st.tabs(["Household", "Transport", "Secondary", "Total"])
+
 user_data = {}
 
 # --- Energy Tab ---
