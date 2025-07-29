@@ -39,7 +39,7 @@ def tabs_style():
             justify-content: center;
             overflow-x: auto;
             white-space: nowrap;
-            max-width: 100%;
+            max-width: 90%;
             border-radius: 20px;
             padding: 0;
             margin: auto;
