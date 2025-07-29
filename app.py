@@ -294,7 +294,7 @@ with tabs[0]:
             gas_emissions = (gas_consumption * 0.0022) / people_count
             st.markdown(f"""
                 <div style='font-size: 1.2rem; font-weight: normal;'>
-                    Estimated Emissions From Electricity Consumption: <span style='color:#4CAF50'>{gas_emissions:.2f}</span> tCO₂e
+                    Estimated Emissions From Natural Gas Consumption: <span style='color:#4CAF50'>{gas_emissions:.2f}</span> tCO₂e
                 </div>
             """, unsafe_allow_html=True)
 
