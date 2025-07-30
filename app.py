@@ -318,15 +318,9 @@ st.markdown("""
 #     </div>
 # """, unsafe_allow_html=True)
 
-
-st_invisible_container()
-
 # Call the style function BEFORE the container
 tabs_style() 
-
-# Now create the container and the tabs
-with st.container(border=True):
-    tabs = st.tabs(["Household", "Transport", "Secondary", "Total"])
+tabs = st.tabs(["Household", "Transport", "Secondary", "Total"])
 
 user_data = {}
 
