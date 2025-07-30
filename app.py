@@ -321,7 +321,7 @@ with tabs[0]:
         col1, col2, col3 = st.columns([1.8, 2, 1])
         with col2:
             radio_style(1000)
-            st.markdown("<h5 style='text-align: left;'>Do you have solar installed in your house?</h5>", unsafe_allow_html=True)
+            st.markdown("<h5 style='text-align: left;'>Do you have solar panels installed in your house?</h5>", unsafe_allow_html=True)
             is_solar = st.radio("", 
                                 options=["Yes", "No"], 
                                 index=1, 
