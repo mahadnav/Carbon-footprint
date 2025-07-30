@@ -52,12 +52,12 @@ animated_scrollbar_css = """
 <style>
     body {
         /* Firefox fallback */
-        scrollbar-width: thin;
+        scrollbar-width: thick;
         scrollbar-color: #909090 #F1F1F1;
     }
     
     ::-webkit-scrollbar {
-        width: 8px;
+        width: 50px;
         transition: width 0.3s ease-in-out;
     }
 
