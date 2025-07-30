@@ -21,7 +21,7 @@ st.markdown("""
 .scroll-section.blur-out {
     filter: blur(6px);
     opacity: 0;
-    transform: scale(0.5);
+    transform: scale(0.1);
 }
 </style>
 """, unsafe_allow_html=True)
