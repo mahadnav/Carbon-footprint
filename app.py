@@ -279,7 +279,7 @@ st.markdown("""
             padding-top: 0rem;
             padding-bottom: 0rem;
             padding-left: 2em;
-            padding-right: 2rem;
+            padding-right: 4rem;
         }
 </style>
 <div class="scroll-section">
