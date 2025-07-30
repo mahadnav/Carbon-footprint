@@ -277,7 +277,9 @@ scroll_shrink_style()
 ######################### Main Code #########################
 
 st.set_page_config(page_title="🇵🇰 Carbon Footprint Calculator", layout="wide")
-st.title("🇵🇰 Pakistan Carbon Footprint Calculator")
+
+st.markdown("<div class='shrink-header'>🇵🇰 Breathe Pakistan: Carbon Footprint Calculator</div>", unsafe_allow_html=True)
+# st.title("🇵🇰 Pakistan Carbon Footprint Calculator")
 
 st.markdown("""
     <div style='font-size: 1.5rem; font-weight: 500; margin-bottom: 0.5rem; color: #222;'>
