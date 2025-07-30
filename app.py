@@ -311,7 +311,7 @@ st.markdown("""
 #     </div>
 # """, unsafe_allow_html=True)
 
-st_invisible_container()
+st_invisible_container(mode='sticky')
 with st.container():
     tabs_style()         
     tabs = st.tabs(["Household", "Transport", "Secondary", "Total"])
