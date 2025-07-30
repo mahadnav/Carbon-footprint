@@ -24,7 +24,7 @@ st.markdown("""
     /* State when the section is scrolled out of view */
     opacity: 0.5;
     max-height: 0px;
-    transform: translateY(-50px);
+    transform: translateY(-10px);
     margin-top: 0 !important;
     margin-bottom: 0 !important;
     padding-top: 0 !important;
