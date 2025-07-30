@@ -17,10 +17,10 @@ st.markdown("""
     z-index: 999;
     background: white;
     padding: 2rem 1rem 1rem 1rem;
-    text-align: center;
+    text-align: left;
     transition: all 0.4s ease-in-out;
     font-family: 'Segoe UI', sans-serif;
-    filter: blur(0px);
+    filter: blur(5px);
     opacity: 1;
     transform: translateY(0);
 }
