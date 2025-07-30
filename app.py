@@ -6,42 +6,46 @@ import base64
 from scipy import stats
 import numpy as np
 
-def scroll_shrink_style():
-    st.markdown("""
+
+
+st.markdown("""
     <style>
-    .shrink-header {
-        position: sticky;
-        top: 0;
-        z-index: 999;
-        background: white;
-        text-align: center;
-        font-size: 3rem;
-        padding: 20px 0;
-        transition: all 0.3s ease;
-    }
-
-    .scrolled {
-        font-size: 1.5rem !important;
-        padding: 10px 0 !important;
-        opacity: 0.7;
-    }
-
-    body {
-        margin: 0;
-    }
-    </style>
-
-    <script>
-    window.addEventListener('scroll', function() {
-        const header = document.querySelector('.shrink-header');
-        if (window.scrollY > 50) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
+        html, body, [data-testid="stApp"] {
+            height: 100% !important;
+            overflow: auto !important;
+            scroll-behavior: smooth !important;
         }
-    });
-    </script>
-    """, unsafe_allow_html=True)
+
+        /* Optional: make scrolling smoother on mobile */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #ccc;
+            border-radius: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        /* Shrink the header as you scroll */
+        header {
+            transition: all 0.3s ease-in-out;
+        }
+
+        header.scrolled {
+            transform: scale(0.9);
+            opacity: 0.8;
+        }
+    </style>
+""", unsafe_allow_html=True)
+
+
+
+
+
 
 
 def expander_style():
@@ -272,14 +276,11 @@ def go_to_tab(direction):
 
 image_base64 = get_base64_image("footprint.png")
 
-scroll_shrink_style()
-
 ######################### Main Code #########################
 
 st.set_page_config(page_title="🇵🇰 Carbon Footprint Calculator", layout="wide")
 
-st.markdown("<div class='shrink-header'>🇵🇰 Breathe Pakistan: Carbon Footprint Calculator</div>", unsafe_allow_html=True)
-# st.title("🇵🇰 Pakistan Carbon Footprint Calculator")
+st.title("🇵🇰 Pakistan Carbon Footprint Calculator")
 
 st.markdown("""
     <div style='font-size: 1.5rem; font-weight: 500; margin-bottom: 0.5rem; color: #222;'>
