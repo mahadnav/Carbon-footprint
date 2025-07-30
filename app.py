@@ -430,7 +430,7 @@ st.markdown("""
 for i in range(30):
         st.write(f"Line {i}")
 
-with st_fixed_container(mode="fixed", position="top", border=True):
+with st_fixed_container(mode="fixed", position="top", border=True, transparent=False):
         st.write("This is a fixed container.")
 
 tabs_style()
