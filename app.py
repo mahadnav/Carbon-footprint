@@ -265,14 +265,14 @@ st.markdown("""
             padding-bottom: 0rem;
             padding-left: 2em;
             padding-right: 2rem;
+            margin-top: 1rem;
         }
 </style>
 <div class="scroll-section">
     <h1>🇵🇰 Carbon Footprint Calculator</h1>
     <div style='font-size: 1.25rem; font-weight: 400; margin-bottom: 0.5rem; color: #222;'>
         Your personal carbon footprint dashboard!
-    </div>
-            
+    </div>        
 </div>
 """, unsafe_allow_html=True)
 
