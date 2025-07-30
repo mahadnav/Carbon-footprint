@@ -69,53 +69,63 @@ def expander_style():
         """, unsafe_allow_html=True)
 
 def tabs_style():
-    """
-    Applies CSS to make the tabs sticky so they don't scroll off the page.
-    """
     return st.markdown("""
         <style>
-            .stTabs [data-baseweb="tab-list"] {
-                position: fixed;   /* Makes the tab bar stick to the top */
-                top: 0;             /* Positions it at the top of the scroll container */
-                z-index: 1000;       /* Ensures it stays on top of other content */
-                
-                display: flex;
-                gap: 5px !important;
-                background-color: #90EE90 !important;
-                justify-content: center;
-                overflow-x: auto;
-                white-space: nowrap;
-                max-width: 98%;
-                border-radius: 22px;
-                padding: 10px 0;
-                margin: auto;
-                width: fit-content;
-            }
+                       
+        .stTabs [data-baseweb="tab-list"] {
+            display: flex;
+            gap: 5px !important;
+            background-color: #90EE90 !important;
+            justify-content: center;
+            overflow-x: auto;
+            white-space: nowrap;
+            max-width: 98%;
+            border-radius: 20px;
+            padding: 0;
+            margin: auto;
+            width: fit-content;
+        }
 
-            /* Other styles remain the same */
-            .stTabs [data-baseweb="tab"] {
-                padding: 10px 40px;
-                background-color: #90EE90;
-                border-radius: 20px;
-                margin-right: 0.5px;
-                transition: all 0.3s ease-in-out;
-            }
-            
-            .stTabs [data-baseweb="tab"]:hover {
-                background-color: #4CAF50;
-                font-weight: bold;
-                color: white; 
-            }
+        .stTabs [data-baseweb="tab"] {
+            padding: 10px 40px;
+            background-color: #90EE90;
+            border-radius: 20px 20px 20px 20px;
+            margin-right: 0.5px;
+            transition: all 0.3s ease-in-out;
+        }
+                       
+        .stTabs [data-baseweb="tab"] > div:hover {
+            font-size: 16px !important;
+            font-weight: bold;
+            transition: font-size 0.3s ease-in-out;
+        }
 
-            .stTabs [aria-selected="true"] {
-                background-color: #4CAF50 !important;
-                color: white !important;
-                font-weight: bold;
-            }
-            
-            div[data-baseweb="tab-highlight"], div[data-baseweb="tab-border"] {
-                background-color: transparent !important;
-            }
+        .stTabs [data-baseweb="tab"]:hover {
+            background-color: #4CAF50;
+            font-weight: bold;
+            color: white;         
+        }
+
+        .stTabs [aria-selected="true"] {
+            background-color: #4CAF50 !important;
+            color: white !important;
+            font-weight: bold;
+            box-shadow: none !important;
+            border-bottom: none !important;
+        }
+        
+        div[data-baseweb="tab-highlight"] {
+            background-color: transparent !important;
+        }
+
+        div[data-baseweb="tab-border"] {
+            background-color: transparent !important;
+        }
+                       
+        .stTabs::-webkit-scrollbar-thumb {
+            background: #ccc;
+            border-radius: 4px;
+        }
         </style>
     """, unsafe_allow_html=True)
 
@@ -255,17 +265,6 @@ def user_percentile(total_emissions):
 
     return max(user_percentile, 1)
 
-
-def main():
-    return st.markdown("""
-                <style>
-                .main > div {
-                    padding-top: 70px; /* Add padding to the main content to prevent overlap */
-                }
-                </style>
-                """, 
-                unsafe_allow_html=True)
-
 image_base64 = get_base64_image("footprint.png")
 
 ######################### Main Code #########################
@@ -295,8 +294,6 @@ tabs_style()
 tabs = st.tabs(["Household", "Transport", "Secondary", "Total"])
 
 user_data = {}
-
-main()
 
 # --- Energy Tab ---
 with tabs[0]:
