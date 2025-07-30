@@ -278,8 +278,8 @@ st.markdown("""
     .block-container {
             padding-top: 0rem;
             padding-bottom: 0rem;
-            padding-left: 1em;
-            padding-right: 1rem;
+            padding-left: 2em;
+            padding-right: 2rem;
         }
 </style>
 <div class="scroll-section">
