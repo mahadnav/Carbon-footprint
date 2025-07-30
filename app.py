@@ -74,45 +74,55 @@ def expander_style():
         """, unsafe_allow_html=True)
 
 def tabs_style():
-    return st.markdown("""
-        <style>                   
-            .stTabs [data-baseweb="tab-list"] {
-                gap: 5px !important;
-                background-color: #90EE90 !important;
-                justify-content: center;
-                border-radius: 20px;
-                padding: 0px;
-                margin: auto;
-                width: fit-content;
-                overflow-x: auto;
-                white-space:nowrap;
-            }
-            
-            .stTabs [data-baseweb="tab"] {
-                padding: 10px 40px;
-                background-color: #90EE90;
-                border-radius: 20px;
-                transition: all 0.3s ease-in-out;
-            }
-            
-            .stTabs [data-baseweb="tab"]:hover {
-                font-size: 18px;
-                background-color: #4CAF50;
-                font-weight: bold;
-                color: white; 
-            }
-
-            .stTabs [aria-selected="true"] {
-                background-color: #4CAF50 !important;
-                color: white !important;
-                font-weight: bold;
-            }
-            
-            div[data-baseweb="tab-highlight"], div[data-baseweb="tab-border"] {
-                background-color: transparent !important;
-            }
-        </style>
-    """, unsafe_allow_html=True)
+        return st.markdown("""<style>
+                                .stTabs [data-baseweb=tab-list]{
+                                display:flex;
+                                gap:5px!important;
+                                background-color:#90ee90!important;
+                                justify-content:center;
+                                overflow-x:auto;
+                                -space:nowrap;
+                                max-width:98%;
+                                border-radius:20px;
+                                padding:0;
+                                margin:auto;
+                                width:fit-content}
+                                
+                                .stTabs [data-baseweb=tab]{
+                                padding:10px 40px;
+                                background-color:#90ee90;
+                                border-radius:20px;
+                                margin-right:.5px;
+                                transition:all .3s ease-in-out
+                                }
+                                
+                                .stTabs [data-baseweb=tab] > div:hover{
+                                font-size:16px!important;
+                                font-weight:700;
+                                transition:font-size .3s ease-in-out
+                                }
+                                
+                                .stTabs [data-baseweb=tab]:hover{
+                                background-color:#4caf50;
+                                font-weight:700;
+                                color:#fff
+                                }
+                                
+                                .stTabs [aria-selected=true]{
+                                background-color:#4caf50!important;
+                                color:#fff!important;
+                                font-weight:700;
+                                box-shadow:none!important;
+                                border-bottom:none!important
+                                }
+                                
+                                div[data-baseweb=tab-highlight],div[data-baseweb=tab-border]{
+                                background-color:transparent!important
+                                }
+                                .stTabs::-webkit-scrollbar-thumb{background:#ccc;border-radius:4px}
+                                </style>
+                           """, 
+                           unsafe_allow_html=True)
 
 def selectbox_style():
     st.markdown("""
