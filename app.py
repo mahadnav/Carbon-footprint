@@ -8,19 +8,19 @@ from scipy import stats
 import numpy as np
 from streamlit.components.v1 import html
 
-INVISIBLE_CONTAINER_CSS = """
-div[data-testid="stVerticalBlockBorderWrapper"]:has(div.invisible-marker-container):not(:has(div.not-invisible-marker-container)) {
-    display: none;
-}
-div[data-testid="stVerticalBlockBorderWrapper"]:not(:has(div.invisible-marker-container)):has(div.not-invisible-marker-container) {
-    display: none;
-}
-"""
-
 
 def st_invisible_container():
     invisible_marker_container = st.container()
     not_invisible_marker_container = st.container()
+
+    INVISIBLE_CONTAINER_CSS = """
+        div[data-testid="stVerticalBlockBorderWrapper"]:has(div.invisible-marker-container):not(:has(div.not-invisible-marker-container)) {
+            display: none;
+        }
+        div[data-testid="stVerticalBlockBorderWrapper"]:not(:has(div.invisible-marker-container)):has(div.not-invisible-marker-container) {
+            display: none;
+        }
+        """
     css = INVISIBLE_CONTAINER_CSS
     with invisible_marker_container:
         st.markdown(f"<style>{css}</style>", unsafe_allow_html=True)
