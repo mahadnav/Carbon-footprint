@@ -8,66 +8,41 @@ from scipy import stats
 import numpy as np
 
 
-# CSS for scroll-disappearing and blurring header
+# CSS for scroll blur effect
 st.markdown("""
 <style>
-.scroll-hide {
-    position: sticky;
-    top: 0;
-    z-index: 999;
-    background: white;
-    padding: 2rem 1rem 1rem 1rem;
-    text-align: left;
-    transition: all 0.4s ease-in-out;
-    font-family: 'Segoe UI', sans-serif;
+.scroll-section {
+    transition: all 0.5s ease;
     filter: blur(0px);
     opacity: 1;
-    transform: translateY(0);
+    transform: scale(1);
 }
 
-.scroll-hide.hidden {
-    filter: blur(8px);
-    opacity: 0.5;
-    transform: translateY(-100%);
-}
-
-.scroll-hide h1 {
-    font-size: 2.5rem;
-    margin: 0;
-    color: #262730;
-}
-
-.scroll-hide p {
-    font-size: 1rem;
-    color: #5c5c5c;
-    margin: 0.25rem 0 0 0;
-}
-
-body::-webkit-scrollbar {
-    display: none;
-}
-html {
-    scroll-behavior: smooth;
+.scroll-section.blur-out {
+    filter: blur(6px);
+    opacity: 0;
+    transform: scale(0.8);
 }
 </style>
 """, unsafe_allow_html=True)
 
-# JavaScript to toggle blur + hide on scroll
+
+# JavaScript to blur content leaving the visible window
 components.html("""
 <script>
-    let lastScrollTop = 0;
-    window.addEventListener("scroll", function(){
-        let st = window.pageYOffset || document.documentElement.scrollTop;
-        let header = document.querySelector(".scroll-hide");
-        if (st > lastScrollTop){
-            header.classList.add("hidden");
-        } else {
-            header.classList.remove("hidden");
-        }
-        lastScrollTop = st <= 0 ? 0 : st;
-    }, false);
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) {
+      entry.target.classList.add("blur-out");
+    } else {
+      entry.target.classList.remove("blur-out");
+    }
+  });
+}, { threshold: 0.25 });
+const sections = parent.document.querySelectorAll('.scroll-section');
+sections.forEach(el => observer.observe(el));
 </script>
-""", height=0)
+""", height=0) 
 
 
 
@@ -290,13 +265,6 @@ def user_percentile(total_emissions):
 
     return max(user_percentile, 1)
 
-def go_to_tab(direction):
-    index = tabs.index(st.session_state.current_tab)
-    if direction == "next" and index < len(tabs) - 1:
-        st.session_state.current_tab = tabs[index + 1]
-    elif direction == "prev" and index > 0:
-        st.session_state.current_tab = tabs[index - 1]
-
 image_base64 = get_base64_image("footprint.png")
 
 ######################### Main Code #########################
@@ -305,7 +273,7 @@ st.set_page_config(page_title="🇵🇰 Carbon Footprint Calculator", layout="wi
 
 # Use markdown for the title with the effect
 st.markdown("""
-<div class="scroll-hide">
+<div class="scroll-section">
     <h1>🇵🇰 Carbon Footprint Calculator</h1>
     <div style='font-size: 1.5rem; font-weight: 500; margin-bottom: 0.5rem; color: #222;'>
         Your personal carbon footprint dashboard!
