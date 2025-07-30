@@ -40,10 +40,8 @@ const observer = new IntersectionObserver((entries) => {
   });
 }, 
 { 
-  /* --- FIX STARTS HERE --- */
   rootMargin: "-150px 0px -150px 0px", // Creates a 150px margin inside the top and bottom of the viewport
   threshold: 0                          // Triggers as soon as an element touches the margin
-  /* --- FIX ENDS HERE --- */
 });
 
 const sections = parent.document.querySelectorAll('.scroll-section');
@@ -269,7 +267,7 @@ st.markdown("""
             padding-top: 0rem;
             padding-bottom: 0rem;
             padding-left: 2em;
-            padding-right: 4rem;
+            padding-right: 2rem;
         }
 </style>
 <div class="scroll-section">
