@@ -20,13 +20,7 @@ st.markdown("""
 
 .scroll-section.blur-out {
     filter: blur(6px);
-    opacity: 0;
-    transform: scale(0.1);
-}
-
-.scroll-section.blur-in {
-    filter: blur(6px);
-    opacity: 0;
+    opacity: 0.5;
     transform: scale(0.1);
 }
 </style>
