@@ -14,7 +14,7 @@ st.markdown("""
 .disappearing-section {
     /* Base state of the sections */
     opacity: 1;
-    max-height: 100px; /* A value larger than any individual section */
+    max-height: 1000px; /* A value larger than any individual section */
     transform: translateY(0);
     overflow: hidden;
     transition: opacity 0.6s ease-out, max-height 0.7s ease-in-out, transform 0.6s ease-out, margin 0.7s ease-in-out, padding 0.7s ease-in-out;
