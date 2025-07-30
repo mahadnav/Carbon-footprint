@@ -59,13 +59,6 @@ if (target && header) {
 </script>
 """, height=0)
 
-# Render the blur-sensitive title
-st.markdown("""
-<div class="scroll-header">
-    <h1>🌍 Carbon Footprint Calculator</h1>
-</div>
-""", unsafe_allow_html=True)
-
 
 def expander_style():
         return st.markdown("""
@@ -301,7 +294,7 @@ st.set_page_config(page_title="🇵🇰 Carbon Footprint Calculator", layout="wi
 
 # Use markdown for the title with the effect
 st.markdown("""
-<div class="scroll-hide">
+<div class="scroll-header">
     <h1>🇵🇰 Carbon Footprint Calculator</h1>
     <div style='font-size: 1.5rem; font-weight: 500; margin-bottom: 0.5rem; color: #222;'>
         Your personal carbon footprint dashboard!
