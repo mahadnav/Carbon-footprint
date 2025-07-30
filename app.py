@@ -73,7 +73,7 @@ def animated_scrollbar():
 
         /* Set the width of the scrollbar */
         ::-webkit-scrollbar {
-            width: 10px;
+            width: 50px;
         }
 
         /* === FALLBACK FOR FIREFOX === */
