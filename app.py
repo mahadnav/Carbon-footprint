@@ -12,10 +12,10 @@ import numpy as np
 st.markdown("""
 <style>
 .scroll-section {
-    transition: all 0.5s ease;
+    transition: all 0.7s ease;
     filter: blur(0px);
     opacity: 1;
-    transform: scale(1);
+    transform: scale(0.5);
 }
 
 .scroll-section.blur-out {
