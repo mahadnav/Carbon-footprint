@@ -54,7 +54,7 @@ def animated_scrollbar():
                     <head>
                     <style>
                         ::-webkit-scrollbar {
-                            width: 10px;
+                            width: 100px;
                             }
 
                             /* Track */
