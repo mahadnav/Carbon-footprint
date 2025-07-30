@@ -290,10 +290,9 @@ st.markdown("""
 #     </div>
 # """, unsafe_allow_html=True)
 
-st_invisible_container()
-with st.container(border=True):
-    tabs_style()         
-    tabs = st.tabs(["Household", "Transport", "Secondary", "Total"])
+
+tabs_style()         
+tabs = st.tabs(["Household", "Transport", "Secondary", "Total"])
 
 user_data = {}
 
