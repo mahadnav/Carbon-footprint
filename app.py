@@ -26,7 +26,6 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-
 # JavaScript to blur content leaving the visible window
 components.html("""
 <script>
@@ -49,7 +48,42 @@ sections.forEach(el => observer.observe(el));
 </script>
 """, height=0)
 
+animated_scrollbar_css = """
+<style>
+    body {
+        /* Firefox fallback */
+        scrollbar-width: thin;
+        scrollbar-color: #909090 #F1F1F1;
+    }
+    
+    ::-webkit-scrollbar {
+        width: 8px;
+        transition: width 0.3s ease-in-out;
+    }
 
+    body:hover::-webkit-scrollbar {
+        width: 12px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: #F1F1F1;
+        border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: #909090;
+        border-radius: 10px;
+        transition: background 0.3s ease-in-out;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+</style>
+"""
+
+# Inject the CSS into the app
+st.markdown(animated_scrollbar_css, unsafe_allow_html=True)
 
 def expander_style():
         return st.markdown("""
