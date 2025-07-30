@@ -74,9 +74,6 @@ def expander_style():
         """, unsafe_allow_html=True)
 
 def tabs_style():
-    """
-    Styles the tabs for appearance but allows them to scroll with the page.
-    """
     return st.markdown("""
         <style>
             .stTabs [data-baseweb="tab-list"] {
@@ -88,7 +85,7 @@ def tabs_style():
                 white-space: nowrap;
                 max-width: 98%;
                 border-radius: 20px;
-                padding: 5px;
+                padding: 0px;
                 margin: auto;
                 width: fit-content;
             }
