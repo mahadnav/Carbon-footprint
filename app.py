@@ -20,14 +20,14 @@ st.markdown("""
     text-align: left;
     transition: all 0.4s ease-in-out;
     font-family: 'Segoe UI', sans-serif;
-    filter: blur(5px);
+    filter: blur(0px);
     opacity: 1;
     transform: translateY(0);
 }
 
 .scroll-hide.hidden {
     filter: blur(8px);
-    opacity: 0;
+    opacity: 0.5;
     transform: translateY(-100%);
 }
 
