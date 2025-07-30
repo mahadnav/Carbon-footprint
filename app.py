@@ -49,34 +49,39 @@ sections.forEach(el => observer.observe(el));
 """, height=0)
 
 def animated_scrollbar():
-    st.markdown("""
-                <html>
-                    <head>
-                    <style>
-                        ::-webkit-scrollbar {
-                            width: 100px;
-                            }
+    st.markdown(
+        """
+        <style>
+        /* For Webkit browsers (Chrome, Safari) */
+        ::-webkit-scrollbar {
+            width: 50px; /* Width of the vertical scrollbar */
+            height: 50px; /* Height of the horizontal scrollbar */
+        }
 
-                            /* Track */
-                            ::-webkit-scrollbar-track {
-                            background: #f1f1f1;
-                            }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1; /* Color of the scrollbar track */
+            border-radius: 5px;
+        }
 
-                            /* Handle */
-                            ::-webkit-scrollbar-thumb {
-                            background: #888;
-                            }
+        ::-webkit-scrollbar-thumb {
+            background: #888; /* Color of the scrollbar thumb */
+            border-radius: 5px;
+        }
 
-                            /* Handle on hover */
-                            ::-webkit-scrollbar-thumb:hover {
-                            background: #555;
-                            }
-                    </style>
-                    </head>
-                    <body>
-                    </body>
-                </html>
-            """, unsafe_allow_html=True)
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555; /* Color of the scrollbar thumb on hover */
+        }
+
+        /* For Firefox (requires a different approach) */
+        /* Note: Firefox styling is more limited and uses scrollbar-color and scrollbar-width */
+        body {
+            scrollbar-color: #888 #f1f1f1; /* thumb color track color */
+            scrollbar-width: none; /* auto | thin | none */
+        }
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
 
 def expander_style():
         return st.markdown("""
