@@ -84,6 +84,8 @@ def tabs_style():
                 padding: 0px;
                 margin: auto;
                 width: fit-content;
+                overflow-x: auto;
+                white-space:nowrap;
             }
             
             .stTabs [data-baseweb="tab"] {
