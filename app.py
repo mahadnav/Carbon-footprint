@@ -10,52 +10,44 @@ import numpy as np
 
 st.markdown("""
 <style>
-.scroll-header {
-    position: sticky;
-    top: 0;
-    background: white;
-    z-index: 1000;
-    padding: 2rem 1rem 1rem 1rem;
-    text-align: center;
-    transition: all 0.3s ease-in-out;
-    font-family: 'Segoe UI', sans-serif;
-    backdrop-filter: blur(0px);
+.scroll-section {
+    transition: all 0.5s ease;
     filter: blur(0px);
     opacity: 1;
+    transform: scale(1);
+    margin-bottom: 2rem;
 }
 
-.scroll-header.hidden {
-    filter: blur(8px);
+.scroll-section.blur-out {
+    filter: blur(6px);
     opacity: 0;
-    transform: translateY(-50%);
+    transform: scale(0.95);
 }
 
-.scroll-header h1 {
-    font-size: 2.5rem;
-    margin: 0;
-    color: #262730;
+/* Optional: remove top padding */
+.block-container {
+    padding-top: 2rem;
 }
 </style>
 """, unsafe_allow_html=True)
 
-# JavaScript to detect scroll within Streamlit and toggle blur
+# ---------- JavaScript to Detect Scroll and Blur ----------
 components.html("""
 <script>
-const target = parent.document.querySelector('.main');
-const header = parent.document.querySelector('.scroll-header');
-let lastScrollTop = 0;
-
-if (target && header) {
-    target.addEventListener('scroll', function () {
-        let st = target.scrollTop;
-        if (st > lastScrollTop) {
-            header.classList.add('hidden');
-        } else {
-            header.classList.remove('hidden');
-        }
-        lastScrollTop = st <= 0 ? 0 : st;
+window.addEventListener("DOMContentLoaded", () => {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) {
+        entry.target.classList.add("blur-out");
+      } else {
+        entry.target.classList.remove("blur-out");
+      }
     });
-}
+  }, { threshold: 0.25 });
+
+  const sections = document.querySelectorAll('.scroll-section');
+  sections.forEach(el => observer.observe(el));
+});
 </script>
 """, height=0)
 
@@ -287,7 +279,7 @@ st.set_page_config(page_title="🇵🇰 Carbon Footprint Calculator", layout="wi
 
 # Use markdown for the title with the effect
 st.markdown("""
-<div class="scroll-header">
+<div class="scroll-section">
     <h1>🇵🇰 Carbon Footprint Calculator</h1>
     <div style='font-size: 1.5rem; font-weight: 500; margin-bottom: 0.5rem; color: #222;'>
         Your personal carbon footprint dashboard!
