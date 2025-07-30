@@ -22,7 +22,7 @@ st.markdown("""
 
 .disappearing-section.fade-out {
     /* State when the section is scrolled out of view */
-    opacity: 0.5;
+    opacity: 0;
     max-height: 0px;
     transform: translateY(-10px);
     margin-top: 0 !important;
