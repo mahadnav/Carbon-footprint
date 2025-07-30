@@ -50,43 +50,33 @@ sections.forEach(el => observer.observe(el));
 
 def animated_scrollbar():
     st.markdown("""
-    <style>
-        /* === MAIN STYLES FOR CHROME, EDGE, SAFARI === */
+                <html>
+                    <head>
+                    <style>
+                        ::-webkit-scrollbar {
+                            width: 10px;
+                            }
 
-        /* The scrollbar track */
-        ::-webkit-scrollbar-track {
-            background: #000000;
-        }
+                            /* Track */
+                            ::-webkit-scrollbar-track {
+                            background: #f1f1f1;
+                            }
 
-        /* The draggable scrollbar thumb */
-        ::-webkit-scrollbar-thumb {
-            background: #888;
-            border-radius: 10px;
-            /* The transition adds the smooth animation effect */
-            transition: background 0.3s ease;
-        }
+                            /* Handle */
+                            ::-webkit-scrollbar-thumb {
+                            background: #888;
+                            }
 
-        /* Change color on hover */
-        ::-webkit-scrollbar-thumb:hover {
-            background: #555;
-        }
-
-        /* Set the width of the scrollbar */
-        ::-webkit-scrollbar {
-            width: 50px;
-        }
-
-        /* === FALLBACK FOR FIREFOX === */
-        /* This provides a styled, but NON-ANIMATED, scrollbar for Firefox */
-        body {
-            scrollbar-color: #888 #f1f1f1;
-            scrollbar-width: thin;
-        }
-    </style>
-    """, unsafe_allow_html=True)
-
-
-animated_scrollbar()
+                            /* Handle on hover */
+                            ::-webkit-scrollbar-thumb:hover {
+                            background: #555;
+                            }
+                    </style>
+                    </head>
+                    <body>
+                    </body>
+                </html>
+            """, unsafe_allow_html=True)
 
 def expander_style():
         return st.markdown("""
@@ -293,6 +283,9 @@ image_base64 = get_base64_image("footprint.png")
 ######################### Main Code #########################
 
 st.set_page_config(page_title="🇵🇰 Carbon Footprint Calculator", layout="wide")
+
+animated_scrollbar()
+
 
 # Use markdown for the title with the effect
 st.markdown("""
