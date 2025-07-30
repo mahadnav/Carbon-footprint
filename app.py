@@ -8,6 +8,7 @@ from scipy import stats
 import numpy as np
 
 
+# CSS for scroll blur effect
 st.markdown("""
 <style>
 .scroll-section {
@@ -15,41 +16,48 @@ st.markdown("""
     filter: blur(0px);
     opacity: 1;
     transform: scale(1);
-    margin-bottom: 2rem;
 }
 
 .scroll-section.blur-out {
     filter: blur(6px);
     opacity: 0;
-    transform: scale(0.7);
-}
-
-/* Optional: remove top padding */
-.block-container {
-    padding-top: 1rem;
+    transform: scale(0.8);
 }
 </style>
 """, unsafe_allow_html=True)
 
-# ---------- JavaScript to Detect Scroll and Blur ----------
-components.html("""
-<script>
-window.addEventListener("DOMContentLoaded", () => {
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) {
-        entry.target.classList.add("blur-out");
-      } else {
-        entry.target.classList.remove("blur-out");
-      }
-    });
-  }, { threshold: 0.25 });
+# JavaScript to blur content leaving the visible window
+# This script runs once and attaches an observer to all elements with the 'scroll-section' class.
+if 'script_injected' not in st.session_state:
+    components.html("""
+    <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) {
+          entry.target.classList.add("blur-out");
+        } else {
+          entry.target.classList.remove("blur-out");
+        }
+      });
+    }, { threshold: 0.1 }); // Trigger when 10% of the element is visible
 
-  const sections = document.querySelectorAll('.scroll-section');
-  sections.forEach(el => observer.observe(el));
-});
-</script>
-""", height=0)
+    // Use a function to query for sections to handle dynamically added content
+    const observeSections = () => {
+        const sections = parent.document.querySelectorAll('.scroll-section');
+        sections.forEach(el => observer.observe(el));
+    }
+    
+    // Initial call
+    observeSections();
+
+    // Re-observe when Streamlit re-renders (this is a simple way to handle it)
+    const observerConfig = { childList: true, subtree: true };
+    const mutationObserver = new MutationObserver(observeSections);
+    mutationObserver.observe(parent.document.body, observerConfig);
+
+    </script>
+    """, height=0)
+    st.session_state['script_injected'] = True
 
 
 def expander_style():
