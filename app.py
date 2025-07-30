@@ -8,6 +8,7 @@ from scipy import stats
 import numpy as np
 
 
+# CSS for scroll-disappearing and blurring header
 st.markdown("""
 <style>
 .scroll-hide {
@@ -19,6 +20,15 @@ st.markdown("""
     text-align: center;
     transition: all 0.4s ease-in-out;
     font-family: 'Segoe UI', sans-serif;
+    filter: blur(0px);
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.scroll-hide.hidden {
+    filter: blur(8px);
+    opacity: 0;
+    transform: translateY(-100%);
 }
 
 .scroll-hide h1 {
@@ -42,21 +52,19 @@ html {
 </style>
 """, unsafe_allow_html=True)
 
-# JavaScript for detecting scroll direction
+# JavaScript to toggle blur + hide on scroll
 components.html("""
 <script>
     let lastScrollTop = 0;
     window.addEventListener("scroll", function(){
-       let st = window.pageYOffset || document.documentElement.scrollTop;
-       let header = document.querySelector(".scroll-hide");
-       if (st > lastScrollTop){
-           header.style.opacity = "0";
-           header.style.transform = "translateY(-100%)";
-       } else {
-           header.style.opacity = "1";
-           header.style.transform = "translateY(0)";
-       }
-       lastScrollTop = st <= 0 ? 0 : st;
+        let st = window.pageYOffset || document.documentElement.scrollTop;
+        let header = document.querySelector(".scroll-hide");
+        if (st > lastScrollTop){
+            header.classList.add("hidden");
+        } else {
+            header.classList.remove("hidden");
+        }
+        lastScrollTop = st <= 0 ? 0 : st;
     }, false);
 </script>
 """, height=0)
@@ -298,7 +306,7 @@ st.set_page_config(page_title="🇵🇰 Carbon Footprint Calculator", layout="wi
 # Use markdown for the title with the effect
 st.markdown("""
 <div class="scroll-hide">
-    <h1 style='font-size: 2.5rem; font-weight: 500; margin-bottom: 0.5rem; color: #000;'>🇵🇰 Carbon Footprint Calculator</h1>
+    <h1>🇵🇰 Carbon Footprint Calculator</h1>
     <div style='font-size: 1.5rem; font-weight: 500; margin-bottom: 0.5rem; color: #222;'>
         Your personal carbon footprint dashboard!
     </div>
