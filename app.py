@@ -21,7 +21,7 @@ st.markdown("""
 .scroll-section.blur-out {
     filter: blur(6px);
     opacity: 0;
-    transform: scale(0.95);
+    transform: scale(0.7);
 }
 
 /* Optional: remove top padding */
