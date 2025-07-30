@@ -275,9 +275,12 @@ st.set_page_config(page_title="🇵🇰 Carbon Footprint Calculator", layout="wi
 # Use markdown for the title with the effect
 st.markdown("""
 <style>
-    .reportview-container .main .block-container{{
-            padding-top: 0rem;
-    }}
+            .block-container {
+                    padding-top: 0rem;
+                    padding-bottom: 0rem;
+                    padding-left: 1em;
+                    padding-right: 1rem;
+                }
 </style>
 <div class="scroll-section">
     <h1>🇵🇰 Carbon Footprint Calculator</h1>
