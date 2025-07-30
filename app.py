@@ -75,11 +75,9 @@ def tabs_style():
     return st.markdown("""
         <style>
             .stTabs [data-baseweb="tab-list"] {
-                /* ---- FIX STARTS HERE ---- */
                 position: sticky;   /* Makes the tab bar stick to the top */
                 top: 0;             /* Positions it at the top of the scroll container */
                 z-index: 999;       /* Ensures it stays on top of other content */
-                /* ---- FIX ENDS HERE ---- */
                 
                 /* Original Styles for appearance */
                 display: flex;
@@ -89,7 +87,7 @@ def tabs_style():
                 overflow-x: auto;   /* Allows horizontal scrolling if tabs overflow */
                 white-space: nowrap;
                 max-width: 98%;
-                border-radius: 20px;
+                border-radius: 22px;
                 padding: 5px 0;
                 margin: auto;
                 width: fit-content;
