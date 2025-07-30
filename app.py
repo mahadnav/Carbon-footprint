@@ -19,7 +19,7 @@ st.markdown("""
 }
 
 .scroll-section.blur-out {
-    filter: blur(6px);
+    filter: blur(10px);
     opacity: 0.5;
     transform: scale(0.1);
 }
