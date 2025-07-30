@@ -430,9 +430,12 @@ st.markdown("""
 for i in range(30):
         st.write(f"Line {i}")
 
-with st_fixed_container(mode="fixed", position="top", border=True, transparent=False):
-        st.write("This is a fixed container.")
-
+with st_fixed_container(mode="fixed", position="bottom", transparent=True):
+        _, right = st.columns([0.7, 0.3])
+        with right:
+            with st_opaque_container(border=True):
+                st.button("Feedback", use_container_width=True)
+                st.button("Clean up", use_container_width=True)
 tabs_style()
 tabs = st.tabs(["Household", "Transport", "Secondary", "Total"])
 
