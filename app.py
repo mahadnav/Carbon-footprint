@@ -75,7 +75,7 @@ def tabs_style():
     return st.markdown("""
         <style>
             .stTabs [data-baseweb="tab-list"] {
-                position: sticky;   /* Makes the tab bar stick to the top */
+                position: fixed;   /* Makes the tab bar stick to the top */
                 top: 0;             /* Positions it at the top of the scroll container */
                 z-index: 999;       /* Ensures it stays on top of other content */
                 
