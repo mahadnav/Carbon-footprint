@@ -73,6 +73,7 @@ def tabs_style():
         <style>
                        
         .stTabs [data-baseweb="tab-list"] {
+            position: sticky;
             display: flex;
             gap: 5px !important;
             background-color: #90EE90 !important;
