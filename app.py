@@ -75,28 +75,22 @@ def expander_style():
 def tabs_style():
     return st.markdown("""
         <style>
-            /* This targets the container of the tabs and allows sticky positioning */
-            div[data-testid="stVerticalBlockBorderWrapper"]:has(div[data-testid="stTabs"]) {
-                overflow: visible;
-            }
 
-            .stTabs [data-baseweb="tab-list"] {
-                /* Sticky positioning properties */
-                position: sticky;
+            .tabs-object .tabs-container {
+                position: sticky !important; 
                 top: 0;
-                z-index: 999;
-
-                /* Your existing styles */
+            }
+                       
+            .stTabs [data-baseweb="tab-list"] {
                 gap: 5px !important;
                 background-color: #90EE90 !important;
                 justify-content: center;
                 border-radius: 20px;
-                padding: 10px; /* Added padding for better look */
+                padding: 0px;
                 margin: auto;
                 width: fit-content;
             }
             
-            /* ... keep the rest of your original styles for tabs ... */
             .stTabs [data-baseweb="tab"] {
                 padding: 10px 40px;
                 background-color: #90EE90;
@@ -318,7 +312,7 @@ st.markdown("""
 #     </div>
 # """, unsafe_allow_html=True)
 
-# Call the style function BEFORE the container
+
 tabs_style() 
 tabs = st.tabs(["Household", "Transport", "Secondary", "Total"])
 
