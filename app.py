@@ -15,10 +15,16 @@ st.markdown("""
     transition: all 0.7s ease;
     filter: blur(0px);
     opacity: 1;
-    transform: scale(0.8);
+    transform: scale(1);
 }
 
 .scroll-section.blur-out {
+    filter: blur(6px);
+    opacity: 0;
+    transform: scale(0.1);
+}
+
+.scroll-section.blur-in {
     filter: blur(6px);
     opacity: 0;
     transform: scale(0.1);
