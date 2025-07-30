@@ -275,7 +275,7 @@ st.set_page_config(page_title="🇵🇰 Carbon Footprint Calculator", layout="wi
 st.markdown("""
 <style>
             .block-container {
-                    padding-top: -500px;
+                    padding-top: -10rem;
                     padding-bottom: 0rem;
                     padding-left: 1em;
                     padding-right: 1rem;
