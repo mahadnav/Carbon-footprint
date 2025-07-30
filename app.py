@@ -48,42 +48,45 @@ sections.forEach(el => observer.observe(el));
 </script>
 """, height=0)
 
-animated_scrollbar_css = """
-<style>
-    body {
-        /* Firefox fallback */
-        scrollbar-width: thick;
-        scrollbar-color: #909090 #F1F1F1;
-    }
-    
-    ::-webkit-scrollbar {
-        width: 50px;
-        transition: width 0.3s ease-in-out;
-    }
+def animated_scrollbar():
+    st.markdown("""
+    <style>
+        /* === MAIN STYLES FOR CHROME, EDGE, SAFARI === */
 
-    body:hover::-webkit-scrollbar {
-        width: 100px;
-    }
+        /* The scrollbar track */
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
 
-    ::-webkit-scrollbar-track {
-        background: #F1F1F1;
-        border-radius: 10px;
-    }
+        /* The draggable scrollbar thumb */
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 10px;
+            /* The transition adds the smooth animation effect */
+            transition: background 0.3s ease;
+        }
 
-    ::-webkit-scrollbar-thumb {
-        background: #909090;
-        border-radius: 10px;
-        transition: background 0.3s ease-in-out;
-    }
+        /* Change color on hover */
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
 
-    ::-webkit-scrollbar-thumb:hover {
-        background: #555;
-    }
-</style>
-"""
+        /* Set the width of the scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
 
-# Inject the CSS into the app
-st.markdown(animated_scrollbar_css, unsafe_allow_html=True)
+        /* === FALLBACK FOR FIREFOX === */
+        /* This provides a styled, but NON-ANIMATED, scrollbar for Firefox */
+        body {
+            scrollbar-color: #888 #f1f1f1;
+            scrollbar-width: thin;
+        }
+    </style>
+    """, unsafe_allow_html=True)
+
+
+animated_scrollbar()
 
 def expander_style():
         return st.markdown("""
