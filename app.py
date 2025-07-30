@@ -8,67 +8,63 @@ from scipy import stats
 import numpy as np
 
 
-# CSS for scroll-disappearing and blurring header
 st.markdown("""
 <style>
-.scroll-hide {
+.scroll-header {
     position: sticky;
     top: 0;
-    z-index: 999;
     background: white;
+    z-index: 1000;
     padding: 2rem 1rem 1rem 1rem;
-    text-align: left;
-    transition: all 0.4s ease-in-out;
+    text-align: center;
+    transition: all 0.3s ease-in-out;
     font-family: 'Segoe UI', sans-serif;
+    backdrop-filter: blur(0px);
     filter: blur(0px);
     opacity: 1;
-    transform: translateY(0);
 }
 
-.scroll-hide.hidden {
+.scroll-header.hidden {
     filter: blur(8px);
-    opacity: 0.5;
-    transform: translateY(-100%);
+    opacity: 0;
+    transform: translateY(-50%);
 }
 
-.scroll-hide h1 {
+.scroll-header h1 {
     font-size: 2.5rem;
     margin: 0;
     color: #262730;
 }
-
-.scroll-hide p {
-    font-size: 1rem;
-    color: #5c5c5c;
-    margin: 0 0 0 0;
-}
-
-body::-webkit-scrollbar {
-    display: none;
-}
-html {
-    scroll-behavior: smooth;
-}
 </style>
 """, unsafe_allow_html=True)
 
-# JavaScript to toggle blur + hide on scroll
+# JavaScript to detect scroll within Streamlit and toggle blur
 components.html("""
 <script>
-    let lastScrollTop = 0;
-    window.addEventListener("scroll", function(){
-        let st = window.pageYOffset || document.documentElement.scrollTop;
-        let header = document.querySelector(".scroll-hide");
-        if (st > lastScrollTop){
-            header.classList.add("hidden");
+const target = parent.document.querySelector('.main');
+const header = parent.document.querySelector('.scroll-header');
+let lastScrollTop = 0;
+
+if (target && header) {
+    target.addEventListener('scroll', function () {
+        let st = target.scrollTop;
+        if (st > lastScrollTop) {
+            header.classList.add('hidden');
         } else {
-            header.classList.remove("hidden");
+            header.classList.remove('hidden');
         }
         lastScrollTop = st <= 0 ? 0 : st;
-    }, false);
+    });
+}
 </script>
 """, height=0)
 
+# Render the blur-sensitive title
+st.markdown("""
+<div class="scroll-header">
+    <h1>🌍 Carbon Footprint Calculator</h1>
+</div>
+""", unsafe_allow_html=True)
 
 
 def expander_style():
