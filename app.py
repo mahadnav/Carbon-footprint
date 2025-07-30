@@ -6,6 +6,34 @@ from geopy.distance import geodesic
 import base64
 from scipy import stats
 import numpy as np
+from streamlit.components.v1 import html
+
+INVISIBLE_CONTAINER_CSS = """
+div[data-testid="stVerticalBlockBorderWrapper"]:has(div.invisible-marker-container):not(:has(div.not-invisible-marker-container)) {
+    display: none;
+}
+div[data-testid="stVerticalBlockBorderWrapper"]:not(:has(div.invisible-marker-container)):has(div.not-invisible-marker-container) {
+    display: none;
+}
+"""
+
+
+def st_invisible_container():
+    invisible_marker_container = st.container()
+    not_invisible_marker_container = st.container()
+    css = INVISIBLE_CONTAINER_CSS
+    with invisible_marker_container:
+        st.markdown(f"<style>{css}</style>", unsafe_allow_html=True)
+        st.markdown(
+            "<div class='invisible-marker-container'></div>",
+            unsafe_allow_html=True,
+        )
+    with not_invisible_marker_container:
+        st.markdown(
+            f"<div class='not-invisible-marker-container'></div>",
+            unsafe_allow_html=True,
+        )
+    return invisible_marker_container.container()
 
 
 # CSS for scroll blur effect
@@ -48,40 +76,6 @@ sections.forEach(el => observer.observe(el));
 </script>
 """, height=0)
 
-def animated_scrollbar():
-    st.markdown(
-        """
-        <style>
-        /* For Webkit browsers (Chrome, Safari) */
-        ::-webkit-scrollbar {
-            width: 50px; /* Width of the vertical scrollbar */
-            height: 50px; /* Height of the horizontal scrollbar */
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1; /* Color of the scrollbar track */
-            border-radius: 5px;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: #888; /* Color of the scrollbar thumb */
-            border-radius: 5px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: #555; /* Color of the scrollbar thumb on hover */
-        }
-
-        /* For Firefox (requires a different approach) */
-        /* Note: Firefox styling is more limited and uses scrollbar-color and scrollbar-width */
-        body {
-            scrollbar-color: #888 #f1f1f1; /* thumb color track color */
-            scrollbar-width: none; /* auto | thin | none */
-        }
-        </style>
-        """,
-        unsafe_allow_html=True
-    )
 
 def expander_style():
         return st.markdown("""
@@ -289,8 +283,6 @@ image_base64 = get_base64_image("footprint.png")
 
 st.set_page_config(page_title="🇵🇰 Carbon Footprint Calculator", layout="wide")
 
-animated_scrollbar()
-
 
 # Use markdown for the title with the effect
 st.markdown("""
@@ -319,8 +311,10 @@ st.markdown("""
 #     </div>
 # """, unsafe_allow_html=True)
 
-tabs_style()         
-tabs = st.tabs(["Household", "Transport", "Secondary", "Total"])
+st_invisible_container()
+with st.container():
+    tabs_style()         
+    tabs = st.tabs(["Household", "Transport", "Secondary", "Total"])
 
 user_data = {}
 
