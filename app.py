@@ -38,7 +38,7 @@ const observer = new IntersectionObserver((entries) => {
       entry.target.classList.remove("blur-out");
     }
   });
-}, { threshold: 0.5 });
+}, { threshold: 0.1 });
 const sections = parent.document.querySelectorAll('.scroll-section');
 sections.forEach(el => observer.observe(el));
 </script>
