@@ -69,64 +69,47 @@ def expander_style():
         """, unsafe_allow_html=True)
 
 def tabs_style():
+    """
+    Styles the tabs for appearance but allows them to scroll with the page.
+    """
     return st.markdown("""
         <style>
-                       
-        .stTabs [data-baseweb="tab-list"] {
-            position: sticky;
-            display: flex;
-            gap: 5px !important;
-            background-color: #90EE90 !important;
-            justify-content: center;
-            overflow-x: auto;
-            white-space: nowrap;
-            max-width: 98%;
-            border-radius: 20px;
-            padding: 0;
-            margin: auto;
-            width: fit-content;
-        }
+            .stTabs [data-baseweb="tab-list"] {
+                display: flex;
+                gap: 5px !important;
+                background-color: #90EE90 !important;
+                justify-content: center;
+                overflow-x: auto;
+                white-space: nowrap;
+                max-width: 98%;
+                border-radius: 20px;
+                padding: 5px;
+                margin: auto;
+                width: fit-content;
+            }
 
-        .stTabs [data-baseweb="tab"] {
-            padding: 10px 40px;
-            background-color: #90EE90;
-            border-radius: 20px 20px 20px 20px;
-            margin-right: 0.5px;
-            transition: all 0.3s ease-in-out;
-        }
-                       
-        .stTabs [data-baseweb="tab"] > div:hover {
-            font-size: 16px !important;
-            font-weight: bold;
-            transition: font-size 0.3s ease-in-out;
-        }
+            .stTabs [data-baseweb="tab"] {
+                padding: 10px 40px;
+                background-color: #90EE90;
+                border-radius: 20px;
+                transition: all 0.3s ease-in-out;
+            }
+            
+            .stTabs [data-baseweb="tab"]:hover {
+                background-color: #4CAF50;
+                font-weight: bold;
+                color: white; 
+            }
 
-        .stTabs [data-baseweb="tab"]:hover {
-            background-color: #4CAF50;
-            font-weight: bold;
-            color: white;         
-        }
-
-        .stTabs [aria-selected="true"] {
-            background-color: #4CAF50 !important;
-            color: white !important;
-            font-weight: bold;
-            box-shadow: none !important;
-            border-bottom: none !important;
-        }
-        
-        div[data-baseweb="tab-highlight"] {
-            background-color: transparent !important;
-        }
-
-        div[data-baseweb="tab-border"] {
-            background-color: transparent !important;
-        }
-                       
-        .stTabs::-webkit-scrollbar-thumb {
-            background: #ccc;
-            border-radius: 4px;
-        }
+            .stTabs [aria-selected="true"] {
+                background-color: #4CAF50 !important;
+                color: white !important;
+                font-weight: bold;
+            }
+            
+            div[data-baseweb="tab-highlight"], div[data-baseweb="tab-border"] {
+                background-color: transparent !important;
+            }
         </style>
     """, unsafe_allow_html=True)
 
