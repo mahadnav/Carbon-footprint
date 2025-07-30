@@ -265,7 +265,7 @@ st.markdown("""
             padding-bottom: 0rem;
             padding-left: 2em;
             padding-right: 2rem;
-            margin-top: -1rem;
+            margin-top: -0.2rem;
         }
 </style>
 <div class="scroll-section">
