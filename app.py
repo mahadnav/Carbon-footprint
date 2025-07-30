@@ -40,7 +40,7 @@ st.markdown("""
 .scroll-hide p {
     font-size: 1rem;
     color: #5c5c5c;
-    margin: 0.25rem 0 0 0;
+    margin: 0 0 0 0;
 }
 
 body::-webkit-scrollbar {
@@ -316,11 +316,11 @@ st.markdown("""
 
 # st.title("🇵🇰 Pakistan Carbon Footprint Calculator")
 
-st.markdown("""
-    <div style='font-size: 1.5rem; font-weight: 500; margin-bottom: 0.5rem; color: #222;'>
-        Your personal carbon footprint dashboard!
-    </div>
-""", unsafe_allow_html=True)
+# st.markdown("""
+#     <div style='font-size: 1.5rem; font-weight: 500; margin-bottom: 0.5rem; color: #222;'>
+#         Your personal carbon footprint dashboard!
+#     </div>
+# """, unsafe_allow_html=True)
 
 tabs_style()         
 tabs = st.tabs(["Household", "Transport", "Secondary", "Total"])
