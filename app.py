@@ -55,7 +55,7 @@ def animated_scrollbar():
 
         /* The scrollbar track */
         ::-webkit-scrollbar-track {
-            background: #f1f1f1;
+            background: #000000;
         }
 
         /* The draggable scrollbar thumb */
