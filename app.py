@@ -40,7 +40,7 @@ const observer = new IntersectionObserver((entries) => {
   });
 }, 
 { 
-  rootMargin: "-160px 0px -150px 0px", // Creates a 150px margin inside the top and bottom of the viewport
+  rootMargin: "-150px 0px -150px 0px", // Creates a 150px margin inside the top and bottom of the viewport
   threshold: 0                          // Triggers as soon as an element touches the margin
 });
 
