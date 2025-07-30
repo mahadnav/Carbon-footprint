@@ -9,33 +9,6 @@ import numpy as np
 from streamlit.components.v1 import html
 
 
-def st_invisible_container():
-    invisible_marker_container = st.container()
-    not_invisible_marker_container = st.container()
-
-    INVISIBLE_CONTAINER_CSS = """
-        div[data-testid="stVerticalBlockBorderWrapper"]:has(div.invisible-marker-container):not(:has(div.not-invisible-marker-container)) {
-            display: none;
-        }
-        div[data-testid="stVerticalBlockBorderWrapper"]:not(:has(div.invisible-marker-container)):has(div.not-invisible-marker-container) {
-            display: none;
-        }
-        """
-    css = INVISIBLE_CONTAINER_CSS
-    with invisible_marker_container:
-        st.markdown(f"<style>{css}</style>", unsafe_allow_html=True)
-        st.markdown(
-            "<div class='invisible-marker-container'></div>",
-            unsafe_allow_html=True,
-        )
-    with not_invisible_marker_container:
-        st.markdown(
-            f"<div class='not-invisible-marker-container'></div>",
-            unsafe_allow_html=True,
-        )
-    return invisible_marker_container.container()
-
-
 # CSS for scroll blur effect
 st.markdown("""
 <style>
@@ -103,15 +76,21 @@ def tabs_style():
     return st.markdown("""
         <style>
             .stTabs [data-baseweb="tab-list"] {
+                /* CSS for making the tab bar sticky */
+                position: sticky;
+                top: 0;
+                z-index: 999;
+                
+                /* Your existing styles */
                 display: flex;
                 gap: 5px !important;
                 background-color: #90EE90 !important;
                 justify-content: center;
                 overflow-x: auto;
                 white-space: nowrap;
-                max-width: 98%;
+                max-width: 100%;
                 border-radius: 20px;
-                padding: 0px;
+                padding: 10px 0px; /* Added vertical padding */
                 margin: auto;
                 width: fit-content;
             }
