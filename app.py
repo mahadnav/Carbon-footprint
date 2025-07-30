@@ -283,7 +283,7 @@ st.markdown("""
 </style>
 <div class="scroll-section">
     <h1>🇵🇰 Carbon Footprint Calculator</h1>
-    <div style='font-size: 1.5rem; font-weight: 500; margin-bottom: 0.5rem; color: #222;'>
+    <div style='font-size: 1.25rem; font-weight: 500; margin-bottom: 0.5rem; color: #222;'>
         Your personal carbon footprint dashboard!
     </div>
             
