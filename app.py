@@ -279,13 +279,6 @@ def user_percentile(total_emissions):
 
     return max(user_percentile, 1)
 
-def go_to_tab(direction):
-    index = tabs.index(st.session_state.current_tab)
-    if direction == "next" and index < len(tabs) - 1:
-        st.session_state.current_tab = tabs[index + 1]
-    elif direction == "prev" and index > 0:
-        st.session_state.current_tab = tabs[index - 1]
-
 image_base64 = get_base64_image("footprint.png")
 
 ######################### Main Code #########################
@@ -294,7 +287,7 @@ st.set_page_config(page_title="🇵🇰 Carbon Footprint Calculator", layout="wi
 
 # Use markdown for the title with the effect
 st.markdown("""
-<div class="scroll-hide">
+<div class="scroll-header">
     <h1>🇵🇰 Carbon Footprint Calculator</h1>
     <div style='font-size: 1.5rem; font-weight: 500; margin-bottom: 0.5rem; color: #222;'>
         Your personal carbon footprint dashboard!
