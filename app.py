@@ -62,7 +62,7 @@ animated_scrollbar_css = """
     }
 
     body:hover::-webkit-scrollbar {
-        width: 12px;
+        width: 100px;
     }
 
     ::-webkit-scrollbar-track {
