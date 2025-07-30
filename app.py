@@ -1,5 +1,6 @@
 import streamlit as st
 from streamlit_extras.stylable_container import stylable_container
+import streamlit.components.v1 as components
 import pandas as pd
 from geopy.distance import geodesic
 import base64
@@ -7,44 +8,58 @@ from scipy import stats
 import numpy as np
 
 
-
 st.markdown("""
-    <style>
-        html, body, [data-testid="stApp"] {
-            height: 100% !important;
-            overflow: auto !important;
-            scroll-behavior: smooth !important;
-        }
+<style>
+.scroll-hide {
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    background: white;
+    padding: 2rem 1rem 1rem 1rem;
+    text-align: center;
+    transition: all 0.4s ease-in-out;
+    font-family: 'Segoe UI', sans-serif;
+}
 
-        /* Optional: make scrolling smoother on mobile */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
+.scroll-hide h1 {
+    font-size: 2.5rem;
+    margin: 0;
+    color: #262730;
+}
 
-        ::-webkit-scrollbar-thumb {
-            background: #ccc;
-            border-radius: 8px;
-        }
+.scroll-hide p {
+    font-size: 1rem;
+    color: #5c5c5c;
+    margin: 0.25rem 0 0 0;
+}
 
-        ::-webkit-scrollbar-track {
-            background: transparent;
-        }
-
-        /* Shrink the header as you scroll */
-        header {
-            transition: all 0.3s ease-in-out;
-        }
-
-        header.scrolled {
-            transform: scale(0.9);
-            opacity: 0.8;
-        }
-    </style>
+body::-webkit-scrollbar {
+    display: none;
+}
+html {
+    scroll-behavior: smooth;
+}
+</style>
 """, unsafe_allow_html=True)
 
-
-
-
+# JavaScript for detecting scroll direction
+components.html("""
+<script>
+    let lastScrollTop = 0;
+    window.addEventListener("scroll", function(){
+       let st = window.pageYOffset || document.documentElement.scrollTop;
+       let header = document.querySelector(".scroll-hide");
+       if (st > lastScrollTop){
+           header.style.opacity = "0";
+           header.style.transform = "translateY(-100%)";
+       } else {
+           header.style.opacity = "1";
+           header.style.transform = "translateY(0)";
+       }
+       lastScrollTop = st <= 0 ? 0 : st;
+    }, false);
+</script>
+""", height=0)
 
 
 
@@ -280,7 +295,18 @@ image_base64 = get_base64_image("footprint.png")
 
 st.set_page_config(page_title="🇵🇰 Carbon Footprint Calculator", layout="wide")
 
-st.title("🇵🇰 Pakistan Carbon Footprint Calculator")
+# Use markdown for the title with the effect
+st.markdown("""
+<div class="scroll-hide">
+    <h1 style='font-size: 2.5rem; font-weight: 500; margin-bottom: 0.5rem; color: #000;'>🇵🇰 Carbon Footprint Calculator</h1>
+    <div style='font-size: 1.5rem; font-weight: 500; margin-bottom: 0.5rem; color: #222;'>
+        Your personal carbon footprint dashboard!
+    </div>
+            
+</div>
+""", unsafe_allow_html=True)
+
+# st.title("🇵🇰 Pakistan Carbon Footprint Calculator")
 
 st.markdown("""
     <div style='font-size: 1.5rem; font-weight: 500; margin-bottom: 0.5rem; color: #222;'>
