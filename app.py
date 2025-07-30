@@ -77,9 +77,8 @@ def tabs_style():
             .stTabs [data-baseweb="tab-list"] {
                 position: fixed;   /* Makes the tab bar stick to the top */
                 top: 0;             /* Positions it at the top of the scroll container */
-                z-index: 999;       /* Ensures it stays on top of other content */
+                z-index: 1000;       /* Ensures it stays on top of other content */
                 
-                /* Original Styles for appearance */
                 display: flex;
                 gap: 5px !important;
                 background-color: #90EE90 !important;
@@ -88,7 +87,7 @@ def tabs_style():
                 white-space: nowrap;
                 max-width: 98%;
                 border-radius: 22px;
-                padding: 0 0;
+                padding: 10px 0;
                 margin: auto;
                 width: fit-content;
             }
@@ -256,6 +255,17 @@ def user_percentile(total_emissions):
 
     return max(user_percentile, 1)
 
+
+def main():
+    return st.markdown("""
+                <style>
+                .main > div {
+                    padding-top: 70px; /* Add padding to the main content to prevent overlap */
+                }
+                </style>
+                """, 
+                unsafe_allow_html=True)
+
 image_base64 = get_base64_image("footprint.png")
 
 ######################### Main Code #########################
@@ -285,6 +295,8 @@ tabs_style()
 tabs = st.tabs(["Household", "Transport", "Secondary", "Total"])
 
 user_data = {}
+
+main()
 
 # --- Energy Tab ---
 with tabs[0]:
