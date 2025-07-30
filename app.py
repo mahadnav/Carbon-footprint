@@ -247,44 +247,7 @@ def user_percentile(total_emissions):
 
     return max(user_percentile, 1)
 
-INVISIBLE_CONTAINER_CSS = """
-div[data-testid="stVerticalBlockBorderWrapper"]:has(div.invisible-marker-container):not(:has(div.not-invisible-marker-container)) {
-    display: none;
-}
-div[data-testid="stVerticalBlockBorderWrapper"]:not(:has(div.invisible-marker-container)):has(div.not-invisible-marker-container) {
-    display: none;
-}
-"""
 
-def st_invisible_container():
-    invisible_marker_container = st.container()
-    not_invisible_marker_container = st.container()
-    css = INVISIBLE_CONTAINER_CSS
-    with invisible_marker_container:
-        st.markdown(f"<style>{css}</style>", unsafe_allow_html=True)
-        st.markdown(
-            "<div class='invisible-marker-container'></div>",
-            unsafe_allow_html=True,
-        )
-    with not_invisible_marker_container:
-        st.markdown(
-            f"<div class='not-invisible-marker-container'></div>",
-            unsafe_allow_html=True,
-        )
-    return invisible_marker_container.container()
-
-
-
-
-
-
-"""
-st_fixed_container consist of two parts - fixed container and opaque container.
-Fixed container is a container that is fixed to the top or bottom of the screen.
-When transparent is set to True, the container is typical `st.container`, which is transparent by default.
-When transparent is set to False, the container is custom opaque_container, that updates its background color to match the background color of the app.
-Opaque container is a helper class, but can be used to create more custom views. See main for examples.
-"""
 OPAQUE_CONTAINER_CSS = """
 :root {{
     --background-color: #ffffff; /* Default background color */
