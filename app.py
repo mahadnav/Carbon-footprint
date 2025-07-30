@@ -38,11 +38,18 @@ const observer = new IntersectionObserver((entries) => {
       entry.target.classList.remove("blur-out");
     }
   });
-}, { threshold: 0.1 });
+}, 
+{ 
+  /* --- FIX STARTS HERE --- */
+  rootMargin: "-150px 0px -150px 0px", // Creates a 150px margin inside the top and bottom of the viewport
+  threshold: 0                          // Triggers as soon as an element touches the margin
+  /* --- FIX ENDS HERE --- */
+});
+
 const sections = parent.document.querySelectorAll('.scroll-section');
 sections.forEach(el => observer.observe(el));
 </script>
-""", height=0) 
+""", height=0)
 
 
 
