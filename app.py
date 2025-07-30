@@ -78,7 +78,7 @@ def tabs_style():
 
             .tabs-object .tabs-container {
                 position: sticky !important; 
-                top: 0;
+                top: 10rem;
             }
                        
             .stTabs [data-baseweb="tab-list"] {
